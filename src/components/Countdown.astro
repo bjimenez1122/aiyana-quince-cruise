@@ -1,0 +1,61 @@
+---
+export interface Props {
+  label?: string
+  targetDate: string
+}
+const { label, targetDate } = Astro.props
+---
+
+<div class="flex flex-col items-center gap-4 text-current">
+  <h2 class="text-6xl font-bold">{label}</h2>
+  <div id="countdown" class="flex flex-col md:flex-row justify-center items-center gap-6 text-current">
+    {['days', 'hours', 'minutes', 'seconds'].map((unit) => (
+      <div class="relative">
+        <svg class="-rotate-90 h-48 w-48">
+          <circle r="70" cx="90" cy="90" class="fill-transparent stroke-[var(--primary-500)] stroke-[8px]" />
+          <circle id={`${unit}Circle`} r="70" cx="90" cy="90" style={`stroke-dasharray: ${unit === 'days' ? 440 : 451}px`} class="fill-transparent stroke-current stroke-[8px]" />
+        </svg>
+        <div class="absolute top-16 left-11 text-2xl font-semibold flex flex-col items-center w-24 h-20">
+          <span id={`${unit}Val`} class="text-center">0</span>
+          <span class="text-center capitalize">{unit}</span>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <script define:vars={{targetDate}}>
+    const scriptTargetDate = new Date(targetDate);
+    console.log("Parsed date: " + scriptTargetDate);
+
+    const refs = ['days', 'hours', 'minutes', 'seconds'].reduce((acc, unit) => {
+      acc[unit + 'Circle'] = document.getElementById(unit + 'Circle');
+      acc[unit + 'Val'] = document.getElementById(unit + 'Val');
+      return acc;
+    }, {});
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = scriptTargetDate.getTime() - now;
+
+      const timeUnits = {
+        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((distance % (1000 * 60)) / 1000),
+      };
+
+      refs.daysVal.textContent = timeUnits.days;
+      refs.hoursVal.textContent = timeUnits.hours;
+      refs.minutesVal.textContent = timeUnits.minutes;
+      refs.secondsVal.textContent = timeUnits.seconds;
+
+      refs.daysCircle.style.strokeDashoffset = 440 - (timeUnits.days * 440) / 365;
+      refs.hoursCircle.style.strokeDashoffset = 451 - (timeUnits.hours * 451) / 24;
+      refs.minutesCircle.style.strokeDashoffset = 451 - (timeUnits.minutes * 451) / 60;
+      refs.secondsCircle.style.strokeDashoffset = 451 - (timeUnits.seconds * 451) / 60;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</div>

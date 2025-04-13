@@ -2,14 +2,15 @@
 import ResponsiveToggle from './ResponsiveToggle.astro'
 import { DarkMode } from 'accessible-astro-components'
 import { Image } from 'astro:assets'
+
 import logo from '../assets/img/logo.svg'
 ---
 
-<div id="main-navigation" class="is-desktop py-8">
+<div id="main-navigation" class="is-desktop">
   <div class="container">
     <a href="/" class="flex items-center gap-2 !no-underline">
       <Image src={logo} alt="Your Logo" width="47" height="37" />
-      <span class="font-bold">Accessible Astro</span>
+      <span class="font-bold">Aiyana's Birthday</span>
     </a>
     <div class="wrapper">
       <nav class="desktop-menu" aria-label="Main navigation desktop">
@@ -221,6 +222,15 @@ import logo from '../assets/img/logo.svg'
   @use '../assets/scss/base/outline' as *;
 
   #main-navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background-color: hsla(185, 57, 92, 0.7); // transparent background
+    backdrop-filter: blur(10px); // optional, for frosted-glass effect
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // lighter shadow
+
     > .container {
       display: flex;
       flex-wrap: wrap;
@@ -414,5 +424,12 @@ import logo from '../assets/img/logo.svg'
         }
       }
     }
+  }
+
+  .darkmode #main-navigation {
+    background-color: hsla(212, 9%, 22%, 0.7);
+  }
+  body {
+    padding-top: 6rem; // adjust based on actual nav height
   }
 </style>
