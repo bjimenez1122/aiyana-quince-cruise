@@ -3,14 +3,14 @@ import ResponsiveToggle from './ResponsiveToggle.astro'
 import { DarkMode } from 'accessible-astro-components'
 import { Image } from 'astro:assets'
 
-import logo from '../assets/img/logo.svg'
+import logo from '../assets/img/cruise-emoji.png'
 ---
 
 <div id="main-navigation" class="is-desktop">
   <div class="container">
     <a href="/" class="flex items-center gap-2 !no-underline">
-      <Image src={logo} alt="Your Logo" width="47" height="37" />
-      <span class="font-bold">Aiyana's Birthday</span>
+      <Image src={logo} alt="Your Logo" height="48" />
+      <span class="font-bold header-title">Aiyana</span>
     </a>
     <div class="wrapper">
       <nav class="desktop-menu" aria-label="Main navigation desktop">
@@ -222,6 +222,11 @@ import logo from '../assets/img/logo.svg'
   @use '../assets/scss/base/outline' as *;
 
   #main-navigation {
+
+    .header-title {
+      font-family: "Waltograph";
+      font-size: 2.5rem;
+    }
     position: fixed;
     top: 0;
     left: 0;
@@ -430,6 +435,6 @@ import logo from '../assets/img/logo.svg'
     background-color: hsla(212, 9%, 22%, 0.7);
   }
   body {
-    padding-top: 6rem; // adjust based on actual nav height
+    padding-top: 3rem; // adjust based on actual nav height
   }
 </style>

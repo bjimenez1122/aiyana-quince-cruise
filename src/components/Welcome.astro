@@ -1,33 +1,90 @@
 ---
-import { Image } from 'astro:assets'
-
 import Countdown from './Countdown.astro'
-
-import disneyfantasycastaway from '../assets/img/disneyfantasycastaway.avif'
 ---
 
-<section class="hero mb-8">
-  <div class="container !px-0">
-    <div class="grid grid-cols-1 items-center gap-8">
-      <h1 class="text-center text-6xl lg:text-8xl">
-        <slot><span class="text-gradient">Aiyana's </span>Birthday Cruise</slot>
-      </h1>
-      <Image class="w-full" src={disneyfantasycastaway} alt="Disney Cruise Ship at Castaway Cay" />
-      <Countdown label="Setting sail in" targetDate="2026-08-28T15:00:00Z" />
-    </div>
-  </div>
+<section class="hero container">
+  <h1 class="image-text">
+    <span class="text-gradient">Aiyana's </span>Birthday Cruise
+  </h1>
 </section>
+<div class="countdown">
+  <div class="time-section" id="seconds">
+    <div class="time-group">
+      <div class="time-segment">
+        <div class="segment-display">
+          <div class="segment-display__top">2</div>
+          <div class="segment-display__bottom">2</div>
+          <div class="segment-overlay">
+            <div class="segment-overlay__top">2</div>
+            <div class="segment-overlay__bottom">2</div>
+          </div>
+        </div>
+      </div>
+      <div class="time-segment">
+        <div class="segment-display">
+          <div class="segment-display__top">2</div>
+          <div class="segment-display__bottom">2</div>
+          <div class="segment-overlay">
+            <div class="segment-overlay__top">2</div>
+            <div class="segment-overlay__bottom">2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p>Seconds</p>
+  </div>
+</div>
+
+<!-- <Countdown label="Setting sail in" targetDate="2026-08-28T15:00:00Z" /> -->
 
 <style lang="scss">
-  .text-gradient {
-    background: linear-gradient(315deg, var(--primary-500) 25%, var(--secondary-500));
-    background-clip: border-box;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  @use '../assets/scss/base/breakpoint' as *;
+
+  .countdown {
+    display: flex;
+    gap: 30px;
+  }
+  .container {
+    padding: 0;
   }
 
-  :global(.darkmode .text-gradient) {
-    background: linear-gradient(315deg, var(--primary-300) 35%, var(--secondary-400));
+  .hero {
+    margin-bottom: 0rem;
+    position: relative;
+    width: 100vw;
+    height: calc(100vh - 3rem);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(/disneyfantasycastaway.avif);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .image-text {
+    position: absolute;
+    width: 90%;
+    text-align: center;
+    font-size: 2.75rem;
+    line-height: 1.5;
+    color: var(--neutral-100);
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%);
+
+    @include breakpoint(medium) {
+      font-size: 3.5rem;
+      // top: 10%;
+      // left: 50%;
+      // transform: translate(-50%);
+    }
+    @include breakpoint(large) {
+      font-size: 5.5em;
+      top: 15%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  .text-gradient {
+    background: linear-gradient(315deg, var(--primary-300) 25%, var(--primary-300));
     background-clip: border-box;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
