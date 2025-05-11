@@ -6,44 +6,409 @@ import Countdown from './Countdown.astro'
   <h1 class="image-text">
     <span class="text-gradient">Aiyana's </span>Birthday Cruise
   </h1>
-</section>
-<div class="countdown">
-  <div class="time-section" id="seconds">
-    <div class="time-group">
-      <div class="time-segment">
-        <div class="segment-display">
-          <div class="segment-display__top">2</div>
-          <div class="segment-display__bottom">2</div>
-          <div class="segment-overlay">
-            <div class="segment-overlay__top">2</div>
-            <div class="segment-overlay__bottom">2</div>
+  <div class="countdown">
+    <div class="countdown-row">
+      <div class="time-section" id="days">
+        <div class="time-group">
+          <div class="time-segment">
+            <div class="segment-display">
+              <div class="segment-display__top">0</div>
+              <div class="segment-display__bottom">0</div>
+              <div class="segment-overlay">
+                <div class="segment-overlay__top">0</div>
+                <div class="segment-overlay__bottom">0</div>
+              </div>
+            </div>
+          </div>
+          <div class="time-segment">
+            <div class="segment-display">
+              <div class="segment-display__top">0</div>
+              <div class="segment-display__bottom">0</div>
+              <div class="segment-overlay">
+                <div class="segment-overlay__top">0</div>
+                <div class="segment-overlay__bottom">0</div>
+              </div>
+            </div>
+          </div>
+          <div class="time-segment">
+            <div class="segment-display">
+              <div class="segment-display__top">0</div>
+              <div class="segment-display__bottom">0</div>
+              <div class="segment-overlay">
+                <div class="segment-overlay__top">0</div>
+                <div class="segment-overlay__bottom">0</div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="time-segment">
-        <div class="segment-display">
-          <div class="segment-display__top">2</div>
-          <div class="segment-display__bottom">2</div>
-          <div class="segment-overlay">
-            <div class="segment-overlay__top">2</div>
-            <div class="segment-overlay__bottom">2</div>
-          </div>
-        </div>
+        <p>Days</p>
       </div>
     </div>
-    <p>Seconds</p>
+    <div class="countdown-row">
+      <div class="time-section" id="hours">
+        <div class="time-group">
+          <div class="time-segment">
+            <div class="segment-display">
+              <div class="segment-display__top">0</div>
+              <div class="segment-display__bottom">0</div>
+              <div class="segment-overlay">
+                <div class="segment-overlay__top">0</div>
+                <div class="segment-overlay__bottom">0</div>
+              </div>
+            </div>
+          </div>
+          <div class="time-segment">
+            <div class="segment-display">
+              <div class="segment-display__top">0</div>
+              <div class="segment-display__bottom">0</div>
+              <div class="segment-overlay">
+                <div class="segment-overlay__top">0</div>
+                <div class="segment-overlay__bottom">0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p>Hours</p>
+      </div>
+      <div class="time-section" id="minutes">
+        <div class="time-group">
+          <div class="time-segment">
+            <div class="segment-display">
+              <div class="segment-display__top">0</div>
+              <div class="segment-display__bottom">0</div>
+              <div class="segment-overlay">
+                <div class="segment-overlay__top">0</div>
+                <div class="segment-overlay__bottom">0</div>
+              </div>
+            </div>
+          </div>
+          <div class="time-segment">
+            <div class="segment-display">
+              <div class="segment-display__top">0</div>
+              <div class="segment-display__bottom">0</div>
+              <div class="segment-overlay">
+                <div class="segment-overlay__top">0</div>
+                <div class="segment-overlay__bottom">0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p>Minutes</p>
+      </div>
+      <div class="time-section" id="seconds">
+        <div class="time-group">
+          <div class="time-segment">
+            <div class="segment-display">
+              <div class="segment-display__top">0</div>
+              <div class="segment-display__bottom">0</div>
+              <div class="segment-overlay">
+                <div class="segment-overlay__top">0</div>
+                <div class="segment-overlay__bottom">0</div>
+              </div>
+            </div>
+          </div>
+          <div class="time-segment">
+            <div class="segment-display">
+              <div class="segment-display__top">0</div>
+              <div class="segment-display__bottom">0</div>
+              <div class="segment-overlay">
+                <div class="segment-overlay__top">0</div>
+                <div class="segment-overlay__bottom">0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p>Seconds</p>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
-<!-- <Countdown label="Setting sail in" targetDate="2026-08-28T15:00:00Z" /> -->
 
-<style lang="scss">
+<script>
+  const targetDate = '2026-08-28T00:00:00';
+  function getTimeSegmentElements(segmentElement) {
+    const segmentDisplay = segmentElement.querySelector(
+      '.segment-display'
+    );
+    const segmentDisplayTop = segmentDisplay.querySelector(
+      '.segment-display__top'
+    );
+    const segmentDisplayBottom = segmentDisplay.querySelector(
+      '.segment-display__bottom'
+    );
+    const segmentOverlay = segmentDisplay.querySelector(
+      '.segment-overlay'
+    );
+    const segmentOverlayTop = segmentOverlay.querySelector(
+      '.segment-overlay__top'
+    );
+    const segmentOverlayBottom = segmentOverlay.querySelector(
+      '.segment-overlay__bottom'
+    );
+
+    return {
+      segmentDisplayTop,
+      segmentDisplayBottom,
+      segmentOverlay,
+      segmentOverlayTop,
+      segmentOverlayBottom
+    }
+  }
+  function updateSegmentValues(displayElement, overlayElement, value) {
+    displayElement.textContent = value;
+    overlayElement.textContent = value;
+  }
+
+  function updateTimeSegment(segmentElement, timeValue) {
+    const segmentElements = getTimeSegmentElements(segmentElement);
+
+    if (
+      parseInt(segmentElements.segmentDisplayTop.textContent, 10) === timeValue) {
+      return;
+    }
+
+    segmentElements.segmentOverlay.classList.add('flip');
+
+    updateSegmentValues(
+      segmentElements.segmentDisplayTop,
+      segmentElements.segmentOverlayBottom,
+      timeValue
+    );
+
+    function finishAnimation() {
+      segmentElements.segmentOverlay.classList.remove('flip');
+      updateSegmentValues(
+        segmentElements.segmentDisplayBottom,
+        segmentElements.segmentOverlayTop,
+        timeValue
+      );
+
+      this.removeEventListener('animationend', finishAnimation);
+    }
+
+    segmentElements.segmentOverlay.addEventListener('animationend', finishAnimation);
+  }
+
+  function updateTimeSection(sectionID, timeValue) { // 124
+    const hundreds = Math.floor(timeValue / 100); // 1
+    const tens = Math.floor((timeValue % 100) / 10); // 2
+    const singles = timeValue % 10; // 4
+
+    const sectionElement = document.getElementById(sectionID);
+    const timeSegments = sectionElement?.querySelectorAll('.time-segment');
+
+    if (timeSegments?.length === 3){
+      updateTimeSegment(timeSegments?.[0], hundreds);
+      updateTimeSegment(timeSegments?.[1], tens);
+      updateTimeSegment(timeSegments?.[2], singles);
+    } else {
+      updateTimeSegment(timeSegments?.[0], tens);
+      updateTimeSegment(timeSegments?.[1], singles);
+    }
+  }
+
+  function getTimeRemaining(targetDateTime) {
+    const nowTime = Date.now();
+    const secondsRemaining = Math.floor((targetDateTime - nowTime) / 1000);
+
+    const complete = nowTime >= targetDateTime;
+
+    if (complete) {
+      return {
+        complete,
+        seconds: 0,
+        minutes: 0,
+        hours: 0,
+        days: 0
+      };
+    }
+    const days = Math.floor(secondsRemaining / 60 / 60 / 24);
+    const hours = Math.floor(secondsRemaining / 60 / 60) - (days * 24);
+    const minutes = Math.floor(secondsRemaining / 60) - (days * 24 * 60) - (hours * 60);
+    const seconds = secondsRemaining  % 60;
+
+    return {
+      complete,
+      seconds,
+      minutes,
+      hours,
+      days
+    };
+  }
+
+  function updateAllSegments() {
+    const targetTimeStamp = new Date(targetDate).getTime();
+    const timeRemainingBits = getTimeRemaining(targetTimeStamp);
+
+    updateTimeSection('seconds', timeRemainingBits.seconds);
+    updateTimeSection('minutes', timeRemainingBits.minutes);
+    updateTimeSection('hours', timeRemainingBits.hours);
+    updateTimeSection('days', timeRemainingBits.days)
+
+    return timeRemainingBits.complete;
+  }
+
+  const countdownTimer = setInterval(() => {
+    const isComplete = updateAllSegments();
+
+    if (isComplete) {
+      clearInterval(countdownTimer);
+    }
+  }, 1000)
+
+  updateAllSegments();
+</script>
+
+<style is:global lang="scss">
   @use '../assets/scss/base/breakpoint' as *;
 
   .countdown {
     display: flex;
-    gap: 30px;
+    flex-direction: column;
+    gap: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+    color: var(--neutral-100);
+
+    .countdown-row {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .time-section {
+      text-align: center;
+      font-size: 1.5rem; // minutes, seconds, hours, days labels
+    }
+
+    .time-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .time-segment,
+    .segment-overlay {
+      width: 3rem;
+    }
+    .time-segment {
+      display: block;
+      font-size: 3rem; // time digits
+      font-weight: 900;
+    }
+
+    .segment-display {
+      position: relative;
+      height: 100%;
+    }
+
+    .segment-display__top,
+    .segment-display__bottom {
+      overflow: hidden;
+      text-align: center;
+      width: 100%;
+      height: 50%;
+      position: relative;
+    }
+
+    .segment-display__top {
+      background-color: var(--neutral-900);
+      color: var(--neutral-300);
+      line-height: 1.5;
+    }
+
+    .segment-display__bottom {
+      background-color: var(--neutral-700);
+      color: var(--neutral-100);
+      line-height: 0;
+    }
+
+    .segment-overlay {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      perspective: 400px;
+    }
+
+    .segment-overlay__top,
+    .segment-overlay__bottom {
+      position: absolute;
+      overflow: hidden;
+      text-align: center;
+      width: 100%;
+      height: 50%;
+    }
+
+    .segment-overlay__top {
+      top: 0;
+      line-height: 1.5;
+      color: var(--neutral-300);
+      background-color: var(--neutral-900);
+      transform-origin: bottom;
+    }
+
+    .segment-overlay__bottom {
+      bottom: 0;
+      line-height: 0;
+      color: var(--neutral-100);
+      background-color: var(--neutral-700);
+      border-top: 2px solid var(--neutral-900);
+      transform-origin: top;
+    }
+
+    .segment-overlay.flip .segment-overlay__top {
+      animation: flip-top 0.6s linear;
+    }
+
+    .segment-overlay.flip .segment-overlay__bottom {
+      animation: flip-bottom 0.6s linear;
+    }
+
+    @keyframes flip-top {
+      0% {
+        transform: rotateX(0deg);
+      }
+      50%, 100% {
+        transform: rotateX(-90deg);
+      }
+    }
+
+    @keyframes flip-bottom {
+      0%, 50% {
+        transform: rotateX(-90deg);
+      }
+      100% {
+        transform: rotateX(0deg);
+      }
+    }
+
+    @include breakpoint(medium) {
+      .time-section {
+        font-size: 2.25rem;
+        line-height: 2.25rem;
+      }
+
+      .time-segment,
+      .segment-overlay {
+        width: 4rem;
+      }
+
+      .time-segment {
+        font-size: 4rem;
+      }
+
+      .segment-display__top,
+      .segment-overlay__top {
+      line-height: 1.5;
+    }
+    }
+    @include breakpoint(large) {
+      font-size: 5.5em;
+    }
   }
+
   .container {
     padding: 0;
   }
@@ -52,7 +417,8 @@ import Countdown from './Countdown.astro'
     margin-bottom: 0rem;
     position: relative;
     width: 100vw;
-    height: calc(100vh - 3rem);
+    min-height: 700px;
+    height: calc(100vh - 3.5rem);
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(/disneyfantasycastaway.avif);
     background-size: cover;
     background-repeat: no-repeat;

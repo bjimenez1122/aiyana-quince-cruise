@@ -3,14 +3,13 @@ import ResponsiveToggle from './ResponsiveToggle.astro'
 import { DarkMode } from 'accessible-astro-components'
 import { Image } from 'astro:assets'
 
-import logo from '../assets/img/cruise-emoji.png'
+import logo from '../assets/img/logo-header-web.svg'
 ---
 
 <div id="main-navigation" class="is-desktop">
   <div class="container">
-    <a href="/" class="flex items-center gap-2 !no-underline">
-      <Image src={logo} alt="Your Logo" height="48" />
-      <span class="font-bold header-title">Aiyana</span>
+    <a href="/" class="logo">
+      <Image src={logo} alt="Aiyana's Logo" height="32" />
     </a>
     <div class="wrapper">
       <nav class="desktop-menu" aria-label="Main navigation desktop">
@@ -222,19 +221,22 @@ import logo from '../assets/img/cruise-emoji.png'
   @use '../assets/scss/base/outline' as *;
 
   #main-navigation {
-
-    .header-title {
-      font-family: "Waltograph";
-      font-size: 2.5rem;
-    }
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 50;
-    background-color: hsla(185, 57, 92, 0.7); // transparent background
-    backdrop-filter: blur(10px); // optional, for frosted-glass effect
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // lighter shadow
+    background-color: var(--neutral-background);
+    box-shadow: 0 2px 4px var(--neutral-400);
+    padding: 0 2rem;
+
+    .logo {
+      display: flex;
+      align-items: center;
+      padding: .25rem 0;
+      text-decoration-line: none !important;
+      padding: .5rem 0;
+    }
 
     > .container {
       display: flex;
@@ -297,17 +299,6 @@ import logo from '../assets/img/cruise-emoji.png'
           font-size: 1.125rem;
           line-height: 1.6875rem;
           text-decoration: none;
-        }
-
-        a:hover,
-        a:focus,
-        .is-active,
-        .has-dropdown > button:hover,
-        .has-dropdown > button:focus {
-          text-decoration: underline;
-          text-decoration-style: wavy;
-          text-decoration-thickness: 1px;
-          text-underline-offset: 7px;
         }
 
         .is-active {
@@ -432,7 +423,8 @@ import logo from '../assets/img/cruise-emoji.png'
   }
 
   .darkmode #main-navigation {
-    background-color: hsla(212, 9%, 22%, 0.7);
+    background-color: var(--neutral-800);
+    box-shadow: 0 2px 4px var(--neutral-900);
   }
   body {
     padding-top: 3rem; // adjust based on actual nav height

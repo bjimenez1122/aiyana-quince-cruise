@@ -24,8 +24,11 @@ const {
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Charm:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <SiteMeta title={title} description={description.substring(0, 100)} url={url} image={image} author={author} />
   </head>
   <body>
@@ -46,8 +49,8 @@ const {
         --font-family-special: system-ui;
         // light theme
         --font-color: var(--neutral-900);
-        --action-color: var(--primary-500);
-        --action-color-state: var(--primary-300);
+        --action-color: var(--primary-300);
+        --action-color-state: var(--neutral-700);
         --background: var(--neutral-200);
         --primary-background: var(--primary-200);
         --neutral-background: var(--neutral-200);
@@ -56,8 +59,8 @@ const {
       // dark color scheme overrides
       .darkmode {
         --font-color: var(--neutral-100);
-        --action-color: var(--secondary-300);
-        --action-color-state: var(--secondary-200);
+        --action-color: var(--primary-300);
+        --action-color-state: var(--neutral-200);
         --background: var(--dark-100);
         --primary-background: var(--primary-500);
         --neutral-background: var(--neutral-900);
