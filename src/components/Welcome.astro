@@ -409,10 +409,6 @@ import Countdown from './Countdown.astro'
     }
   }
 
-  .container {
-    padding: 0;
-  }
-
   .hero {
     margin-bottom: 0rem;
     position: relative;
@@ -423,36 +419,36 @@ import Countdown from './Countdown.astro'
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-  }
 
-  .image-text {
-    position: absolute;
-    width: 90%;
-    text-align: center;
-    font-size: 2.75rem;
-    line-height: 1.5;
-    color: var(--neutral-100);
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%);
-
-    @include breakpoint(medium) {
-      font-size: 3.5rem;
-      // top: 10%;
-      // left: 50%;
-      // transform: translate(-50%);
-    }
-    @include breakpoint(large) {
-      font-size: 5.5em;
-      top: 15%;
+    > .image-text {
+      position: absolute;
+      width: 90%;
+      text-align: center;
+      font-size: 2.75rem;
+      line-height: 1.5;
+      color: var(--neutral-100);
+      top: 10%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%);
+
+      @include breakpoint(medium) {
+        font-size: 3.5rem;
+        // top: 10%;
+        // left: 50%;
+        // transform: translate(-50%);
+      }
+      @include breakpoint(large) {
+        font-size: 5.5em;
+        top: 15%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      > .text-gradient {
+        background: linear-gradient(315deg, var(--primary-300) 25%, var(--primary-300));
+        background-clip: border-box;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
     }
-  }
-  .text-gradient {
-    background: linear-gradient(315deg, var(--primary-300) 25%, var(--primary-300));
-    background-clip: border-box;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
   }
 </style>
