@@ -9,7 +9,7 @@ const {
   title = 'Astro',
   description = "Aiyana's 15th Birthday Disney Cruise",
   url = Astro.site,
-  image = 'social-preview-image.png',
+  image = 'social-preview-image.jpg',
   author = 'Bryan Jimenez-Rojas',
 } = Astro.props
 ---
@@ -19,10 +19,16 @@ const {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Charm:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <SiteMeta title={title} description={description.substring(0, 100)} url={url} image={image} author={author} />
   </head>
   <body>
@@ -32,18 +38,19 @@ const {
     </main>
     <Footer />
     <style lang="scss" is:global>
+
       // theme settings
       :root {
         --radius-small: 3px;
         --radius-large: 6px;
         --gap-default: 2rem;
         --font-measure: 70ch;
-        --font-family-default: 'Open Sans', sans-serif;
-        --font-family-special: 'Open Sans', sans-serif;
+        --font-family-default: system-ui;
+        --font-family-special: system-ui;
         // light theme
         --font-color: var(--neutral-900);
-        --action-color: var(--primary-500);
-        --action-color-state: var(--primary-300);
+        --action-color: var(--primary-300);
+        --action-color-state: var(--neutral-700);
         --background: var(--neutral-200);
         --primary-background: var(--primary-200);
         --neutral-background: var(--neutral-200);
@@ -52,8 +59,8 @@ const {
       // dark color scheme overrides
       .darkmode {
         --font-color: var(--neutral-100);
-        --action-color: var(--secondary-300);
-        --action-color-state: var(--secondary-200);
+        --action-color: var(--primary-300);
+        --action-color-state: var(--neutral-200);
         --background: var(--dark-100);
         --primary-background: var(--primary-500);
         --neutral-background: var(--neutral-900);
