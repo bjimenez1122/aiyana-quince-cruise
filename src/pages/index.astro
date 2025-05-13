@@ -11,15 +11,48 @@ import { Accordion, AccordionItem } from 'accessible-astro-components'
 <DefaultLayout title="Home">
   <!-- <Hero /> -->
   <Welcome />
-  <!-- <ContentMedia imgSrc="/wcag-compliant.webp" reverseImg={false}>
-    <h2>WCAG 2.2 AA Compliant</h2>
-    <p class="text-2xl">
-      Using semantic HTML, landmarks, skip links, screen reader friendly content, aria-labels, keyboard accessible
-      navigation and components, clear outlines and tab indicators and the right color contrast, you're more certain of
-      reaching WCAG AA compliance.
+  <ContentMedia imgSrc='../src/assets/img/captain-minnie.jpg'>
+    <h2 slot="header" class="text-4xl font-bold">✨ Join Us Aboard the Disney Fantasy ✨</h2>
+    <p class="mb-4">
+      We're setting sail on a magical journey to celebrate a very special occasion — Aiyana's 15<sup>th</sup> birthday! 🌟
     </p>
+    <p class="mb-4">
+      We would be overjoyed to have you join us on this unforgettable adventure filled with laughter, memories,
+      and a touch of pixie dust. Whether you're a seasoned cruiser or new to the magic of Disney at sea, this
+      trip promises joy for all ages.
+    </p>
+    <p>This site will be your enchanted guide as we finalize details, share tips, and sprinkle in surprises. Stay tuned — there's more magic to come!</p>
   </ContentMedia>
-  <section class="my-64">
+  <ContentMedia imgSrc='../src/assets/img/stateroom.jpg' reverseImg={false}>
+    <h2 slot="header" class="text-4xl font-bold">📅 Booking Your Magical Getaway</h2>
+    <ul class="mb-4 list-disc list-inside">
+      <li><strong>Dates:</strong> August 28 – September 2, 2026</li>
+      <li><strong>Itinerary:</strong> 5-Night Bahamian Cruise from Port Canaveral</li>
+      <li><strong>Ship:</strong> Disney Fantasy</li>
+      <li>
+        Book online at <strong><a href="https://disneycruise.disney.go.com/">disneycruise.disney.go.com</a></strong> or call <strong><a href="tel:800-951-3532">(800) 951-3532</a></strong>
+      </li>
+      <li>
+        Select <strong>late dining (8:15 PM)</strong> and share your reservation number with Jackie so we can coordinate group plans
+      </li>
+      <li>The birthday girl will be in stateroom <strong>8532</strong> — book nearby if you'd like to stay close!</li>
+    </ul>
+    <h3 class="text-2xl font-semibold mb-2">💰 Sample Pricing (as of May 12, 2025)</h3>
+    <p class="mb-2"><strong>For 2 Adults + 2 Children:</strong></p>
+    <ul class="mb-4 list-disc list-inside">
+      <li>Inside Stateroom: $4,545</li>
+      <li>Oceanview Stateroom: $4,775</li>
+      <li>Verandah Stateroom: $5,064</li>
+    </ul>
+    <p class="mb-2"><strong>For 2 Adults:</strong></p>
+    <ul class="mb-4 list-disc list-inside">
+      <li>Inside Stateroom: $2,694</li>
+      <li>Oceanview Stateroom: $2,874</li>
+      <li>Verandah Stateroom: $3,194</li>
+    </ul>
+    <p class="italic">A 20% deposit secures your cabin. Final payment is due May 30, 2026 at 11:59 PM ET. Plans change? Cancellations are fully refundable until then — booking now locks in today’s price before availability shrinks!</p>
+  </ContentMedia>
+  <!-- <section class="my-16">
     <div class="container">
       <h2 class="mb-16 text-6xl">Features</h2>
       <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
@@ -53,24 +86,7 @@ import { Accordion, AccordionItem } from 'accessible-astro-components'
       </div>
     </div>
   </section>
-  <ContentMedia imgSrc="/accessible-components.webp">
-    <h2>Accessible Components</h2>
-    <p class="text-2xl">
-      This theme provides plenty of tried and tested Accessible Astro Components. Some are native to this theme and a
-      lot of others are integrated using a <a href="https://github.com/markteekman/accessible-astro-components"
-        >separate package</a
-      >. They'll get you up and running in building an accessible solution for your visitors.
-    </p>
-  </ContentMedia>
-  <ContentMedia imgSrc="/wcag-compliant.webp" reverseImg={true}>
-    <h2>WCAG 2.2 AA Compliant</h2>
-    <p class="text-2xl">
-      Using semantic HTML, landmarks, skip links, screen reader friendly content, aria-labels, keyboard accessible
-      navigation and components, clear outlines and tab indicators and the right color contrast, you're more certain of
-      reaching WCAG AA compliance.
-    </p>
-  </ContentMedia>
-  <section class="my-64">
+  <section class="my-16">
     <div class="container grid grid-cols-1 gap-12 md:grid-cols-2">
       <div class="flex flex-col items-start gap-4">
         <h2 class="text-6xl">FAQ</h2>
@@ -125,17 +141,6 @@ import { Accordion, AccordionItem } from 'accessible-astro-components'
             </p>
           </AccordionItem>
         </Accordion>
-      </div>
-    </div>
-  </section>
-  <section class="mb-32 mt-64">
-    <div class="container">
-      <h2 class="mb-16 text-6xl">Counters</h2>
-      <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-4">
-        <Counter count="520" title="Stars" sub="On GitHub" />
-        <Counter count="17" title="Accessible" sub="Components" />
-        <Counter count="500" title="Commits" sub="Merged" />
-        <Counter count="18+" title="Months" sub="Since launch" />
       </div>
     </div>
   </section> -->
