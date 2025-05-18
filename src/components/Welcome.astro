@@ -418,7 +418,11 @@ import Countdown from './Countdown.astro'
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(/disneyfantasycastaway.avif);
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: 60%;
+
+    @include breakpoint(medium) {
+      background-position: center;
+    }
 
     > .image-text {
       position: absolute;
