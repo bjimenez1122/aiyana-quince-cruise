@@ -37,7 +37,7 @@ import DefaultLayout from '../layouts/DefaultLayout.astro'
             class="hero-ship-img"
           />
         </div>
-        <div class="hero-detail-badge">
+        <div class="hero-detail-badge glass-panel">
           <span class="badge-ship">Disney Fantasy</span>
           <span class="badge-sparkle">✦</span>
           <span class="badge-dates">Aug 28 – Sep 2, 2026</span>
@@ -293,23 +293,23 @@ import DefaultLayout from '../layouts/DefaultLayout.astro'
       </div>
 
       <div class="faq-list">
-        <details class="faq-item">
+        <details class="faq-item glass-panel">
           <summary>When should I book?</summary>
           <p>Book as soon as possible — Disney Cruise cabins fill up quickly! A 10% deposit secures your cabin, with final payment due May 30, 2026. Plans change? Cancellations are fully refundable until then, and booking now locks in today's price.</p>
         </details>
-        <details class="faq-item">
+        <details class="faq-item glass-panel">
           <summary>What dining time should I select?</summary>
           <p>Please select <strong>late dining (8:15 PM)</strong> when booking. Share your reservation number with Jackie so we can coordinate and sit together as a group.</p>
         </details>
-        <details class="faq-item">
+        <details class="faq-item glass-panel">
           <summary>Where is the birthday girl staying?</summary>
           <p>Aiyana will be in stateroom <strong>8532</strong>. Book a nearby stateroom if you'd like to stay close to the birthday girl!</p>
         </details>
-        <details class="faq-item">
+        <details class="faq-item glass-panel">
           <summary>Do I need a passport?</summary>
           <p>A valid passport is strongly recommended for all guests. A birth certificate plus government-issued photo ID is technically accepted for US citizens on closed-loop cruises, but a passport provides the most flexibility.</p>
         </details>
-        <details class="faq-item">
+        <details class="faq-item glass-panel">
           <summary>What should I pack?</summary>
           <p>Pack resort casual wear for days at sea and ports, plus formal or semi-formal attire for the Pirate Night and special dinner evenings. Don't forget sunscreen, swimwear, and comfortable walking shoes for port days.</p>
         </details>
@@ -319,7 +319,7 @@ import DefaultLayout from '../layouts/DefaultLayout.astro'
 
   <!-- ─── CLOSING CTA ─── -->
   <section class="cta-section">
-    <div class="cta-inner">
+    <div class="cta-inner glass-panel">
       <span class="material-symbols-outlined cta-icon" aria-hidden="true">confirmation_number</span>
       <h2 class="cta-headline">Come Sail With Us!</h2>
       <p class="cta-body">
@@ -550,8 +550,6 @@ import DefaultLayout from '../layouts/DefaultLayout.astro'
     display: flex;
     align-items: center;
     gap: 0.625rem;
-    background: var(--color-badge-bg);
-    backdrop-filter: blur(14px);
     padding: 0.875rem 1.5rem;
     border-radius: 9999px;
     box-shadow: 0 10px 32px var(--color-shadow-md);
@@ -1133,7 +1131,6 @@ import DefaultLayout from '../layouts/DefaultLayout.astro'
     border-radius: 0.75rem;
     overflow: hidden;
     margin-bottom: 0.75rem;
-    background: var(--color-faq-bg);
     border: 1px solid var(--color-border);
     transition: box-shadow 0.2s ease;
 
@@ -1204,8 +1201,6 @@ import DefaultLayout from '../layouts/DefaultLayout.astro'
     align-items: center;
     gap: 1.5rem;
 
-    background: var(--color-cta-glass);
-    backdrop-filter: blur(12px);
     padding: 4rem 3rem;
     border-radius: 2rem;
     border: 1px solid var(--color-border);
