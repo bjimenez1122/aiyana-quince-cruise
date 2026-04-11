@@ -7,7 +7,7 @@ import Footer from '../components/Footer.astro'
 
 const {
   title = 'Astro',
-  description = "Aiyana's Quinceañera at Sea — A Quinceañera Cruise Celebration",
+  description = "Aiyana's Quinceañera at Sea — A Cruise Celebration",
   url = Astro.site,
   image = 'social-preview-image.jpg',
   author = 'Bryan Jimenez-Rojas',
@@ -49,13 +49,7 @@ const {
         --font-family-default: 'Manrope', system-ui, sans-serif;
         --font-family-special: 'Noto Serif', Georgia, serif;
 
-        // light theme
-        --font-color: #191c1d;
-        --background: #f8f9fa;
-        --action-color: #0c6780;
-        --action-color-state: #735c00;
-
-        // semantic tokens
+        // semantic tokens (light theme)
         --color-primary: #0c6780;
         --color-primary-hover: #004d62;
         --color-primary-light: #87ceeb;
@@ -89,11 +83,6 @@ const {
 
       @media (prefers-color-scheme: dark) {
         :root {
-          --font-color: #e1e3e3;
-          --background: #111415;
-          --action-color: #87ceeb;
-          --action-color-state: #fed65b;
-
           --color-primary: #6fc4df;
           --color-primary-hover: #87ceeb;
           --color-primary-light: #3a8ea8;
@@ -134,8 +123,8 @@ const {
       body {
         display: flex;
         flex-direction: column;
-        color: var(--font-color);
-        background-color: var(--background);
+        color: var(--color-on-surface);
+        background-color: var(--color-surface);
         overflow-x: hidden;
 
         main {
