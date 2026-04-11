@@ -1,68 +1,288 @@
 ---
-import Navigation from '../components/Navigation.astro'
 import { SkipLink } from 'accessible-astro-components'
-import { Icon } from 'astro-icon/components'
+
+const navLinks = [
+  { href: '#hero', label: 'Home' },
+  { href: '#booking', label: 'Booking' },
+  { href: '#itinerary', label: 'Itinerary' },
+  { href: '#faq', label: 'FAQ' },
+]
 ---
 
-<header>
-  <SkipLink />
-  <Navigation>
-    <li class="menu-item">
-      <a href="/">Home</a>
-    </li>
-    <!-- <li class="menu-item">
-      <a href="/blog/">Blog</a>
-    </li>
-    <li class="menu-item">
-      <a href="/portfolio/">Portfolio</a>
-    </li>
-    <li class="menu-item has-dropdown">
-      <button aria-haspopup="true" aria-expanded="false">Example Pages</button>
-      <ul class="dropdown-menu">
-        <li class="submenu-item">
-          <a href="/mdx-page/">MDX Page</a>
-        </li>
-        <li class="submenu-item">
-          <a href="/markdown-page/">Markdown Page</a>
-        </li>
-        <li class="submenu-item">
-          <a href="/accessible-components">Accessible Components</a>
-        </li>
+<SkipLink />
+<header id="main-navigation">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand" aria-label="Aiyana's Cruise — Home">
+      <img src="/favicon.svg" alt="" class="nav-logo" />
+      <span class="nav-wordmark">Aiyana's Quinceañera</span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <ul>
+        {navLinks.map(({ href, label }) => (
+          <li>
+            <a href={href} data-section={href.replace('#', '')}>
+              <span class="nav-sparkle" aria-hidden="true">✦</span>
+              <span class="nav-label">{label}</span>
+            </a>
+          </li>
+        ))}
       </ul>
-    </li>
-    <li class="menu-item">
-      <a href="https://accessible-astro.incluud.dev/" rel="external">Docs</a>
-    </li>
-    <li class="menu-item type-icon">
-      <a href="https://github.com/markteekman/accessible-astro-starter" title="Go to the GitHub page">
-        <Icon name="ion:logo-github" />
-      </a>
-    </li> -->
-  </Navigation>
+    </nav>
+
+    <button class="mobile-toggle" id="mobile-nav-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Toggle menu">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+  </div>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden>
+    <ul>
+      {navLinks.map(({ href, label }) => (
+        <li><a href={href}>{label}</a></li>
+      ))}
+      <li><a href="#booking">Booking</a></li>
+    </ul>
+  </nav>
 </header>
 
-<style lang="scss" is:global>
-  @use '../assets/scss/base/outline' as *;
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.getElementById('mobile-nav-toggle')
+    const mobileNav = document.getElementById('mobile-nav')
 
-  header {
-    .type-icon a {
-      display: block;
+    toggle?.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true'
+      toggle.setAttribute('aria-expanded', String(!expanded))
+      mobileNav?.toggleAttribute('hidden')
+    })
 
-      [data-icon] {
-        margin-top: -4px;
-        width: 30px;
-        height: auto;
+    // Active section highlighting
+    const navAnchors = document.querySelectorAll('.desktop-nav a[data-section]')
+    const sections = Array.from(navAnchors).map(a => {
+      const id = a.getAttribute('data-section')!
+      return { id, el: document.getElementById(id), link: a }
+    }).filter(s => s.el)
 
-        path {
-          fill: var(--action-color);
-        }
+    let activeId = ''
+    const lastSection = sections[sections.length - 1]
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          const match = sections.find(s => s.el === entry.target)
+          if (match && entry.isIntersecting) {
+            activeId = match.id
+          }
+        })
+        sections.forEach(s => s.link.classList.toggle('is-active', s.id === activeId))
+      },
+      { rootMargin: '-20% 0px -60% 0px' }
+    )
+
+    sections.forEach(s => observer.observe(s.el!))
+
+    // Keep last section active when scrolled to bottom
+    window.addEventListener('scroll', () => {
+      const atBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 50
+      if (atBottom && lastSection) {
+        activeId = lastSection.id
+        sections.forEach(s => s.link.classList.toggle('is-active', s.id === activeId))
       }
+    }, { passive: true })
+  })
+</script>
 
-      &:hover {
-        [data-icon] path {
-          fill: var(--action-color-state);
+<style lang="scss" is:global>
+  #main-navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: var(--color-surface-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+
+    &.scrolled {
+      background: var(--color-surface-glass-solid);
+      box-shadow: 0 4px 24px var(--color-shadow);
+    }
+  }
+
+  .nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    text-decoration: none !important;
+  }
+
+  .nav-logo {
+    height: 28px;
+    width: auto;
+  }
+
+  .nav-wordmark {
+    font-family: 'Noto Serif', Georgia, serif;
+    font-style: italic;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+
+  .desktop-nav {
+    display: none;
+
+    @media (min-width: 768px) {
+      display: block;
+    }
+
+    ul {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      display: flex;
+      align-items: center;
+
+      // sparkle separator between nav items
+      &:not(:last-child)::after {
+        content: '✦';
+        color: var(--color-secondary);
+        opacity: 0.35;
+        font-size: 0.5rem;
+        font-style: normal;
+        margin: 0 0.25rem;
+        pointer-events: none;
+      }
+    }
+
+    a {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.4rem 0.875rem;
+      font-family: 'Noto Serif', Georgia, serif;
+      font-size: 1.125rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--color-on-surface-variant);
+      text-decoration: none !important;
+      border-radius: 9999px;
+      transition: color 0.25s ease, transform 0.2s ease;
+
+      &:hover,
+      &.is-active {
+        color: var(--color-secondary);
+        transform: translateY(-2px);
+
+        .nav-sparkle {
+          opacity: 1;
+          transform: rotate(0deg) scale(1);
+        }
+
+        .nav-label::after {
+          transform: scaleX(1);
         }
       }
     }
+
+    .nav-sparkle {
+      font-style: normal;
+      font-size: 0.65rem;
+      color: var(--color-secondary);
+      opacity: 0;
+      transform: rotate(-30deg) scale(0.5);
+      transition: opacity 0.2s ease 0.05s, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.05s;
+    }
+
+    .nav-label {
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--color-secondary);
+        border-radius: 1px;
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: transform 0.3s ease;
+      }
+    }
+
+  }
+
+  .mobile-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-primary);
+    padding: 0.25rem;
+
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+
+  .mobile-nav {
+    border-top: 1px solid var(--color-border);
+    background: var(--color-surface-glass-solid);
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 1rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    a {
+      display: block;
+      font-family: 'Manrope', system-ui, sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--color-on-surface);
+      text-decoration: none;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--color-border);
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: var(--color-primary);
+      }
+    }
+
+    li:last-child a {
+      border-bottom: none;
+    }
+  }
+
+  body {
+    padding-top: 3rem;
   }
 </style>
