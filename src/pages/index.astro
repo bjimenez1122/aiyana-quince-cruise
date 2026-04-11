@@ -1,147 +1,1250 @@
 ---
 import DefaultLayout from '../layouts/DefaultLayout.astro'
-import Hero from '../components/Hero.astro'
-import Welcome from '../components/Welcome.astro'
-import Feature from '../components/Feature.astro'
-import Counter from '../components/Counter.astro'
-import ContentMedia from '../components/ContentMedia.astro'
-import { Accordion, AccordionItem } from 'accessible-astro-components'
 ---
 
-<DefaultLayout title="Home">
-  <!-- <Hero /> -->
-  <Welcome />
-  <ContentMedia imgSrc='/captain-minnie.jpg'>
-    <h2 slot="header" class="text-4xl font-bold">✨ Join Us Aboard the Disney Fantasy ✨</h2>
-    <p>
-      We're setting sail on a magical journey to celebrate a very special occasion — Aiyana's 15<sup>th</sup> birthday! 🌟
-    </p>
-    <p>
-      We would be overjoyed to have you join us on this unforgettable adventure filled with laughter, memories,
-      and a touch of pixie dust. Whether you're a seasoned cruiser or new to the magic of Disney at sea, this
-      trip promises joy for all ages.
-    </p>
-    <p>This site will be your enchanted guide as we finalize details, share tips, and sprinkle in surprises. Stay tuned — there's more magic to come!</p>
-  </ContentMedia>
-  <ContentMedia imgSrc='/stateroom.jpg' reverseImg={false}>
-    <h2 slot="header" class="text-4xl font-bold">📅 Booking Your Magical Getaway</h2>
-    <ul class="list-disc list-inside">
-      <li><strong>Dates:</strong> August 28 – September 2, 2026</li>
-      <li><strong>Itinerary:</strong> 5-Night Bahamian Cruise from Port Canaveral</li>
-      <li><strong>Ship:</strong> Disney Fantasy</li>
-      <li>
-        Book online at <strong><a href="https://disneycruise.disney.go.com/">disneycruise.disney.go.com</a></strong> or call <strong><a href="tel:800-951-3532">(800) 951-3532</a></strong>
-      </li>
-      <li>
-        Select <strong>late dining (8:15 PM)</strong> and share your reservation number with Jackie so we can coordinate group plans
-      </li>
-      <li>The birthday girl will be in stateroom <strong>8532</strong> — book nearby if you'd like to stay close!</li>
-    </ul>
-    <h3 class="text-2xl font-semibold">💰 Sample Pricing (as of May 12, 2025)</h3>
-    <p><strong>For 2 Adults + 2 Children:</strong></p>
-    <ul class="list-disc list-inside">
-      <li>Inside Stateroom: $4,545</li>
-      <li>Oceanview Stateroom: $4,775</li>
-      <li>Verandah Stateroom: $5,064</li>
-    </ul>
-    <p><strong>For 2 Adults:</strong></p>
-    <ul class="list-disc list-inside">
-      <li>Inside Stateroom: $2,694</li>
-      <li>Oceanview Stateroom: $2,874</li>
-      <li>Verandah Stateroom: $3,194</li>
-    </ul>
-    <p class="italic">A 10% deposit secures your cabin. Final payment is due May 30, 2026 at 11:59 PM ET. Plans change? Cancellations are fully refundable until then — booking now locks in today’s price before availability shrinks!</p>
-  </ContentMedia>
-  <!-- <section class="my-16">
-    <div class="container">
-      <h2 class="mb-16 text-6xl">Features</h2>
-      <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
-        <Feature icon="mdi:tailwind" title="Tailwind CSS">
-          Use the power of Tailwind to greatly improve your productivity and enhance your developer workflow.
-        </Feature>
-        <Feature icon="mdi:wheelchair-accessibility" title="a11y Components">
-          17 components and counting, all tried and tested for the most optimal accessible experience for your visitors.
-        </Feature>
-        <Feature icon="mdi:looks" title="Prettier">
-          Less worry about formatting your code, let the Astro Prettier integration do the heavy lifting.
-        </Feature>
-        <Feature icon="mdi:eslint" title="ESLint">
-          Lint your code with strict a11y settings to ensure you stay on track with the WCAG standards.
-        </Feature>
-        <Feature icon="mdi:book-open-page-variant" title="Blog">
-          This theme comes with a fully integrated blog, dynamic pages and SEO optimization.
-        </Feature>
-        <Feature icon="mdi:language-markdown" title="Markdown & MDX">
-          Easily use .md and .mdx pages to build your websites or use it with Netlify CMS.
-        </Feature>
-        <Feature icon="mdi:theme-light-dark" title="Dark mode">
-          Fully integrated Dark mode gives your users the choice for their favorite viewing mode.
-        </Feature>
-        <Feature icon="mdi:cog" title="Design System">
-          The theme offers some very handy utilities to help you build your website faster.
-        </Feature>
-        <Feature icon="mdi:lighthouse" title="Lighthouse Scores">
-          Excellent lighthouse scores means your website will load faster and get better SEO rankings.
-        </Feature>
+<DefaultLayout title="Aiyana's Quinceañera at Sea">
+  <!-- ─── HERO ─── -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="hero-overlay"></div>
+      <img
+        src="/disneyfantasycastaway.avif"
+        alt="Disney Fantasy cruise ship"
+        class="hero-img"
+      />
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-headline">
+          Aiyana's<br />
+          <em>Quinceañera at Sea</em>
+        </h1>
+        <p class="hero-body">
+          Once upon a voyage… join us on the Disney Fantasy for 5 enchanted nights through the Bahamas as we celebrate Aiyana's quinceañera.
+        </p>
+        <div class="hero-cta">
+          <a href="#booking" class="btn-primary">View Booking Details</a>
+          <a href="#itinerary" class="btn-ghost">See the Itinerary</a>
+        </div>
+      </div>
+
+      <div class="hero-card-wrap">
+        <div class="hero-ship-card">
+          <img
+            src="/captain-minnie.jpg"
+            alt="Captain Minnie welcoming guests aboard"
+            class="hero-ship-img"
+          />
+        </div>
+        <div class="hero-detail-badge">
+          <span class="badge-ship">Disney Fantasy</span>
+          <span class="badge-sparkle">✦</span>
+          <span class="badge-dates">Aug 28 – Sep 2, 2026</span>
+        </div>
       </div>
     </div>
   </section>
-  <section class="my-16">
-    <div class="container grid grid-cols-1 gap-12 md:grid-cols-2">
-      <div class="flex flex-col items-start gap-4">
-        <h2 class="text-6xl">FAQ</h2>
-        <p class="text-2xl">
-          This section demonstrates how to effectively use the Accordion component to organize and display frequently
-          asked questions in an accessible and user-friendly way.
-        </p>
-        <a class="button" href="/faq">Contact support team</a>
+
+  <!-- ─── COUNTDOWN ─── -->
+  <section class="countdown-section">
+    <div class="section-inner">
+      <div class="countdown-header">
+        <div>
+          <h2 class="section-headline">We Set Sail In...</h2>
+          <p class="section-body">Mark your calendars — August 28, 2026. We depart from Port Canaveral for five days of magic on the open sea.</p>
+        </div>
+        <span class="material-symbols-outlined countdown-icon" aria-hidden="true">water</span>
       </div>
-      <div class="space-content">
-        <Accordion>
-          <AccordionItem name="exclusive" title="What is WCAG and why is it important?" open>
-            <p>
-              WCAG (Web Content Accessibility Guidelines) is a set of internationally recognized standards for web
-              accessibility. Following WCAG ensures your website is usable by people with various disabilities,
-              including visual, auditory, physical, and cognitive impairments. It's important not just for
-              accessibility, but also for legal compliance, SEO, and reaching a wider audience.
-            </p>
-          </AccordionItem>
-          <AccordionItem name="exclusive" title="What's the difference between ARIA labels and alt text?">
-            <p>
-              Alt text is specifically for describing images to screen reader users, while ARIA labels (aria-label,
-              aria-labelledby) can describe any element on a page. Alt text is HTML's native way to provide alternative
-              text for images, while ARIA labels are part of the ARIA specification that helps make dynamic content and
-              advanced UI controls more accessible.
-            </p>
-          </AccordionItem>
-          <AccordionItem name="exclusive" title="Why is keyboard navigation important?">
-            <p>
-              Keyboard navigation is essential for users who can't use a mouse, including people with motor
-              disabilities, visual impairments, or those who simply prefer keyboard controls. A website should be fully
-              operable using only a keyboard, with visible focus indicators and logical tab order. This includes being
-              able to access all interactive elements and navigate through content efficiently.
-            </p>
-          </AccordionItem>
-          <AccordionItem name="exclusive" title="What is a sufficient color contrast ratio?">
-            <p>
-              According to WCAG 2.2 AA standards, text should have a minimum contrast ratio of 4.5:1 against its
-              background for regular text, and 3:1 for large text (18pt or 14pt bold). For non-text elements like icons
-              or buttons, a minimum ratio of 3:1 is required. This ensures content is readable for users with visual
-              impairments or color blindness.
-            </p>
-          </AccordionItem>
-          <AccordionItem name="exclusive" title="How do I make custom components accessible?">
-            <p>
-              To make custom components accessible, focus on these key aspects: use semantic HTML where possible,
-              implement proper keyboard support, add appropriate ARIA attributes, manage focus when needed, and ensure
-              adequate color contrast. Always test with screen readers and keyboard navigation. Consider using
-              established design patterns from the <a href="https://www.w3.org/WAI/ARIA/apg/patterns/"
-                >ARIA Authoring Practices Guide</a
-              >.
-            </p>
-          </AccordionItem>
-        </Accordion>
+
+      <div class="countdown-grid" id="countdown-grid">
+        <div class="countdown-cell">
+          <span class="countdown-num" id="cd-days">—</span>
+          <span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-cell">
+          <span class="countdown-num" id="cd-hours">—</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-cell">
+          <span class="countdown-num" id="cd-minutes">—</span>
+          <span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-cell">
+          <span class="countdown-num" id="cd-seconds">—</span>
+          <span class="countdown-label">Seconds</span>
+        </div>
       </div>
     </div>
-  </section> -->
+  </section>
+
+  <!-- ─── EXPERIENCE ─── -->
+  <section class="experience-section">
+    <div class="section-inner">
+      <div class="section-label-block">
+        <em class="section-eyebrow">What Awaits</em>
+        <h2 class="section-headline">A Ship Full of Magic</h2>
+      </div>
+
+      <div class="experience-grid">
+        <div class="exp-card">
+          <div class="exp-img-wrap">
+            <img src="/aquaduck.jpg" alt="Disney Fantasy at sea" class="exp-img" />
+          </div>
+          <h3>The AquaDuck</h3>
+          <p>Disney's signature water coaster — 765 feet of twists through a translucent tube that soars four decks above the waves and out over the open sea. A rush only the Fantasy can offer.</p>
+        </div>
+        <div class="exp-card">
+          <div class="exp-img-wrap">
+            <img src="/oceaneer-club.jpg" alt="Disney Fantasy Oceaneer Club" class="exp-img" />
+          </div>
+          <h3>Oceaneer Club &amp; Lab</h3>
+          <p>A magical world just for kids. Play inside Andy's Room from Toy Story, laugh through Monsters Academy, sprinkle pixie dust in Pixie Hollow, and dive deep with Finding Nemo's Explorer Pod.</p>
+        </div>
+        <div class="exp-card">
+          <div class="exp-img-wrap">
+            <img src="/characters.jpg" alt="Disney characters greeting guests" class="exp-img" />
+          </div>
+          <h3>Broadway Shows &amp; Characters</h3>
+          <p>Catch <em>Aladdin: A Musical Spectacular</em>, a 45-minute Broadway-style show at sea. Then hug Mickey, pose with the princesses, and gather autographs from Goofy, Chip 'n Dale and friends.</p>
+        </div>
+        <div class="exp-card">
+          <div class="exp-img-wrap">
+            <img src="/currents-bar.jpg" alt="Disney Fantasy Currents Bar" class="exp-img" />
+          </div>
+          <h3>Adults-Only Escape</h3>
+          <p>Slip away to Europa, the grown-ups' district of lounges and clubs. Unwind at the Quiet Cove adult pool, Satellite Falls, or a serene afternoon at Senses Spa — your moment of calm amid the celebration.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── BOOKING ─── -->
+  <section class="booking-section" id="booking">
+    <div class="section-inner">
+      <div class="booking-header">
+        <div>
+          <h2 class="section-headline">Select Your Stateroom</h2>
+          <p class="section-body italic">Prices shown are sample rates from May 2025. Book early — availability shrinks as the date approaches.</p>
+        </div>
+        <span class="material-symbols-outlined booking-icon" aria-hidden="true">waves</span>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Inside -->
+        <div class="pricing-card">
+          <div class="pricing-img-wrap">
+            <img src="/inside-stateroom.jpg" alt="Interior stateroom" class="pricing-img" />
+          </div>
+          <div class="pricing-body">
+            <div class="pricing-title-row">
+              <h3>Inside Stateroom</h3>
+            </div>
+            <p>A cozy, well-appointed sanctuary featuring premium Disney linens. Perfect for those spending their days exploring the ship and ports.</p>
+            <div class="pricing-tiers">
+              <div class="pricing-tier">
+                <span class="tier-guests">2 Adults + 2 Children</span>
+                <span class="tier-price">$4,545</span>
+              </div>
+              <div class="pricing-tier">
+                <span class="tier-guests">2 Adults</span>
+                <span class="tier-price">$2,694</span>
+              </div>
+            </div>
+            <a href="https://disneycruise.disney.go.com/" target="_blank" rel="noopener noreferrer" class="btn-booking">
+              Book on Disney Cruise Line
+              <span class="material-symbols-outlined">open_in_new</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Oceanview -->
+        <div class="pricing-card">
+          <div class="pricing-img-wrap">
+            <img src="/oceanview-stateroom.jpg" alt="Oceanview stateroom" class="pricing-img" />
+          </div>
+          <div class="pricing-body">
+            <div class="pricing-title-row">
+              <h3>Oceanview Stateroom</h3>
+            </div>
+            <p>Wake up to the endless horizon with a private porthole window. Includes all the magic of an oceanview perspective.</p>
+            <div class="pricing-tiers">
+              <div class="pricing-tier">
+                <span class="tier-guests">2 Adults + 2 Children</span>
+                <span class="tier-price">$4,775</span>
+              </div>
+              <div class="pricing-tier">
+                <span class="tier-guests">2 Adults</span>
+                <span class="tier-price">$2,874</span>
+              </div>
+            </div>
+            <a href="https://disneycruise.disney.go.com/" target="_blank" rel="noopener noreferrer" class="btn-booking">
+              Book on Disney Cruise Line
+              <span class="material-symbols-outlined">open_in_new</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Verandah -->
+        <div class="pricing-card">
+          <div class="pricing-img-wrap">
+            <img src="/verandah-stateroom.jpg" alt="Verandah stateroom" class="pricing-img" />
+          </div>
+          <div class="pricing-body">
+            <div class="pricing-title-row">
+              <h3>Verandah Stateroom</h3>
+            </div>
+            <p>Wake up to fresh ocean air on your own private veranda and watch the world drift by in style.</p>
+            <div class="pricing-tiers">
+              <div class="pricing-tier">
+                <span class="tier-guests">2 Adults + 2 Children</span>
+                <span class="tier-price">$5,064</span>
+              </div>
+              <div class="pricing-tier">
+                <span class="tier-guests">2 Adults</span>
+                <span class="tier-price">$3,194</span>
+              </div>
+            </div>
+            <a href="https://disneycruise.disney.go.com/" target="_blank" rel="noopener noreferrer" class="btn-booking">
+              Book on Disney Cruise Line
+              <span class="material-symbols-outlined">open_in_new</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Booking protocol callout -->
+      <div class="booking-note">
+        <span class="material-symbols-outlined booking-note-icon">anchor</span>
+        <div>
+          <p class="booking-note-title">Official Booking Details</p>
+          <p class="booking-note-body">
+            Book at <a href="https://disneycruise.disney.go.com/" target="_blank" rel="noopener noreferrer">disneycruise.disney.go.com</a> or call <a href="tel:800-951-3532">(800) 951-3532</a>.
+            Select <strong>late dining (8:15 PM)</strong> and share your reservation number with Jackie so we can coordinate group plans.
+            A 10% deposit secures your cabin — <strong>final payment due May 30, 2026</strong>. Fully refundable until then!
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ITINERARY OVERVIEW ─── -->
+  <section class="itinerary-section" id="itinerary">
+    <div class="section-inner">
+      <div class="section-label-block">
+        <em class="section-eyebrow">The Route</em>
+        <h2 class="section-headline">5-Night Bahamian Cruise</h2>
+      </div>
+
+      <div class="itinerary-list">
+        <div class="itin-row">
+          <div class="itin-day">Day 1 <span class="itin-date">Aug 28</span></div>
+          <div class="itin-detail">
+            <strong>Port Canaveral, FL</strong>
+            <span>Embarkation — Board the Disney Fantasy</span>
+          </div>
+        </div>
+        <div class="itin-row">
+          <div class="itin-day">Day 2 <span class="itin-date">Aug 29</span></div>
+          <div class="itin-detail">
+            <strong>Nassau, Bahamas</strong>
+            <span>Explore the vibrant capital of the Bahamas</span>
+          </div>
+        </div>
+        <div class="itin-row">
+          <div class="itin-day">Day 3 <span class="itin-date">Aug 30</span></div>
+          <div class="itin-detail">
+            <strong>Castaway Cay</strong>
+            <span>Disney's private island paradise</span>
+          </div>
+        </div>
+        <div class="itin-row">
+          <div class="itin-day">Day 4 <span class="itin-date">Aug 31</span></div>
+          <div class="itin-detail">
+            <strong>At Sea</strong>
+            <span>Enjoy onboard dining, entertainment, and the grand birthday celebration</span>
+          </div>
+        </div>
+        <div class="itin-row">
+          <div class="itin-day">Day 5 <span class="itin-date">Sep 1</span></div>
+          <div class="itin-detail">
+            <strong>At Sea</strong>
+            <span>Final day to explore the ship's restaurants, pools, and shows</span>
+          </div>
+        </div>
+        <div class="itin-row">
+          <div class="itin-day">Day 6 <span class="itin-date">Sep 2</span></div>
+          <div class="itin-detail">
+            <strong>Port Canaveral, FL</strong>
+            <span>Disembarkation — Until the next adventure!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FAQ ─── -->
+  <section class="faq-section" id="faq">
+    <div class="section-inner faq-grid">
+      <div class="faq-heading">
+        <em class="section-eyebrow">Good to Know</em>
+        <h2 class="section-headline">Common Questions</h2>
+        <p class="section-body">Everything you need to prepare for the trip. More questions? Reach out!</p>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>When should I book?</summary>
+          <p>Book as soon as possible — Disney Cruise cabins fill up quickly! A 10% deposit secures your cabin, with final payment due May 30, 2026. Plans change? Cancellations are fully refundable until then, and booking now locks in today's price.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What dining time should I select?</summary>
+          <p>Please select <strong>late dining (8:15 PM)</strong> when booking. Share your reservation number with Jackie so we can coordinate and sit together as a group.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Where is the birthday girl staying?</summary>
+          <p>Aiyana will be in stateroom <strong>8532</strong>. Book a nearby stateroom if you'd like to stay close to the birthday girl!</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do I need a passport?</summary>
+          <p>A valid passport is strongly recommended for all guests. A birth certificate plus government-issued photo ID is technically accepted for US citizens on closed-loop cruises, but a passport provides the most flexibility.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What should I pack?</summary>
+          <p>Pack resort casual wear for days at sea and ports, plus formal or semi-formal attire for the Pirate Night and special dinner evenings. Don't forget sunscreen, swimwear, and comfortable walking shoes for port days.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CLOSING CTA ─── -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <span class="material-symbols-outlined cta-icon" aria-hidden="true">confirmation_number</span>
+      <h2 class="cta-headline">Come Sail With Us!</h2>
+      <p class="cta-body">
+        We can't wait to celebrate this milestone with you. Reach out to Jackie or Bryan with any questions — and we'll see you aboard the Disney Fantasy!
+      </p>
+      <a href="https://disneycruise.disney.go.com/" target="_blank" rel="noopener noreferrer" class="btn-primary btn-primary--large">
+        Book Your Stateroom
+      </a>
+    </div>
+    <div class="cta-decoration" aria-hidden="true">
+      <span class="material-symbols-outlined">explore</span>
+    </div>
+  </section>
 </DefaultLayout>
+
+<script>
+  // Live countdown to August 28, 2026
+  const target = new Date('2026-08-28T00:00:00').getTime()
+
+  function updateCountdown() {
+    const now = Date.now()
+    const diff = target - now
+
+    if (diff <= 0) {
+      document.getElementById('cd-days')!.textContent = '0'
+      document.getElementById('cd-hours')!.textContent = '0'
+      document.getElementById('cd-minutes')!.textContent = '0'
+      document.getElementById('cd-seconds')!.textContent = '0'
+      return
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000)
+
+    document.getElementById('cd-days')!.textContent = String(days)
+    document.getElementById('cd-hours')!.textContent = String(hours).padStart(2, '0')
+    document.getElementById('cd-minutes')!.textContent = String(minutes).padStart(2, '0')
+    document.getElementById('cd-seconds')!.textContent = String(seconds).padStart(2, '0')
+  }
+
+  updateCountdown()
+  setInterval(updateCountdown, 1000)
+
+  // Scrolled class on nav
+  const nav = document.getElementById('main-navigation')
+  window.addEventListener('scroll', () => {
+    nav?.classList.toggle('scrolled', window.scrollY > 40)
+  })
+</script>
+
+<style lang="scss">
+  // ─── shared ───────────────────────────────────────────────
+  .section-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .section-headline {
+    font-family: 'Noto Serif', Georgia, serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--color-primary);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.75rem;
+  }
+
+  .section-body {
+    color: var(--color-on-surface-variant);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 60ch;
+  }
+
+  .section-eyebrow {
+    display: block;
+    font-family: 'Noto Serif', Georgia, serif;
+    font-size: 1.125rem;
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-label-block {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-on-surface);
+    background: var(--color-tint);
+    padding: 0.375rem 0.875rem;
+    border-radius: 9999px;
+    margin-bottom: 1.5rem;
+  }
+
+  // ─── hero ─────────────────────────────────────────────────
+  .hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    padding: 5rem 2rem 4rem;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--hero-overlay);
+
+    @media (max-width: 1023px) {
+      background: var(--hero-overlay-mobile);
+    }
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+
+    @media (min-width: 1024px) {
+      grid-template-columns: 7fr 5fr;
+    }
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .hero-headline {
+    font-family: 'Noto Serif', Georgia, serif;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    color: var(--color-on-surface);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin: 0;
+
+    em {
+      color: var(--color-primary);
+      font-style: italic;
+    }
+  }
+
+  .hero-body {
+    font-size: 1.125rem;
+    color: var(--color-on-surface-variant);
+    line-height: 1.7;
+    max-width: 52ch;
+    margin: 0;
+    font-weight: 400;
+  }
+
+  .hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .hero-card-wrap {
+    position: relative;
+
+    @media (max-width: 1023px) {
+      display: none;
+    }
+  }
+
+  .hero-ship-card {
+    position: relative;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 24px 64px var(--color-shadow-lg);
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -0.5rem;
+      background: var(--color-tint);
+      border-radius: 2rem;
+      transform: rotate(2deg);
+      z-index: -1;
+    }
+  }
+
+  .hero-ship-img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hero-detail-badge {
+    position: absolute;
+    bottom: -1.5rem;
+    left: -1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    background: var(--color-badge-bg);
+    backdrop-filter: blur(14px);
+    padding: 0.875rem 1.5rem;
+    border-radius: 9999px;
+    box-shadow: 0 10px 32px var(--color-shadow-md);
+    border: 1px solid var(--color-border-strong);
+
+    .badge-ship {
+      font-family: 'Noto Serif', serif;
+      font-style: italic;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+
+    .badge-sparkle {
+      font-size: 0.625rem;
+      color: var(--color-secondary);
+      line-height: 1;
+    }
+
+    .badge-dates {
+      font-family: 'Manrope', system-ui, sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-secondary);
+    }
+  }
+
+  // ─── buttons ──────────────────────────────────────────────
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border-radius: 0.75rem;
+    transition: box-shadow 0.2s ease, transform 0.15s ease;
+    box-shadow: 0 4px 16px var(--color-shadow-md);
+
+    &:hover {
+      box-shadow: 0 8px 32px var(--color-shadow-lg);
+      transform: translateY(-1px);
+    }
+
+    &--large {
+      padding: 1rem 2.5rem;
+      font-size: 0.9375rem;
+    }
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.875rem 2rem;
+    background: transparent;
+    color: var(--color-primary);
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border-radius: 0.75rem;
+    border: 1.5px solid var(--color-border-strong);
+    transition: background 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+      background: var(--color-tint-subtle);
+      border-color: var(--color-primary);
+    }
+  }
+
+  .btn-booking {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    transition: background 0.2s ease;
+
+    .material-symbols-outlined {
+      font-size: 1rem;
+    }
+
+    &:hover {
+      background: var(--color-primary-hover);
+    }
+  }
+
+  // ─── countdown ────────────────────────────────────────────
+  .countdown-section {
+    padding: 5rem 0;
+    background: var(--color-tint);
+    overflow: hidden;
+  }
+
+  .countdown-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 3rem;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+  }
+
+  .countdown-icon {
+    font-size: 5rem;
+    color: var(--color-primary);
+    opacity: 0.15;
+    display: none;
+
+    @media (min-width: 768px) {
+      display: block;
+    }
+  }
+
+  .countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+
+    @media (min-width: 640px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .countdown-cell {
+    background: var(--color-surface-card);
+    border-radius: 1rem;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 16px var(--color-shadow);
+    border: 1px solid var(--color-border);
+    transition: background 0.4s ease;
+
+    &:hover {
+      background: var(--color-primary);
+
+      .countdown-num,
+      .countdown-label {
+        color: var(--color-on-primary);
+      }
+    }
+  }
+
+  .countdown-num {
+    font-family: 'Noto Serif', Georgia, serif;
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1;
+    min-width: 2ch;
+    text-align: center;
+    transition: color 0.4s ease;
+  }
+
+  .countdown-label {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-on-surface-variant);
+    transition: color 0.4s ease;
+  }
+
+  // ─── experience ───────────────────────────────────────────
+  .experience-section {
+    padding: 6rem 0;
+    background: var(--color-surface);
+  }
+
+  .experience-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3.5rem 3rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .exp-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: center;
+
+    h3 {
+      font-family: 'Noto Serif', Georgia, serif;
+      font-size: 1.375rem;
+      color: var(--color-on-surface);
+      margin: 0;
+    }
+
+    p {
+      color: var(--color-on-surface-variant);
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      font-weight: 300;
+      margin: 0;
+      padding: 0 1rem;
+    }
+
+    &--offset {
+      @media (min-width: 768px) {
+        margin-top: -3rem;
+      }
+    }
+  }
+
+  .exp-img-wrap {
+    width: 220px;
+    height: 220px;
+    border-radius: 9999px;
+    overflow: hidden;
+    border: 12px solid var(--color-img-ring);
+    box-shadow: 0 12px 40px var(--color-shadow-md);
+    flex-shrink: 0;
+
+    &--celebration {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+      border-color: var(--color-primary-light);
+    }
+  }
+
+  .exp-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s ease;
+
+    .exp-card:hover & {
+      transform: scale(1.08);
+    }
+  }
+
+  .exp-icon {
+    font-size: 5.5rem;
+    color: #ffffff;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  // ─── booking ──────────────────────────────────────────────
+  .booking-section {
+    padding: 6rem 0;
+    background: var(--color-surface-alt);
+  }
+
+  .booking-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border-strong);
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+  }
+
+  .booking-icon {
+    font-size: 3.5rem;
+    color: var(--color-primary);
+    opacity: 0.2;
+    display: none;
+
+    @media (min-width: 768px) {
+      display: block;
+    }
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .pricing-card {
+    position: relative;
+    background: var(--color-surface-card);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px var(--color-shadow-md);
+    }
+
+  }
+
+  .pricing-popular-badge {
+    position: absolute;
+    top: -0.875rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-primary-light);
+    color: var(--color-on-surface);
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 0.625rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.375rem 1.25rem;
+    z-index: 10;
+    white-space: nowrap;
+  }
+
+  .pricing-img-wrap {
+    height: 14rem;
+    overflow: hidden;
+  }
+
+  .pricing-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(20%);
+    transition: filter 0.7s ease;
+
+    .pricing-card:hover & {
+      filter: grayscale(0);
+    }
+  }
+
+  .pricing-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 1rem;
+
+    p {
+      color: var(--color-on-surface-variant);
+      font-size: 0.875rem;
+      line-height: 1.7;
+      font-weight: 300;
+      margin: 0;
+      flex: 1;
+    }
+  }
+
+  .pricing-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h3 {
+      font-family: 'Noto Serif', Georgia, serif;
+      font-size: 1.25rem;
+      color: var(--color-primary);
+      font-weight: 700;
+      margin: 0;
+    }
+  }
+
+  .pricing-badge {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    border: 1px solid var(--color-border-strong);
+    padding: 0.25rem 0.625rem;
+  }
+
+  .pricing-tiers {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .pricing-tier {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .tier-guests {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 0.75rem;
+    color: var(--color-outline);
+    font-weight: 500;
+  }
+
+  .tier-price {
+    font-family: 'Noto Serif', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .booking-note {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    padding: 1.5rem 2rem;
+    background: var(--color-tint-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+  }
+
+  .booking-note-icon {
+    font-size: 1.75rem;
+    color: var(--color-primary);
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+  }
+
+  .booking-note-title {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin: 0 0 0.5rem;
+  }
+
+  .booking-note-body {
+    font-size: 0.875rem;
+    color: var(--color-on-surface-variant);
+    line-height: 1.7;
+    margin: 0;
+
+    a {
+      color: var(--color-primary);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+  }
+
+  // ─── itinerary ────────────────────────────────────────────
+  .itinerary-section {
+    padding: 6rem 0;
+    background: var(--color-surface-card);
+  }
+
+  .itinerary-list {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .itin-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 1.5rem 0 1.5rem 1rem;
+    background: var(--color-surface-card);
+    transition: background 0.2s ease;
+
+    &:not(:last-child) {
+      border-bottom: none;
+    }
+
+    &:nth-child(even) {
+      background: var(--color-surface);
+    }
+
+    &:hover {
+      background: var(--color-tint-hover);
+    }
+  }
+
+  .itin-day {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-secondary);
+    background: var(--color-secondary-container);
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.25rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .itin-date {
+    font-weight: 600;
+    color: var(--color-primary);
+    letter-spacing: 0.06em;
+    border-left: 1.5px solid var(--color-border-strong);
+    padding-left: 0.5rem;
+  }
+
+  .itin-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    strong {
+      font-family: 'Noto Serif', Georgia, serif;
+      font-size: 1.0625rem;
+      font-weight: 600;
+      color: var(--color-on-surface);
+    }
+
+    span {
+      font-size: 0.875rem;
+      color: var(--color-on-surface-variant);
+      font-weight: 300;
+    }
+  }
+
+  // ─── faq ──────────────────────────────────────────────────
+  .faq-section {
+    padding: 6rem 0;
+    background: var(--color-surface-alt);
+  }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+
+    @media (min-width: 1024px) {
+      grid-template-columns: 1fr 2fr;
+      align-items: start;
+    }
+  }
+
+  .faq-heading {
+    .section-headline {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .faq-item {
+    border-radius: 0.75rem;
+    overflow: hidden;
+    margin-bottom: 0.75rem;
+    background: var(--color-faq-bg);
+    border: 1px solid var(--color-border);
+    transition: box-shadow 0.2s ease;
+
+    &:hover {
+      box-shadow: 0 8px 24px var(--color-shadow);
+    }
+
+    summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 1.5rem;
+      font-family: 'Noto Serif', Georgia, serif;
+      font-size: 1.0625rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      cursor: pointer;
+      background: var(--color-faq-summary-bg);
+      list-style: none;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &::after {
+        content: '+';
+        font-family: 'Manrope', system-ui, sans-serif;
+        font-size: 1.25rem;
+        font-weight: 300;
+        color: var(--color-primary);
+        flex-shrink: 0;
+      }
+    }
+
+    &[open] summary::after {
+      content: '−';
+    }
+
+    p {
+      padding: 1.25rem 1.5rem;
+      color: var(--color-on-surface-variant);
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      margin: 0;
+
+      strong {
+        color: var(--color-on-surface);
+      }
+    }
+  }
+
+  // ─── cta ──────────────────────────────────────────────────
+  .cta-section {
+    padding: 6rem 2rem;
+    background: var(--color-tint-subtle);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .cta-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+
+    background: var(--color-cta-glass);
+    backdrop-filter: blur(12px);
+    padding: 4rem 3rem;
+    border-radius: 2rem;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 16px 48px var(--color-shadow);
+  }
+
+  .cta-icon {
+    font-size: 3rem;
+    color: var(--color-primary);
+  }
+
+  .cta-headline {
+    font-family: 'Noto Serif', Georgia, serif;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    color: var(--color-on-surface);
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .cta-body {
+    color: var(--color-on-surface-variant);
+    font-size: 1rem;
+    line-height: 1.7;
+    font-weight: 300;
+    max-width: 46ch;
+    margin: 0;
+  }
+
+  .cta-decoration {
+    position: absolute;
+    top: 50%;
+    left: -2rem;
+    transform: translateY(-50%);
+    pointer-events: none;
+    opacity: 0.04;
+
+    .material-symbols-outlined {
+      font-size: 24rem;
+      color: var(--color-primary);
+    }
+  }
+</style>
