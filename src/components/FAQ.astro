@@ -1,4 +1,5 @@
 ---
+import { faqs } from '../data/faqs'
 ---
 
 <section class="faq-section" id="faq">
@@ -10,26 +11,12 @@
     </div>
 
     <div class="faq-list">
-      <details class="faq-item glass-panel">
-        <summary>When should I book?</summary>
-        <p>Book as soon as possible — Disney Cruise cabins fill up quickly! A 10% deposit secures your cabin, with final payment due May 30, 2026. Plans change? Cancellations are fully refundable until then, and booking now locks in today's price.</p>
-      </details>
-      <details class="faq-item glass-panel">
-        <summary>What dining time should I select?</summary>
-        <p>Please select <strong>late dining (8:15 PM)</strong> when booking. Share your reservation number with Jackie so we can coordinate and sit together as a group.</p>
-      </details>
-      <details class="faq-item glass-panel">
-        <summary>Where is the birthday girl staying?</summary>
-        <p>Aiyana will be in stateroom <strong>8532</strong>. Book a nearby stateroom if you'd like to stay close to the birthday girl!</p>
-      </details>
-      <details class="faq-item glass-panel">
-        <summary>Do I need a passport?</summary>
-        <p>A valid passport is strongly recommended for all guests. A birth certificate plus government-issued photo ID is technically accepted for US citizens on closed-loop cruises, but a passport provides the most flexibility.</p>
-      </details>
-      <details class="faq-item glass-panel">
-        <summary>What should I pack?</summary>
-        <p>Pack resort casual wear for days at sea and ports, plus formal or semi-formal attire for the Pirate Night and special dinner evenings. Don't forget sunscreen, swimwear, and comfortable walking shoes for port days.</p>
-      </details>
+      {faqs.map(({ question, answer }) => (
+        <details class="faq-item glass-panel">
+          <summary>{question}</summary>
+          <p set:html={answer} />
+        </details>
+      ))}
     </div>
   </div>
 </section>
