@@ -10,7 +10,7 @@ const navLinks = [
 ---
 
 <SkipLink />
-<header id="main-navigation">
+<header id="main-navigation" class="glass-panel">
   <div class="nav-inner">
     <a href="/" class="nav-brand" aria-label="Aiyana's Cruise — Home">
       <img src="/favicon.svg" alt="" class="nav-logo" />
@@ -56,6 +56,17 @@ const navLinks = [
       mobileNav?.toggleAttribute('hidden')
     })
 
+    // Reset mobile nav state when resizing up to desktop so it doesn't
+    // re-appear in its previous open state if the user shrinks back down.
+    const desktopMql = window.matchMedia('(min-width: 768px)')
+    const handleBreakpoint = (e: MediaQueryListEvent | MediaQueryList) => {
+      if (e.matches) {
+        toggle?.setAttribute('aria-expanded', 'false')
+        mobileNav?.setAttribute('hidden', '')
+      }
+    }
+    desktopMql.addEventListener('change', handleBreakpoint)
+
     // Active section highlighting
     const navAnchors = document.querySelectorAll('.desktop-nav a[data-section]')
     const sections = Array.from(navAnchors).map(a => {
@@ -66,6 +77,11 @@ const navLinks = [
     let activeId = ''
     const lastSection = sections[sections.length - 1]
 
+    const setActive = (id: string) => {
+      activeId = id
+      sections.forEach(s => s.link.classList.toggle('is-active', s.id === activeId))
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
@@ -74,21 +90,30 @@ const navLinks = [
             activeId = match.id
           }
         })
-        sections.forEach(s => s.link.classList.toggle('is-active', s.id === activeId))
+        setActive(activeId)
       },
       { rootMargin: '-20% 0px -60% 0px' }
     )
 
     sections.forEach(s => observer.observe(s.el!))
 
-    // Keep last section active when scrolled to bottom
-    window.addEventListener('scroll', () => {
-      const atBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 50
-      if (atBottom && lastSection) {
-        activeId = lastSection.id
-        sections.forEach(s => s.link.classList.toggle('is-active', s.id === activeId))
-      }
-    }, { passive: true })
+    // Keep last section active when scrolled to the bottom of the page.
+    // A 1px sentinel at the bottom of <body> is observed with a default-root
+    // IntersectionObserver so short final sections (that never reach the main
+    // observer's hit zone) still activate their nav link.
+    if (lastSection) {
+      const sentinel = document.createElement('div')
+      sentinel.setAttribute('aria-hidden', 'true')
+      sentinel.style.cssText = 'height:1px;width:100%;pointer-events:none'
+      document.body.appendChild(sentinel)
+
+      const endObserver = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting && activeId !== lastSection.id) {
+          setActive(lastSection.id)
+        }
+      })
+      endObserver.observe(sentinel)
+    }
   })
 </script>
 
@@ -99,9 +124,6 @@ const navLinks = [
     left: 0;
     right: 0;
     z-index: 50;
-    background: var(--color-surface-glass);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--color-border);
     transition: background 0.3s ease, box-shadow 0.3s ease;
 
@@ -160,17 +182,6 @@ const navLinks = [
     li {
       display: flex;
       align-items: center;
-
-      // sparkle separator between nav items
-      &:not(:last-child)::after {
-        content: '✦';
-        color: var(--color-secondary);
-        opacity: 0.35;
-        font-size: 0.5rem;
-        font-style: normal;
-        margin: 0 0.25rem;
-        pointer-events: none;
-      }
     }
 
     a {
@@ -227,7 +238,7 @@ const navLinks = [
         border-radius: 1px;
         transform: scaleX(0);
         transform-origin: center;
-        transition: transform 0.3s ease;
+        transition: transform .4s ease;
       }
     }
 
@@ -252,6 +263,10 @@ const navLinks = [
     border-top: 1px solid var(--color-border);
     background: var(--color-surface-glass-solid);
 
+    @media (min-width: 768px) {
+      display: none;
+    }
+
     ul {
       list-style: none;
       margin: 0;
@@ -267,7 +282,7 @@ const navLinks = [
       font-size: 1rem;
       font-weight: 500;
       color: var(--color-on-surface);
-      text-decoration: none;
+      text-decoration: none !important;
       padding: 0.75rem 0;
       border-bottom: 1px solid var(--color-border);
       transition: color 0.2s ease;

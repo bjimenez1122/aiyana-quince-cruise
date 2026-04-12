@@ -16,16 +16,16 @@ body {
   -webkit-font-smoothing: antialiased;
 
   a:not(.button):not(.btn-primary):not(.btn-ghost):not(.btn-booking) {
-    color: var(--action-color);
+    color: var(--color-primary);
     text-decoration: underline;
 
     &:visited {
-      color: var(--action-color);
+      color: var(--color-primary);
     }
 
     &:hover,
     &:focus {
-      color: var(--action-color-state);
+      color: var(--color-secondary);
       text-decoration: none;
     }
   }

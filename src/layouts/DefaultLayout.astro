@@ -7,7 +7,7 @@ import Footer from '../components/Footer.astro'
 
 const {
   title = 'Astro',
-  description = "Aiyana's Quinceañera at Sea — A Quinceañera Cruise Celebration",
+  description = "Aiyana's Quinceañera at Sea — A Cruise Celebration",
   url = Astro.site,
   image = 'social-preview-image.jpg',
   author = 'Bryan Jimenez-Rojas',
@@ -49,13 +49,7 @@ const {
         --font-family-default: 'Manrope', system-ui, sans-serif;
         --font-family-special: 'Noto Serif', Georgia, serif;
 
-        // light theme
-        --font-color: #191c1d;
-        --background: #f8f9fa;
-        --action-color: #0c6780;
-        --action-color-state: #735c00;
-
-        // semantic tokens
+        // semantic tokens (light theme)
         --color-primary: #0c6780;
         --color-primary-hover: #004d62;
         --color-primary-light: #87ceeb;
@@ -78,22 +72,14 @@ const {
         --color-shadow: rgba(12, 103, 128, 0.08);
         --color-shadow-md: rgba(12, 103, 128, 0.12);
         --color-shadow-lg: rgba(12, 103, 128, 0.16);
-        --color-faq-bg: rgba(255, 255, 255, 0.8);
         --color-faq-summary-bg: rgba(135, 206, 235, 0.1);
-        --color-cta-glass: rgba(255, 255, 255, 0.85);
         --hero-overlay: linear-gradient(135deg, rgba(248, 249, 250, 0.95) 0%, rgba(248, 249, 250, 0.75) 50%, rgba(248, 249, 250, 0.5) 100%);
         --hero-overlay-mobile: rgba(248, 249, 250, 0.82);
-        --color-badge-bg: rgba(255, 255, 255, 0.92);
         --color-img-ring: rgba(155, 225, 255, 0.5);
       }
 
       @media (prefers-color-scheme: dark) {
         :root {
-          --font-color: #e1e3e3;
-          --background: #111415;
-          --action-color: #87ceeb;
-          --action-color-state: #fed65b;
-
           --color-primary: #6fc4df;
           --color-primary-hover: #87ceeb;
           --color-primary-light: #3a8ea8;
@@ -116,12 +102,9 @@ const {
           --color-shadow: rgba(0, 0, 0, 0.2);
           --color-shadow-md: rgba(0, 0, 0, 0.3);
           --color-shadow-lg: rgba(0, 0, 0, 0.35);
-          --color-faq-bg: rgba(30, 33, 34, 0.8);
           --color-faq-summary-bg: rgba(12, 103, 128, 0.15);
-          --color-cta-glass: rgba(30, 33, 34, 0.85);
           --hero-overlay: linear-gradient(135deg, rgba(17, 20, 21, 0.95) 0%, rgba(17, 20, 21, 0.8) 50%, rgba(17, 20, 21, 0.6) 100%);
           --hero-overlay-mobile: rgba(17, 20, 21, 0.85);
-          --color-badge-bg: rgba(30, 33, 34, 0.92);
           --color-img-ring: rgba(12, 103, 128, 0.4);
         }
       }
@@ -134,8 +117,8 @@ const {
       body {
         display: flex;
         flex-direction: column;
-        color: var(--font-color);
-        background-color: var(--background);
+        color: var(--color-on-surface);
+        background-color: var(--color-surface);
         overflow-x: hidden;
 
         main {
