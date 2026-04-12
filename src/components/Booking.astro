@@ -1,0 +1,283 @@
+<section class="booking-section" id="booking">
+  <div class="section-inner">
+    <div class="booking-header">
+      <div>
+        <h2 class="section-headline">Select Your Stateroom</h2>
+        <p class="section-body italic">Prices shown are sample rates from May 2025. Book early — availability shrinks as the date approaches.</p>
+      </div>
+      <span class="material-symbols-outlined booking-icon" aria-hidden="true">waves</span>
+    </div>
+
+    <div class="pricing-grid">
+      <!-- Inside -->
+      <div class="pricing-card">
+        <div class="pricing-img-wrap">
+          <img src="/inside-stateroom.jpg" alt="Interior stateroom" class="pricing-img" />
+        </div>
+        <div class="pricing-body">
+          <div class="pricing-title-row">
+            <h3>Inside Stateroom</h3>
+          </div>
+          <p>A cozy, well-appointed sanctuary featuring premium Disney linens. Perfect for those spending their days exploring the ship and ports.</p>
+          <div class="pricing-tiers">
+            <div class="pricing-tier">
+              <span class="tier-guests">2 Adults + 2 Children</span>
+              <span class="tier-price">$4,545</span>
+            </div>
+            <div class="pricing-tier">
+              <span class="tier-guests">2 Adults</span>
+              <span class="tier-price">$2,694</span>
+            </div>
+          </div>
+          <a href="https://disneycruise.disney.go.com/" target="_blank" rel="noopener noreferrer" class="btn-booking">
+            Book on Disney Cruise Line
+            <span class="material-symbols-outlined">open_in_new</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Oceanview -->
+      <div class="pricing-card">
+        <div class="pricing-img-wrap">
+          <img src="/oceanview-stateroom.jpg" alt="Oceanview stateroom" class="pricing-img" />
+        </div>
+        <div class="pricing-body">
+          <div class="pricing-title-row">
+            <h3>Oceanview Stateroom</h3>
+          </div>
+          <p>Wake up to the endless horizon with a private porthole window. Includes all the magic of an oceanview perspective.</p>
+          <div class="pricing-tiers">
+            <div class="pricing-tier">
+              <span class="tier-guests">2 Adults + 2 Children</span>
+              <span class="tier-price">$4,775</span>
+            </div>
+            <div class="pricing-tier">
+              <span class="tier-guests">2 Adults</span>
+              <span class="tier-price">$2,874</span>
+            </div>
+          </div>
+          <a href="https://disneycruise.disney.go.com/" target="_blank" rel="noopener noreferrer" class="btn-booking">
+            Book on Disney Cruise Line
+            <span class="material-symbols-outlined">open_in_new</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Verandah -->
+      <div class="pricing-card">
+        <div class="pricing-img-wrap">
+          <img src="/verandah-stateroom.jpg" alt="Verandah stateroom" class="pricing-img" />
+        </div>
+        <div class="pricing-body">
+          <div class="pricing-title-row">
+            <h3>Verandah Stateroom</h3>
+          </div>
+          <p>Wake up to fresh ocean air on your own private veranda and watch the world drift by in style.</p>
+          <div class="pricing-tiers">
+            <div class="pricing-tier">
+              <span class="tier-guests">2 Adults + 2 Children</span>
+              <span class="tier-price">$5,064</span>
+            </div>
+            <div class="pricing-tier">
+              <span class="tier-guests">2 Adults</span>
+              <span class="tier-price">$3,194</span>
+            </div>
+          </div>
+          <a href="https://disneycruise.disney.go.com/" target="_blank" rel="noopener noreferrer" class="btn-booking">
+            Book on Disney Cruise Line
+            <span class="material-symbols-outlined">open_in_new</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Booking protocol callout -->
+    <div class="booking-note">
+      <span class="material-symbols-outlined booking-note-icon">anchor</span>
+      <div>
+        <p class="booking-note-title">Official Booking Details</p>
+        <p class="booking-note-body">
+          Book at <a href="https://disneycruise.disney.go.com/" target="_blank" rel="noopener noreferrer">disneycruise.disney.go.com</a> or call <a href="tel:800-951-3532">(800) 951-3532</a>.
+          Select <strong>late dining (8:15 PM)</strong> and share your reservation number with Jackie so we can coordinate group plans.
+          A 10% deposit secures your cabin — <strong>final payment due May 30, 2026</strong>. Fully refundable until then!
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .booking-section {
+    padding: 6rem 0;
+    background: var(--color-surface-alt);
+  }
+
+  .booking-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border-strong);
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+  }
+
+  .booking-icon {
+    font-size: 3.5rem;
+    color: var(--color-primary);
+    opacity: 0.2;
+    display: none;
+
+    @media (min-width: 768px) {
+      display: block;
+    }
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .pricing-card {
+    position: relative;
+    background: var(--color-surface-card);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px var(--color-shadow-md);
+    }
+  }
+
+  .pricing-img-wrap {
+    height: 14rem;
+    overflow: hidden;
+  }
+
+  .pricing-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(20%);
+    transition: filter 0.7s ease;
+
+    .pricing-card:hover & {
+      filter: grayscale(0);
+    }
+  }
+
+  .pricing-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 1rem;
+
+    p {
+      color: var(--color-on-surface-variant);
+      font-size: 0.875rem;
+      line-height: 1.7;
+      font-weight: 300;
+      margin: 0;
+      flex: 1;
+    }
+  }
+
+  .pricing-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h3 {
+      font-family: 'Noto Serif', Georgia, serif;
+      font-size: 1.25rem;
+      color: var(--color-primary);
+      font-weight: 700;
+      margin: 0;
+    }
+  }
+
+  .pricing-tiers {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .pricing-tier {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .tier-guests {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 0.75rem;
+    color: var(--color-outline);
+    font-weight: 500;
+  }
+
+  .tier-price {
+    font-family: 'Noto Serif', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .booking-note {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    padding: 1.5rem 2rem;
+    background: var(--color-tint-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+  }
+
+  .booking-note-icon {
+    font-size: 1.75rem;
+    color: var(--color-primary);
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+  }
+
+  .booking-note-title {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin: 0 0 0.5rem;
+  }
+
+  .booking-note-body {
+    font-size: 0.875rem;
+    color: var(--color-on-surface-variant);
+    line-height: 1.7;
+    margin: 0;
+
+    a {
+      color: var(--color-primary);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+  }
+</style>

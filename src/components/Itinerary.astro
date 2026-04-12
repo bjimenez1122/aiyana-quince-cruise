@@ -1,0 +1,132 @@
+<section class="itinerary-section" id="itinerary">
+  <div class="section-inner">
+    <div class="section-label-block">
+      <em class="section-eyebrow">The Route</em>
+      <h2 class="section-headline">5-Night Bahamian Cruise</h2>
+    </div>
+
+    <div class="itinerary-list">
+      <div class="itin-row">
+        <div class="itin-day">Day 1 <span class="itin-date">Aug 28</span></div>
+        <div class="itin-detail">
+          <strong>Port Canaveral, FL</strong>
+          <span>Embarkation — Board the Disney Fantasy</span>
+        </div>
+      </div>
+      <div class="itin-row">
+        <div class="itin-day">Day 2 <span class="itin-date">Aug 29</span></div>
+        <div class="itin-detail">
+          <strong>Nassau, Bahamas</strong>
+          <span>Explore the vibrant capital of the Bahamas</span>
+        </div>
+      </div>
+      <div class="itin-row">
+        <div class="itin-day">Day 3 <span class="itin-date">Aug 30</span></div>
+        <div class="itin-detail">
+          <strong>Castaway Cay</strong>
+          <span>Disney's private island paradise</span>
+        </div>
+      </div>
+      <div class="itin-row">
+        <div class="itin-day">Day 4 <span class="itin-date">Aug 31</span></div>
+        <div class="itin-detail">
+          <strong>At Sea</strong>
+          <span>Enjoy onboard dining, entertainment, and the grand birthday celebration</span>
+        </div>
+      </div>
+      <div class="itin-row">
+        <div class="itin-day">Day 5 <span class="itin-date">Sep 1</span></div>
+        <div class="itin-detail">
+          <strong>At Sea</strong>
+          <span>Final day to explore the ship's restaurants, pools, and shows</span>
+        </div>
+      </div>
+      <div class="itin-row">
+        <div class="itin-day">Day 6 <span class="itin-date">Sep 2</span></div>
+        <div class="itin-detail">
+          <strong>Port Canaveral, FL</strong>
+          <span>Disembarkation — Until the next adventure!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .itinerary-section {
+    padding: 6rem 0;
+    background: var(--color-surface-card);
+  }
+
+  .itinerary-list {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .itin-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 1.5rem 0 1.5rem 1rem;
+    background: var(--color-surface-card);
+    transition: background 0.2s ease;
+
+    &:not(:last-child) {
+      border-bottom: none;
+    }
+
+    &:nth-child(even) {
+      background: var(--color-surface);
+    }
+
+    &:hover {
+      background: var(--color-tint-hover);
+    }
+  }
+
+  .itin-day {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-secondary);
+    background: var(--color-secondary-container);
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.25rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .itin-date {
+    font-weight: 600;
+    color: var(--color-primary);
+    letter-spacing: 0.06em;
+    border-left: 1.5px solid var(--color-border-strong);
+    padding-left: 0.5rem;
+  }
+
+  .itin-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    strong {
+      font-family: 'Noto Serif', Georgia, serif;
+      font-size: 1.0625rem;
+      font-weight: 600;
+      color: var(--color-on-surface);
+    }
+
+    span {
+      font-size: 0.875rem;
+      color: var(--color-on-surface-variant);
+      font-weight: 300;
+    }
+  }
+</style>

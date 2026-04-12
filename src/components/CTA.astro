@@ -1,0 +1,77 @@
+<section class="cta-section">
+  <div class="cta-inner glass-panel">
+    <span class="material-symbols-outlined cta-icon" aria-hidden="true">confirmation_number</span>
+    <h2 class="cta-headline">Come Sail With Us!</h2>
+    <p class="cta-body">
+      We can't wait to celebrate this milestone with you. Reach out to Jackie or Bryan with any questions — and we'll see you aboard the Disney Fantasy!
+    </p>
+    <a href="https://disneycruise.disney.go.com/" target="_blank" rel="noopener noreferrer" class="btn-primary btn-primary--large">
+      Book Your Stateroom
+    </a>
+  </div>
+  <div class="cta-decoration" aria-hidden="true">
+    <span class="material-symbols-outlined">explore</span>
+  </div>
+</section>
+
+<style lang="scss">
+  .cta-section {
+    padding: 6rem 2rem;
+    background: var(--color-tint-subtle);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .cta-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+
+    padding: 4rem 3rem;
+    border-radius: 2rem;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 16px 48px var(--color-shadow);
+  }
+
+  .cta-icon {
+    font-size: 3rem;
+    color: var(--color-primary);
+  }
+
+  .cta-headline {
+    font-family: 'Noto Serif', Georgia, serif;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    color: var(--color-on-surface);
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .cta-body {
+    color: var(--color-on-surface-variant);
+    font-size: 1rem;
+    line-height: 1.7;
+    font-weight: 300;
+    max-width: 46ch;
+    margin: 0;
+  }
+
+  .cta-decoration {
+    position: absolute;
+    top: 50%;
+    left: -2rem;
+    transform: translateY(-50%);
+    pointer-events: none;
+    opacity: 0.04;
+
+    .material-symbols-outlined {
+      font-size: 24rem;
+      color: var(--color-primary);
+    }
+  }
+</style>

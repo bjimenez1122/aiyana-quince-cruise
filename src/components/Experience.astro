@@ -1,0 +1,101 @@
+<section class="experience-section">
+  <div class="section-inner">
+    <div class="section-label-block">
+      <em class="section-eyebrow">What Awaits</em>
+      <h2 class="section-headline">A Ship Full of Magic</h2>
+    </div>
+
+    <div class="experience-grid">
+      <div class="exp-card">
+        <div class="exp-img-wrap">
+          <img src="/aquaduck.jpg" alt="Disney Fantasy at sea" class="exp-img" />
+        </div>
+        <h3>The AquaDuck</h3>
+        <p>Disney's signature water coaster — 765 feet of twists through a translucent tube that soars four decks above the waves and out over the open sea. A rush only the Fantasy can offer.</p>
+      </div>
+      <div class="exp-card">
+        <div class="exp-img-wrap">
+          <img src="/oceaneer-club.jpg" alt="Disney Fantasy Oceaneer Club" class="exp-img" />
+        </div>
+        <h3>Oceaneer Club &amp; Lab</h3>
+        <p>A magical world just for kids. Play inside Andy's Room from Toy Story, laugh through Monsters Academy, sprinkle pixie dust in Pixie Hollow, and dive deep with Finding Nemo's Explorer Pod.</p>
+      </div>
+      <div class="exp-card">
+        <div class="exp-img-wrap">
+          <img src="/characters.jpg" alt="Disney characters greeting guests" class="exp-img" />
+        </div>
+        <h3>Broadway Shows &amp; Characters</h3>
+        <p>Catch <em>Aladdin: A Musical Spectacular</em>, a 45-minute Broadway-style show at sea. Then hug Mickey, pose with the princesses, and gather autographs from Goofy, Chip 'n Dale and friends.</p>
+      </div>
+      <div class="exp-card">
+        <div class="exp-img-wrap">
+          <img src="/currents-bar.jpg" alt="Disney Fantasy Currents Bar" class="exp-img" />
+        </div>
+        <h3>Adults-Only Escape</h3>
+        <p>Slip away to Europa, the grown-ups' district of lounges and clubs. Unwind at the Quiet Cove adult pool, Satellite Falls, or a serene afternoon at Senses Spa — your moment of calm amid the celebration.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .experience-section {
+    padding: 6rem 0;
+    background: var(--color-surface);
+  }
+
+  .experience-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3.5rem 3rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .exp-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: center;
+
+    h3 {
+      font-family: 'Noto Serif', Georgia, serif;
+      font-size: 1.375rem;
+      color: var(--color-on-surface);
+      margin: 0;
+    }
+
+    p {
+      color: var(--color-on-surface-variant);
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      font-weight: 300;
+      margin: 0;
+      padding: 0 1rem;
+    }
+  }
+
+  .exp-img-wrap {
+    width: 220px;
+    height: 220px;
+    border-radius: 9999px;
+    overflow: hidden;
+    border: 12px solid var(--color-img-ring);
+    box-shadow: 0 12px 40px var(--color-shadow-md);
+    flex-shrink: 0;
+  }
+
+  .exp-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s ease;
+
+    .exp-card:hover & {
+      transform: scale(1.08);
+    }
+  }
+</style>

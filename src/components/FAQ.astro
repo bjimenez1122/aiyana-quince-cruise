@@ -1,0 +1,117 @@
+<section class="faq-section" id="faq">
+  <div class="section-inner faq-grid">
+    <div class="faq-heading">
+      <em class="section-eyebrow">Good to Know</em>
+      <h2 class="section-headline">Common Questions</h2>
+      <p class="section-body">Everything you need to prepare for the trip. More questions? Reach out!</p>
+    </div>
+
+    <div class="faq-list">
+      <details class="faq-item glass-panel">
+        <summary>When should I book?</summary>
+        <p>Book as soon as possible — Disney Cruise cabins fill up quickly! A 10% deposit secures your cabin, with final payment due May 30, 2026. Plans change? Cancellations are fully refundable until then, and booking now locks in today's price.</p>
+      </details>
+      <details class="faq-item glass-panel">
+        <summary>What dining time should I select?</summary>
+        <p>Please select <strong>late dining (8:15 PM)</strong> when booking. Share your reservation number with Jackie so we can coordinate and sit together as a group.</p>
+      </details>
+      <details class="faq-item glass-panel">
+        <summary>Where is the birthday girl staying?</summary>
+        <p>Aiyana will be in stateroom <strong>8532</strong>. Book a nearby stateroom if you'd like to stay close to the birthday girl!</p>
+      </details>
+      <details class="faq-item glass-panel">
+        <summary>Do I need a passport?</summary>
+        <p>A valid passport is strongly recommended for all guests. A birth certificate plus government-issued photo ID is technically accepted for US citizens on closed-loop cruises, but a passport provides the most flexibility.</p>
+      </details>
+      <details class="faq-item glass-panel">
+        <summary>What should I pack?</summary>
+        <p>Pack resort casual wear for days at sea and ports, plus formal or semi-formal attire for the Pirate Night and special dinner evenings. Don't forget sunscreen, swimwear, and comfortable walking shoes for port days.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .faq-section {
+    padding: 6rem 0;
+    background: var(--color-surface-alt);
+  }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+
+    @media (min-width: 1024px) {
+      grid-template-columns: 1fr 2fr;
+      align-items: start;
+    }
+  }
+
+  .faq-heading {
+    .section-headline {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .faq-item {
+    border-radius: 0.75rem;
+    overflow: hidden;
+    margin-bottom: 0.75rem;
+    border: 1px solid var(--color-border);
+    transition: box-shadow 0.2s ease;
+
+    &:hover {
+      box-shadow: 0 8px 24px var(--color-shadow);
+    }
+
+    summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 1.5rem;
+      font-family: 'Noto Serif', Georgia, serif;
+      font-size: 1.0625rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      cursor: pointer;
+      background: var(--color-faq-summary-bg);
+      list-style: none;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &::after {
+        content: '+';
+        font-family: 'Manrope', system-ui, sans-serif;
+        font-size: 1.25rem;
+        font-weight: 300;
+        color: var(--color-primary);
+        flex-shrink: 0;
+      }
+    }
+
+    &[open] summary::after {
+      content: '−';
+    }
+
+    p {
+      padding: 1.25rem 1.5rem;
+      color: var(--color-on-surface-variant);
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      margin: 0;
+
+      strong {
+        color: var(--color-on-surface);
+      }
+    }
+  }
+</style>

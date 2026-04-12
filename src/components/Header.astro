@@ -113,6 +113,12 @@ const navLinks = [
       })
       endObserver.observe(sentinel)
     }
+
+    // Toggle .scrolled class on nav when page is scrolled
+    const header = document.getElementById('main-navigation')
+    window.addEventListener('scroll', () => {
+      header?.classList.toggle('scrolled', window.scrollY > 40)
+    }, { passive: true })
   })
 </script>
 
