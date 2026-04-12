@@ -49,10 +49,30 @@ const navLinks = [
     const toggle = document.getElementById('mobile-nav-toggle')
     const mobileNav = document.getElementById('mobile-nav')
 
+    const closeMobileNav = () => {
+      toggle?.setAttribute('aria-expanded', 'false')
+      mobileNav?.setAttribute('hidden', '')
+    }
+
     toggle?.addEventListener('click', () => {
       const expanded = toggle.getAttribute('aria-expanded') === 'true'
       toggle.setAttribute('aria-expanded', String(!expanded))
       mobileNav?.toggleAttribute('hidden')
+    })
+
+    // Close mobile nav when a link inside it is clicked
+    mobileNav?.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) {
+        closeMobileNav()
+      }
+    })
+
+    // Close mobile nav when tapping outside the header
+    document.addEventListener('click', (e) => {
+      const header = document.getElementById('main-navigation')
+      if (header && !header.contains(e.target as Node) && !mobileNav?.hasAttribute('hidden')) {
+        closeMobileNav()
+      }
     })
 
     // Reset mobile nav state when resizing up to desktop so it doesn't
@@ -60,8 +80,7 @@ const navLinks = [
     const desktopMql = window.matchMedia('(min-width: 768px)')
     const handleBreakpoint = (e: MediaQueryListEvent | MediaQueryList) => {
       if (e.matches) {
-        toggle?.setAttribute('aria-expanded', 'false')
-        mobileNav?.setAttribute('hidden', '')
+        closeMobileNav()
       }
     }
     desktopMql.addEventListener('change', handleBreakpoint)
