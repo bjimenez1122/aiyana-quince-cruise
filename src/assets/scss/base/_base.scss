@@ -1,0 +1,25 @@
+// | -------------------------------------------------------------
+// | Base Styles
+// | -------------------------------------------------------------
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  color: var(--color-on-surface);
+  background-color: var(--color-surface);
+  overflow-x: hidden;
+  padding-top: 3rem;
+
+  main {
+    flex: 1 0 auto;
+  }
+
+  footer {
+    flex-shrink: 0;
+  }
+}

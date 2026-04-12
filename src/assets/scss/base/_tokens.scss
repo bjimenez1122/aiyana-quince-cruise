@@ -1,0 +1,67 @@
+// | -------------------------------------------------------------
+// | Design Tokens
+// | -------------------------------------------------------------
+
+:root {
+  --font-family-default: 'Manrope', system-ui, sans-serif;
+  --font-family-special: 'Noto Serif', Georgia, serif;
+
+  // semantic tokens (light theme)
+  --color-primary: #0c6780;
+  --color-primary-hover: #004d62;
+  --color-primary-light: #87ceeb;
+  --color-secondary: #735c00;
+  --color-secondary-container: rgba(254, 214, 91, 0.25);
+  --color-on-surface: #191c1d;
+  --color-on-surface-variant: #404849;
+  --color-outline: #707979;
+  --color-surface: #f8f9fa;
+  --color-surface-alt: #f3f4f5;
+  --color-surface-card: #ffffff;
+  --color-surface-glass: rgba(248, 249, 250, 0.85);
+  --color-surface-glass-solid: rgba(248, 249, 250, 0.97);
+  --color-on-primary: #ffffff;
+  --color-border: rgba(135, 206, 235, 0.25);
+  --color-border-strong: rgba(135, 206, 235, 0.3);
+  --color-tint: rgba(155, 225, 255, 0.12);
+  --color-tint-subtle: rgba(155, 225, 255, 0.08);
+  --color-tint-hover: rgba(155, 225, 255, 0.1);
+  --color-shadow: rgba(12, 103, 128, 0.08);
+  --color-shadow-md: rgba(12, 103, 128, 0.12);
+  --color-shadow-lg: rgba(12, 103, 128, 0.16);
+  --color-faq-summary-bg: rgba(135, 206, 235, 0.1);
+  --hero-overlay: linear-gradient(135deg, rgba(248, 249, 250, 0.95) 0%, rgba(248, 249, 250, 0.75) 50%, rgba(248, 249, 250, 0.5) 100%);
+  --hero-overlay-mobile: rgba(248, 249, 250, 0.82);
+  --color-img-ring: rgba(155, 225, 255, 0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #6fc4df;
+    --color-primary-hover: #87ceeb;
+    --color-primary-light: #3a8ea8;
+    --color-secondary: #d4b44a;
+    --color-secondary-container: rgba(254, 214, 91, 0.15);
+    --color-on-surface: #e1e3e3;
+    --color-on-surface-variant: #a8b0b1;
+    --color-outline: #8a9293;
+    --color-surface: #111415;
+    --color-surface-alt: #1a1d1e;
+    --color-surface-card: #1e2122;
+    --color-surface-glass: rgba(17, 20, 21, 0.88);
+    --color-surface-glass-solid: rgba(17, 20, 21, 0.97);
+    --color-on-primary: #ffffff;
+    --color-border: rgba(135, 206, 235, 0.12);
+    --color-border-strong: rgba(135, 206, 235, 0.18);
+    --color-tint: rgba(12, 103, 128, 0.15);
+    --color-tint-subtle: rgba(12, 103, 128, 0.1);
+    --color-tint-hover: rgba(12, 103, 128, 0.2);
+    --color-shadow: rgba(0, 0, 0, 0.2);
+    --color-shadow-md: rgba(0, 0, 0, 0.3);
+    --color-shadow-lg: rgba(0, 0, 0, 0.35);
+    --color-faq-summary-bg: rgba(12, 103, 128, 0.15);
+    --hero-overlay: linear-gradient(135deg, rgba(17, 20, 21, 0.95) 0%, rgba(17, 20, 21, 0.8) 50%, rgba(17, 20, 21, 0.6) 100%);
+    --hero-overlay-mobile: rgba(17, 20, 21, 0.85);
+    --color-img-ring: rgba(12, 103, 128, 0.4);
+  }
+}

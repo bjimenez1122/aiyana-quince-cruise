@@ -410,20 +410,6 @@ import DefaultLayout from '../layouts/DefaultLayout.astro'
     margin-bottom: 4rem;
   }
 
-  .eyebrow {
-    display: inline-block;
-    font-family: 'Manrope', system-ui, sans-serif;
-    font-size: 0.6875rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--color-on-surface);
-    background: var(--color-tint);
-    padding: 0.375rem 0.875rem;
-    border-radius: 9999px;
-    margin-bottom: 1.5rem;
-  }
-
   // ─── hero ─────────────────────────────────────────────────
   .hero {
     position: relative;
@@ -774,11 +760,6 @@ import DefaultLayout from '../layouts/DefaultLayout.astro'
       padding: 0 1rem;
     }
 
-    &--offset {
-      @media (min-width: 768px) {
-        margin-top: -3rem;
-      }
-    }
   }
 
   .exp-img-wrap {
@@ -790,13 +771,6 @@ import DefaultLayout from '../layouts/DefaultLayout.astro'
     box-shadow: 0 12px 40px var(--color-shadow-md);
     flex-shrink: 0;
 
-    &--celebration {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
-      border-color: var(--color-primary-light);
-    }
   }
 
   .exp-img {
@@ -808,12 +782,6 @@ import DefaultLayout from '../layouts/DefaultLayout.astro'
     .exp-card:hover & {
       transform: scale(1.08);
     }
-  }
-
-  .exp-icon {
-    font-size: 5.5rem;
-    color: #ffffff;
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
   }
 
   // ─── booking ──────────────────────────────────────────────
@@ -873,23 +841,6 @@ import DefaultLayout from '../layouts/DefaultLayout.astro'
 
   }
 
-  .pricing-popular-badge {
-    position: absolute;
-    top: -0.875rem;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--color-primary-light);
-    color: var(--color-on-surface);
-    font-family: 'Manrope', system-ui, sans-serif;
-    font-size: 0.625rem;
-    font-weight: 800;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding: 0.375rem 1.25rem;
-    z-index: 10;
-    white-space: nowrap;
-  }
-
   .pricing-img-wrap {
     height: 14rem;
     overflow: hidden;
@@ -936,17 +887,6 @@ import DefaultLayout from '../layouts/DefaultLayout.astro'
       font-weight: 700;
       margin: 0;
     }
-  }
-
-  .pricing-badge {
-    font-family: 'Manrope', system-ui, sans-serif;
-    font-size: 0.625rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--color-primary);
-    border: 1px solid var(--color-border-strong);
-    padding: 0.25rem 0.625rem;
   }
 
   .pricing-tiers {

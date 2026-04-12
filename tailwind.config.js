@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Sovereign Voyage design tokens
+        // Quinceañera at Sea design tokens
         primary: '#0c6780',
         'primary-light': '#87CEEB',
         'primary-container': '#9be1ff',
