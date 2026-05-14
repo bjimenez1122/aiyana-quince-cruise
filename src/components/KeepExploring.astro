@@ -1,0 +1,159 @@
+---
+interface Props {
+  current: 'home' | 'ship' | 'itinerary' | 'booking' | 'faq'
+}
+
+const { current } = Astro.props
+
+const links = [
+  { key: 'home', href: '/', tag: 'INICIO', label: 'Home', desc: 'The opening page' },
+  { key: 'ship', href: '/ship', tag: 'EL BARCO', label: 'The Ship', desc: 'About the Disney Fantasy' },
+  { key: 'itinerary', href: '/itinerary', tag: 'LA RUTA', label: 'Itinerary', desc: 'Six days, mapped' },
+  { key: 'booking', href: '/booking', tag: 'RESERVAR', label: 'Booking', desc: 'Cabins and how to reserve' },
+  { key: 'faq', href: '/faq', tag: 'PREGUNTAS', label: 'FAQ', desc: 'Passports, plans, packing' },
+].filter(l => l.key !== current)
+---
+
+<section class="keep-exploring">
+  <div class="sec-head">
+    <span class="eyebrow">Keep exploring</span>
+    <h2>Other <em>corners</em></h2>
+  </div>
+
+  <ol class="toc" aria-label="Other pages">
+    {
+      links.map((link, i) => (
+        <li>
+          <a href={link.href}>
+            <span class="num">{String(i + 1).padStart(2, '0')}</span>
+            <span class="tag">{link.tag}</span>
+            <span class="title">{link.label}</span>
+            <span class="desc">{link.desc}</span>
+            <span class="arr" aria-hidden="true">→</span>
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<style lang="scss">
+  .keep-exploring {
+    padding-top: 40px !important;
+  }
+
+  .sec-head {
+    margin-bottom: 40px;
+  }
+
+  .toc {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .toc li {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .toc a {
+    display: grid;
+    grid-template-columns: 56px 96px 1fr auto 28px;
+    align-items: baseline;
+    column-gap: 24px;
+    padding: 22px 8px;
+    text-decoration: none;
+    color: var(--ink);
+    transition:
+      background 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .toc a:hover,
+  .toc a:focus-visible {
+    background: var(--panel);
+
+    .title {
+      color: var(--gold);
+    }
+
+    .arr {
+      color: var(--gold);
+      transform: translateX(6px);
+    }
+  }
+
+  .toc .num {
+    font-family: var(--font-family-label);
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--ink-mute);
+  }
+
+  .toc .tag {
+    font-family: var(--font-family-label);
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    color: var(--gold);
+  }
+
+  .toc .title {
+    font-family: var(--font-family-display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(22px, 2.4vw, 30px);
+    line-height: 1;
+    transition: color 0.2s ease;
+  }
+
+  .toc .desc {
+    color: var(--ink-soft);
+    font-size: 14px;
+    text-align: right;
+  }
+
+  .toc .arr {
+    color: var(--ink-mute);
+    font-size: 18px;
+    transition:
+      transform 0.2s ease,
+      color 0.2s ease;
+  }
+
+  @media (max-width: 760px) {
+    .toc a {
+      grid-template-columns: 36px 1fr 24px;
+      grid-template-areas:
+        'num title arr'
+        'num desc arr';
+      column-gap: 16px;
+      row-gap: 4px;
+      padding: 18px 4px;
+    }
+
+    .toc .num {
+      grid-area: num;
+      align-self: start;
+      padding-top: 6px;
+    }
+
+    .toc .tag {
+      display: none;
+    }
+
+    .toc .title {
+      grid-area: title;
+    }
+
+    .toc .desc {
+      grid-area: desc;
+      text-align: left;
+    }
+
+    .toc .arr {
+      grid-area: arr;
+      align-self: center;
+    }
+  }
+</style>

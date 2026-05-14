@@ -1,0 +1,199 @@
+---
+import { Image } from 'astro:assets'
+import type { ImageMetadata } from 'astro'
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+import PageHero from '../components/PageHero.astro'
+import RouteMap from '../components/RouteMap.astro'
+import KeepExploring from '../components/KeepExploring.astro'
+import castawayCay from '../assets/photos/castaway-cay.jpg'
+import cruiseTerminal from '../assets/photos/cruise-terminal.jpg'
+import lookoutCay from '../assets/photos/lookout-cay.png'
+import nassau from '../assets/photos/nassau-bahamas.jpg'
+import disneySprings from '../assets/photos/disney-springs.png'
+import fantasyAtrium from '../assets/photos/fantasyAtrium.jpg'
+
+type Day = {
+  tag: string
+  title: string
+  body: string
+  img?: ImageMetadata
+  alt?: string
+  placeholder?: string
+}
+
+const days: Day[] = [
+  {
+    tag: 'DAY 1 · AUG 28',
+    title: 'Port Canaveral, FL',
+    body: 'Embarkation — weigh anchor at noon, sail-away on the pool deck.',
+    img: cruiseTerminal,
+    alt: 'Disney Cruise Line Terminal',
+  },
+  {
+    tag: 'DAY 2 · AUG 29',
+    title: 'Disney Castaway Cay',
+    body: 'Private island — family beach, snorkeling lagoon, a bbq lunch ashore.',
+    img: castawayCay,
+    alt: 'Castaway Cay Beach'
+  },
+  {
+    tag: 'DAY 3 · AUG 30',
+    title: 'Lookout Cay at Lighthouse Point',
+    body: "Disney's Bahamian destination on Eleuthera — Junkanoo rhythms, pink-sand beaches, island culture.",
+    img: lookoutCay,
+    alt: 'Lookout Cay Beach'
+  },
+  {
+    tag: 'DAY 4 · AUG 31',
+    title: 'Nassau, Bahamas',
+    body: 'Explore the vibrant capital — straw market, Blue Lagoon, pink houses.',
+    img: nassau,
+    alt: 'Nassau Bahamas Atlantis Resort'
+  },
+  {
+    tag: 'DAY 5 · SEPTEMBER 1',
+    title: "Aiyana's Birthday at Sea",
+    body: 'Celebrating her fifteenth — details coming soon.',
+    img: fantasyAtrium,
+    alt: 'Disney Fantasy Atrium',
+  },
+  {
+    tag: 'DAY 6 · SEP 2',
+    title: 'Port Canaveral, FL',
+    body: 'Disembarkation begins around 7 AM — farewell brunch information coming soon.',
+    img: disneySprings,
+    alt: 'Disemarkation & Farewell Brunch'
+  },
+]
+---
+
+<DefaultLayout title="Itinerary · Aiyana's Quinceañera at Sea">
+  <PageHero eyebrow="Six days · five nights" lede="A star-chart of our voyage — five ports, one birthday at sea.">
+    The <em>itinerary</em>
+  </PageHero>
+
+  <section class="map-only">
+    <RouteMap />
+  </section>
+
+  <section>
+    <div class="itin-grid">
+      {days.map(day => (
+        <div class='day'>
+          {day.img ? (
+            <div class="day-photo has-img">
+              <Image src={day.img} alt={day.alt ?? ''} />
+            </div>
+          ) : (
+            <div class="day-photo">{day.placeholder}</div>
+          )}
+          <div class="day-body">
+            <span class="tag">{day.tag}</span>
+            <h3>{day.title}</h3>
+            <p>{day.body}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <KeepExploring current="itinerary" />
+</DefaultLayout>
+
+<style lang="scss">
+  .map-only {
+    padding-top: 40px !important;
+  }
+
+  .itin-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+
+    @media (max-width: 900px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 560px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .day {
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: var(--panel);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.25s;
+  }
+
+  .day:hover {
+    border-color: var(--gold);
+    transform: translateY(-3px);
+  }
+
+  .day-photo {
+    aspect-ratio: 16 / 10;
+    position: relative;
+    background:
+      linear-gradient(135deg, rgba(234, 217, 160, 0.12), rgba(122, 160, 200, 0.1)),
+      repeating-linear-gradient(135deg, transparent 0 10px, rgba(234, 217, 160, 0.1) 10px 11px);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    color: var(--ink-mute);
+    font-family: var(--font-family-label);
+    font-size: 10px;
+    letter-spacing: 2px;
+
+    &.has-img {
+      background: none;
+      padding: 0;
+    }
+
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (prefers-color-scheme: light) {
+      &:not(.has-img) {
+        background:
+          linear-gradient(135deg, rgba(168, 127, 42, 0.1), rgba(26, 38, 64, 0.08)),
+          repeating-linear-gradient(135deg, transparent 0 10px, rgba(26, 38, 64, 0.09) 10px 11px);
+      }
+    }
+  }
+
+  .day-body {
+    padding: 20px 22px 22px;
+  }
+
+  .day .tag {
+    font-family: var(--font-family-label);
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    color: var(--gold);
+  }
+
+  .day h3 {
+    font-family: var(--font-family-display);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 24px;
+    margin: 4px 0 6px;
+    line-height: 1.1;
+  }
+
+  .day p {
+    color: var(--ink-soft);
+    font-size: 13.5px;
+    margin: 0;
+  }
+</style>

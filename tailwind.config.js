@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Sovereign Voyage design tokens
+        // Brand tokens (live values are CSS variables in src/layouts/DefaultLayout.astro)
         primary: '#0c6780',
         'primary-light': '#87CEEB',
         'primary-container': '#9be1ff',
@@ -24,9 +24,9 @@ module.exports = {
         'outline-variant': '#c0c8c9',
       },
       fontFamily: {
-        headline: ['"Noto Serif"', 'Georgia', 'serif'],
-        body: ['Manrope', 'system-ui', 'sans-serif'],
-        label: ['Manrope', 'system-ui', 'sans-serif'],
+        headline: ['Petrona', 'Georgia', 'serif'],
+        body: ['"Hanken Grotesk"', 'system-ui', 'sans-serif'],
+        label: ['"Special Elite"', '"Courier New"', 'monospace'],
       },
       borderRadius: {
         DEFAULT: '0.5rem',

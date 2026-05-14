@@ -1,0 +1,125 @@
+---
+const stops = [
+  { day: 1, date: 'AUG 28', port: 'Port Canaveral' },
+  { day: 2, date: 'AUG 29', port: 'Castaway Cay' },
+  { day: 3, date: 'AUG 30', port: 'Lookout Cay' },
+  { day: 4, date: 'AUG 31', port: 'Nassau' },
+  { day: 5, date: 'SEP 1', port: "At Sea · Aiyana's Birthday ✦", birthday: true },
+  { day: 6, date: 'SEP 2', port: 'Port Canaveral' },
+]
+---
+
+
+<div class="rm-card">
+  <ol class="rm-row" aria-label="Voyage timeline">
+    {stops.map(s => (
+      <li class={s.birthday ? 'rm-stop is-birthday' : 'rm-stop'}>
+        <span class="rm-day">Day {s.day}</span>
+        <span class="rm-date">{s.date}</span>
+        <div class="rm-rule" aria-hidden="true"></div>
+        <span class="rm-port">{s.port}</span>
+      </li>
+    ))}
+  </ol>
+</div>
+
+
+<style lang="scss">
+  .rm-card {
+    position: relative;
+    border: 1px solid var(--line-strong);
+    border-radius: 28px;
+    background: var(--panel);
+    padding: 48px 36px 32px;
+    overflow: hidden;
+  }
+
+  .rm-row {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+  }
+
+  .rm-stop {
+    position: relative;
+    padding: 18px 14px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition:
+      border-color 0.4s var(--animation-timing, cubic-bezier(0.165, 0.84, 0.44, 1)),
+      background 0.4s var(--animation-timing, cubic-bezier(0.165, 0.84, 0.44, 1));
+
+    &:hover {
+      border-color: var(--gold);
+    }
+  }
+
+  .rm-day {
+    font-family: var(--font-family-body);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .rm-date {
+    font-family: var(--font-family-display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--gold);
+    margin-top: -4px;
+  }
+
+  .rm-rule {
+    height: 1px;
+    background: var(--line);
+    margin: 4px 0;
+  }
+
+  .rm-port {
+    font-family: var(--font-family-display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+
+  .rm-stop.is-birthday {
+    border-color: var(--gold);
+    background: linear-gradient(180deg, rgba(234, 217, 160, 0.14), rgba(234, 217, 160, 0.04));
+
+    .rm-day {
+      color: var(--gold-deep);
+    }
+
+    .rm-port {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .rm-rule {
+      background: var(--gold);
+      opacity: 0.55;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .rm-card {
+      padding: 32px 24px 24px;
+    }
+
+    .rm-row {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+  }
+</style>

@@ -3,84 +3,40 @@ const currentYear = new Date().getFullYear()
 ---
 
 <footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <span class="footer-title">Aiyana's Quinceañera at Sea</span>
-      <p class="footer-sub">A Quinceañera Cruise Celebration</p>
-      <p class="footer-copy">&copy; {currentYear} — Made with love by <a href="https://github.com/bjimenez1122">Bryan Jimenez-Rojas</a></p>
+  <div class="footer-lead">
+    <div class="brand-mark-sm" aria-hidden="true">
+      <picture>
+        <source srcset="/logo_light.svg" media="(prefers-color-scheme: light)" />
+        <img src="/logo_dark.svg" alt="" width="20" height="20" />
+      </picture>
     </div>
-
-    <nav class="footer-nav" aria-label="Footer navigation">
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="#itinerary">Itinerary</a></li>
-        <li><a href="#booking">Booking</a></li>
-        <li><a href="#faq">FAQ</a></li>
-      </ul>
-    </nav>
-
-    <div class="footer-icons" aria-hidden="true">
-      <span class="material-symbols-outlined">sailing</span>
-      <span class="material-symbols-outlined">anchor</span>
-      <span class="material-symbols-outlined">celebration</span>
-    </div>
+    <span>&copy; {currentYear} — made with love by <a href="https://github.com/bjimenez1122">Bryan Jimenez-Rojas</a></span>
   </div>
+
+  <div class="footer-meta">Aug 28 – Sep 2, 2026 · Disney Fantasy</div>
 </footer>
 
 <style lang="scss">
   .site-footer {
-    background: var(--color-surface-card);
-    border-top: 1px solid var(--color-border-strong);
-    padding: 3rem 0;
+    padding: 48px 0 60px;
+    border-top: 1px solid var(--line);
+    color: var(--ink-mute);
+    font-size: 12.5px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 18px;
+    position: relative;
+    z-index: 2;
   }
 
-  .footer-inner {
+  .footer-lead {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 2rem;
-    padding: 0 2rem;
-    max-width: 1280px;
-    margin: 0 auto;
-    text-align: center;
-
-    @media (min-width: 768px) {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-start;
-      text-align: left;
-    }
-  }
-
-  .footer-brand {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  .footer-title {
-    font-family: 'Noto Serif', Georgia, serif;
-    font-size: 1.125rem;
-    font-style: italic;
-    font-weight: 600;
-    color: var(--color-primary);
-  }
-
-  .footer-sub {
-    font-family: 'Manrope', system-ui, sans-serif;
-    font-size: 0.8125rem;
-    color: var(--color-on-surface-variant);
-    margin: 0;
-  }
-
-  .footer-copy {
-    font-family: 'Manrope', system-ui, sans-serif;
-    font-size: 0.75rem;
-    color: var(--color-outline);
-    margin: 0.25rem 0 0;
+    gap: 10px;
 
     a {
-      color: var(--color-primary);
+      color: var(--gold);
       text-decoration: none;
 
       &:hover {
@@ -89,38 +45,16 @@ const currentYear = new Date().getFullYear()
     }
   }
 
-  .footer-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
+  .brand-mark-sm {
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
 
-    @media (min-width: 768px) {
-      justify-content: flex-start;
+    img {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
-  }
-
-  .footer-nav a {
-    font-family: 'Manrope', system-ui, sans-serif;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--color-on-surface-variant);
-    text-decoration: none;
-    transition: color 0.2s ease;
-
-    &:hover {
-      color: var(--color-primary);
-    }
-  }
-
-  .footer-icons {
-    display: flex;
-    gap: 1rem;
-    color: var(--color-primary-light);
-    opacity: 0.7;
-    font-size: 1.25rem;
   }
 </style>
