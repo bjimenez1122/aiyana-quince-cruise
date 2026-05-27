@@ -1,0 +1,152 @@
+---
+interface Props {
+  current: 'home' | 'ship' | 'itinerary' | 'booking' | 'faq'
+}
+
+const { current } = Astro.props
+
+const links = [
+  { key: 'home', href: '/', label: 'Home', desc: 'The opening page' },
+  { key: 'ship', href: '/ship', label: 'The Ship', desc: 'About the Disney Fantasy' },
+  { key: 'itinerary', href: '/itinerary', label: 'Itinerary', desc: '5-Night Bahamian Cruise' },
+  { key: 'booking', href: '/booking', label: 'Booking', desc: 'Cabins and how to reserve' },
+  { key: 'faq', href: '/faq', label: 'FAQ', desc: 'Passports, plans, packing' },
+].filter(l => l.key !== current)
+---
+
+<section class="keep-exploring">
+  <div class="ke-head">
+    <span class="eyebrow">Keep exploring</span>
+  </div>
+
+  <ol class="toc" aria-label="Other pages">
+    {
+      links.map((link, i) => (
+        <li>
+          <a href={link.href}>
+            <span class="num">{String(i + 1).padStart(2, '0')}</span>
+            <span class="title">{link.label}</span>
+            <span class="desc">{link.desc}</span>
+            <span class="arr" aria-hidden="true">→</span>
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<style lang="scss">
+  .keep-exploring {
+    max-width: var(--content-w);
+    margin: 0 auto;
+    padding-inline: var(--space-md);
+  }
+
+  .ke-head {
+    margin-bottom: var(--space-md);
+  }
+
+  .ke-head .eyebrow {
+    display: block;
+  }
+
+  .toc {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .toc li {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .toc a {
+    display: grid;
+    grid-template-columns: 48px 1fr auto 24px;
+    align-items: baseline;
+    column-gap: var(--space-md);
+    padding: var(--space-md) 0;
+    text-decoration: none;
+    color: var(--ink);
+    transition: color 0.2s ease;
+  }
+
+  .toc a:hover,
+  .toc a:focus-visible {
+    .title {
+      color: var(--gold);
+    }
+
+    .arr {
+      color: var(--gold);
+      transform: translateX(6px);
+    }
+  }
+
+  .toc a:focus-visible {
+    outline: none;
+  }
+
+  .toc .num {
+    font-family: var(--font-family-label);
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--ink-mute);
+  }
+
+  .toc .title {
+    font-family: var(--font-family-display);
+    font-style: normal;
+    font-weight: 500;
+    font-size: clamp(20px, 2vw, 24px);
+    line-height: 1.25;
+    transition: color 0.2s ease;
+  }
+
+  .toc .desc {
+    color: var(--ink-soft);
+    font-size: 14px;
+    text-align: right;
+  }
+
+  .toc .arr {
+    color: var(--ink-mute);
+    font-size: 18px;
+    transition:
+      transform 0.2s ease,
+      color 0.2s ease;
+  }
+
+  @media (max-width: 560px) {
+    .toc a {
+      grid-template-columns: 32px 1fr 20px;
+      grid-template-areas:
+        'num title arr'
+        'num desc arr';
+      column-gap: var(--space-sm);
+      row-gap: 2px;
+      padding: var(--space-md) 0;
+    }
+
+    .toc .num {
+      grid-area: num;
+      align-self: start;
+      padding-top: 6px;
+    }
+
+    .toc .title {
+      grid-area: title;
+    }
+
+    .toc .desc {
+      grid-area: desc;
+      text-align: left;
+    }
+
+    .toc .arr {
+      grid-area: arr;
+      align-self: center;
+    }
+  }
+</style>

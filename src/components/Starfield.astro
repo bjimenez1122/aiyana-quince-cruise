@@ -1,0 +1,66 @@
+---
+// Static starfield backdrop. Renders once client-side so we can size the SVG
+// to the full page height (not just the viewport).
+---
+
+<div class="starfield" id="starfield" aria-hidden="true"></div>
+
+<script is:inline>
+  (function () {
+    const host = document.getElementById('starfield')
+    if (!host) return
+
+    function render() {
+      const isLight = matchMedia('(prefers-color-scheme: light)').matches
+      const color = isLight ? '#1a2640' : '#ead9a0'
+      const h = Math.max(document.documentElement.scrollHeight, 3200)
+      const N = 140
+      let seed = 1
+      const rand = () => {
+        seed = (seed * 9301 + 49297) % 233280
+        return seed / 233280
+      }
+
+      let svg = `<svg width="100%" height="100%" viewBox="0 0 1200 ${h}" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0">`
+      for (let i = 0; i < N; i++) {
+        const x = (rand() * 1200).toFixed(1)
+        const y = (rand() * h).toFixed(1)
+        const rd = (rand() * 1.5 + 0.3).toFixed(2)
+        const op = (0.2 + rand() * 0.7).toFixed(2)
+        svg += `<circle cx="${x}" cy="${y}" r="${rd}" fill="${color}" opacity="${op}"/>`
+      }
+      for (let i = 0; i < 10; i++) {
+        const x = (rand() * 1200).toFixed(1)
+        const y = (rand() * h).toFixed(1)
+        svg += `<text x="${x}" y="${y}" font-family="Petrona" font-size="14" fill="${color}" opacity=".6">✦</text>`
+      }
+      svg += `</svg>`
+      host.innerHTML = svg
+    }
+
+    render()
+    matchMedia('(prefers-color-scheme: light)').addEventListener('change', render)
+  })()
+</script>
+
+<style is:global>
+  .starfield {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .starfield::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(1200px 500px at 70% 10%, rgba(234, 217, 160, 0.08), transparent 60%);
+  }
+
+  @media (prefers-color-scheme: light) {
+    .starfield::before {
+      background: radial-gradient(1200px 500px at 70% 10%, rgba(168, 127, 42, 0.08), transparent 60%);
+    }
+  }
+</style>

@@ -2,75 +2,46 @@
 import DefaultLayout from '../layouts/DefaultLayout.astro'
 ---
 
-<DefaultLayout title="404 — Lost at Sea">
+<DefaultLayout title="404 · Lost at Sea">
   <section class="notfound">
-    <div class="notfound-inner">
-      <p class="notfound-eyebrow">404</p>
-      <h1 class="notfound-headline">Lost at Sea</h1>
-      <p class="notfound-body">Looks like this page drifted off course. Let's get you back on board.</p>
-      <a class="btn-primary" href="/">Return Home</a>
-    </div>
+    <span class="eyebrow">404</span>
+    <h1>Lost <em>at sea</em></h1>
+    <p>This page drifted off course. Let's get you back on board.</p>
+    <a class="btn primary" href="/">Return home →</a>
   </section>
 </DefaultLayout>
 
 <style lang="scss">
   .notfound {
-    min-height: 70vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 4rem 2rem;
-    text-align: center;
-  }
-
-  .notfound-inner {
+    min-height: 60vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    max-width: 480px;
+    justify-content: center;
+    text-align: center;
+    padding: 100px 0 !important;
+    gap: 16px;
   }
 
-  .notfound-eyebrow {
-    font-family: 'Noto Serif', Georgia, serif;
+  .notfound h1 {
+    font-family: var(--font-family-display);
     font-style: italic;
-    font-size: 1.125rem;
-    color: var(--color-secondary);
+    font-weight: 500;
+    font-size: clamp(54px, 7vw, 92px);
+    line-height: 1;
     margin: 0;
-  }
+    letter-spacing: -0.5px;
 
-  .notfound-headline {
-    font-family: 'Noto Serif', Georgia, serif;
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    color: var(--color-primary);
-    margin: 0;
-  }
-
-  .notfound-body {
-    color: var(--color-on-surface-variant);
-    font-size: 1rem;
-    line-height: 1.7;
-    margin: 0 0 1rem;
-  }
-
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.875rem 2rem;
-    background: var(--color-primary);
-    color: var(--color-on-primary);
-    font-family: 'Manrope', system-ui, sans-serif;
-    font-size: 0.875rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-decoration: none;
-    border-radius: 0.75rem;
-    transition: box-shadow 0.2s ease, transform 0.15s ease;
-    box-shadow: 0 4px 16px var(--color-shadow-md);
-
-    &:hover {
-      box-shadow: 0 8px 32px var(--color-shadow-lg);
-      transform: translateY(-1px);
+    :global(em) {
+      color: var(--gold);
+      font-weight: 600;
     }
+  }
+
+  .notfound p {
+    color: var(--ink-soft);
+    max-width: 480px;
+    margin: 0 0 12px;
+    font-size: 16px;
   }
 </style>

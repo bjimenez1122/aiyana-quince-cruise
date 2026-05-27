@@ -1,0 +1,242 @@
+---
+import { Image } from 'astro:assets'
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+import PageHero from '../components/PageHero.astro'
+import KeepExploring from '../components/KeepExploring.astro'
+import insideStateroom from '../assets/photos/inside-stateroom.jpg'
+import oceanviewStateroom from '../assets/photos/oceanview-stateroom.jpg'
+import verandahStateroom from '../assets/photos/verandah-stateroom.jpg'
+
+const rooms = [
+  {
+    tag: 'CABIN · INSIDE',
+    title: 'Inside Stateroom',
+    desc: 'A cozy, well-appointed sanctuary for days spent exploring the ship and ports.',
+    priceFamily: '$4,545',
+    priceCouple: '$2,694',
+    img: insideStateroom,
+    alt: 'Inside stateroom',
+    featured: false,
+  },
+  {
+    tag: 'CABIN · OCEANVIEW',
+    title: 'Oceanview Stateroom',
+    desc: 'Wake to the endless horizon through a private porthole window.',
+    priceFamily: '$4,775',
+    priceCouple: '$2,874',
+    img: oceanviewStateroom,
+    alt: 'Oceanview stateroom',
+    featured: true,
+  },
+  {
+    tag: 'CABIN · VERANDAH',
+    title: 'Verandah Stateroom',
+    desc: "Your own balcony — fresh ocean air at sunrise, stars at night.",
+    priceFamily: '$5,064',
+    priceCouple: '$3,194',
+    img: verandahStateroom,
+    alt: 'Verandah stateroom',
+    featured: false,
+  },
+]
+
+const bookingUrl = 'https://disneycruise.disney.go.com/'
+---
+
+<DefaultLayout title="Booking · Aiyana's Quinceañera at Sea">
+  <PageHero eyebrow="Reserve" lede="Sample rates from May 2025 · 10% deposit holds a cabin · final payment due May 30, 2026.">
+    Your Home<br /><em>on the High Seas</em>
+  </PageHero>
+
+  <section class="rooms-section">
+    <div class="rooms">
+      {rooms.map(r => (
+        <div class={r.featured ? 'room featured' : 'room'}>
+          <div class="room-photo has-img">
+            <Image src={r.img} alt={r.alt} />
+          </div>
+          <div class="room-body">
+            <span class="tag">{r.tag}</span>
+            <h3>{r.title}</h3>
+            <div class="room-desc">{r.desc}</div>
+            <div class="room-prices">
+              <span>2 adults + 2 kids<b>{r.priceFamily}</b></span>
+              <span>2 adults<b>{r.priceCouple}</b></span>
+            </div>
+            <a class={r.featured ? 'btn primary' : 'btn'} href={bookingUrl} target="_blank" rel="noopener noreferrer">
+              Book on Disney Cruise Line →
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="howto">
+      <span class="eyebrow">How to book</span>
+      <ol>
+        <li>Call the cruise line at <b class="gold">(800) 951-3532</b> or book online at <a href={bookingUrl} target="_blank" rel="noopener noreferrer">disneycruise.disney.go.com</a>.</li>
+        <li>Select <b class="ink">Late dining (8:15 PM)</b> so our whole group can sit together.</li>
+        <li>Place your 10% deposit to hold the cabin.</li>
+        <li>Send your reservation number to <b class="ink">Jackie</b> — she'll link our rooms and coordinate group plans.</li>
+        <li>Final payment is due <b class="ink">May 30, 2026</b>.</li>
+      </ol>
+    </div>
+  </section>
+
+  <KeepExploring current="booking" />
+</DefaultLayout>
+
+<style lang="scss">
+  .rooms-section {
+    padding-top: 40px !important;
+  }
+
+  .rooms {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+
+    @media (max-width: 900px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .room {
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    background: var(--panel);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .room.featured {
+    border-color: var(--gold);
+  }
+
+  .room-photo {
+    aspect-ratio: 4 / 3;
+    background:
+      linear-gradient(135deg, rgba(234, 217, 160, 0.12), rgba(213, 152, 178, 0.08)),
+      repeating-linear-gradient(135deg, transparent 0 12px, rgba(234, 217, 160, 0.1) 12px 13px);
+    display: grid;
+    place-items: center;
+    color: var(--ink-mute);
+    font-family: var(--font-family-label);
+    font-size: 10px;
+    letter-spacing: 2px;
+
+    &.has-img {
+      background: none;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (prefers-color-scheme: light) {
+      &:not(.has-img) {
+        background:
+          linear-gradient(135deg, rgba(168, 127, 42, 0.1), rgba(168, 70, 107, 0.06)),
+          repeating-linear-gradient(135deg, transparent 0 12px, rgba(26, 38, 64, 0.1) 12px 13px);
+      }
+    }
+  }
+
+  .room-body {
+    padding: 24px 26px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+
+  .room .tag {
+    font-family: var(--font-family-label);
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    color: var(--gold);
+  }
+
+  .room h3 {
+    font-family: var(--font-family-display);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 26px;
+    margin: 0;
+    line-height: 1;
+  }
+
+  .room-desc {
+    color: var(--ink-soft);
+    font-size: 13.5px;
+    min-height: 42px;
+  }
+
+  .room-prices {
+    margin-top: auto;
+    border-top: 1px solid var(--line);
+    padding-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-family-body);
+    font-size: 12px;
+    color: var(--ink-mute);
+  }
+
+  .room-prices b {
+    display: block;
+    font-family: var(--font-family-display);
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--gold);
+    margin-top: 2px;
+  }
+
+  .room :global(.btn) {
+    margin-top: 16px;
+    text-align: center;
+  }
+
+  .howto {
+    max-width: 720px;
+    margin: 60px auto 0;
+    border: 1px solid var(--line-strong);
+    border-radius: 24px;
+    padding: 32px 36px;
+    background: var(--panel);
+
+    .eyebrow {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    ol {
+      padding-left: 20px;
+      color: var(--ink-soft);
+      font-size: 15px;
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    b.gold {
+      color: var(--gold);
+    }
+
+    b.ink {
+      color: var(--ink);
+    }
+
+    a {
+      color: var(--gold);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+</style>

@@ -1,0 +1,111 @@
+---
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+import PageHero from '../components/PageHero.astro'
+import KeepExploring from '../components/KeepExploring.astro'
+
+const faqs = [
+  {
+    q: 'When should I book?',
+    a: "As soon as you know you're coming. Cabins hold with a 10% deposit, and availability shrinks the closer we get to departure. Final payment is due May 30, 2026 and is fully refundable until then.",
+    open: true,
+  },
+  {
+    q: 'What dining time should I select?',
+    a: 'Late dining at 8:15 PM so our whole group can eat together. Share your reservation number with Jackie once you\'ve booked so we can link rooms.',
+  },
+  {
+    q: 'Where is the birthday girl staying?',
+    a: 'Aiyana and family will be in an Oceanview stateroom on Deck 8. Happy to arrange nearby cabins — let Jackie know when you book.',
+  },
+  {
+    q: 'Do I need a passport?',
+    a: 'A passport is strongly recommended. A birth certificate + government ID works for closed-loop cruises, but a passport makes re-entry smoother and is required if you need to fly home from a foreign port.',
+  },
+  {
+    q: 'What should I pack?',
+    a: 'Resort casual for most evenings, one nicer outfit for the rotational restaurants, swimsuits, sunscreen, a light jacket for windy nights on deck, and something celebratory for Day 5.',
+  },
+  {
+    q: 'Airport & parking tips?',
+    a: 'Fly into Orlando (MCO) — the port offers a shuttle, or you can drive and park at the terminal. Plan to arrive at the ship by 11:30 AM on Day 1.',
+  },
+  {
+    q: 'Does my child need a wristband for the Kids\' Clubs?',
+    a: 'Yes! If your child doesn\'t have one, a wristband will be provided at check-in. A $24 refundable deposit will be added to your account and removed once the wristband is returned. 🎉'
+  },
+  {
+    q: 'What is my room key used for?',
+    a: 'Your Key to the World card is your all-in-one pass for accessing your stateroom and making onboard purchases. We recommend carrying it on a lanyard or Disney MagicBand+ wristband for easy access! ✨'
+  }
+]
+---
+
+<DefaultLayout title="FAQ · Aiyana's Quinceañera at Sea">
+  <PageHero eyebrow="Preguntas frecuentes" lede="The little details that make a smoother voyage. Still have questions? Reach out to Jackie, Abby, or Bryan anytime.">
+    <em>Good</em> to Know
+  </PageHero>
+
+  <section class="faq-section">
+    <div class="faq">
+      {faqs.map(item => (
+        <details open={item.open}>
+          <summary>{item.q}</summary>
+          <p>{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <KeepExploring current="faq" />
+</DefaultLayout>
+
+<style lang="scss">
+  .faq-section {
+    padding-top: 40px !important;
+  }
+
+  .faq {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .faq details {
+    border-bottom: 1px solid var(--line);
+    padding: 22px 4px;
+  }
+
+  .faq summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-family-display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 21px;
+    color: var(--ink);
+  }
+
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq summary::after {
+    content: '+';
+    font-family: var(--font-family-display);
+    font-size: 28px;
+    color: var(--gold);
+    transition: transform 0.2s;
+  }
+
+  .faq details[open] summary::after {
+    transform: rotate(45deg);
+  }
+
+  .faq details p {
+    color: var(--ink-soft);
+    font-size: 15px;
+    margin: 14px 0 0;
+  }
+</style>

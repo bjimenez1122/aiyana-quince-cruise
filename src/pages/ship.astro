@@ -1,0 +1,248 @@
+---
+import { Image } from 'astro:assets'
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+import PageHero from '../components/PageHero.astro'
+import KeepExploring from '../components/KeepExploring.astro'
+import disneyFantasy from '../assets/photos/disney-fantasy.jpg'
+import aquaduck from '../assets/photos/aquaduck.jpg'
+import oceaneerClub from '../assets/photos/oceaneer-club.jpg'
+import characters from '../assets/photos/characters.jpg'
+import currentsBar from '../assets/photos/currents-bar.jpg'
+import quietCove from '../assets/photos/quiet-cove-pool.jpg'
+import sensesSpa from '../assets/photos/senses-spa.jpg'
+import enchantedGarden from '../assets/photos/enchanted-garden.jpg'
+import castawayCay from '../assets/photos/castaway-cay.jpg'
+
+const amenities = [
+  { tag: 'THRILL', title: 'The AquaDuck', body: 'A 765-foot water coaster winding four decks above the waves.', img: aquaduck, alt: 'AquaDuck water coaster' },
+  { tag: 'KIDS', title: 'Oceaneer Club & Lab', body: 'A magical world just for kids with themed play spaces for every age.', img: oceaneerClub, alt: 'Oceaneer Club' },
+  { tag: 'SHOWS', title: 'Broadway at Sea', body: 'A 45-minute musical spectacular and evening character meet-and-greets.', img: characters, alt: 'Broadway shows and characters' },
+  { tag: '21+', title: 'Europa', body: 'A quiet district of lounges and clubs for grown-ups to slip away to.', img: currentsBar, alt: 'Currents Bar in Europa district' },
+  { tag: 'POOL', title: 'Quiet Cove', body: 'Adults-only pool with a pool bar and Satellite Falls nearby for sunlit afternoons.', img: quietCove, alt: 'Quiet Cove pool with pool bar' },
+  { tag: 'SPA', title: 'Senses Spa', body: 'A serene afternoon of treatments — calm amid the celebration.', img: sensesSpa, alt: 'Senses spa aboard the Disney Fantasy' },
+  { tag: 'DINING', title: 'Rotational Dining', body: 'Restaurant that shifts from day to starlit night during your meal.', img: enchantedGarden, alt: 'Enchanted Garden restaurant' },
+  { tag: 'DAY 2', title: 'Castaway Cay', body: "A private island stop on Day 2 — white sand, snorkeling, family beach.", img: castawayCay, alt: 'Castaway Cay beach' },
+]
+---
+
+<DefaultLayout title="The Ship · Aiyana's Quinceañera at Sea">
+  <PageHero>
+    <em>Fantasy</em> Becomes Reality
+  </PageHero>
+  <section class="ship-lede">
+    <p>A water coaster that soars above the waves, Broadway-calibre shows, a quiet adults-only cove — and private islands waiting in the middle of it all.</p>
+  </section>
+
+  <section>
+    <div class="ship-wrap">
+      <div class="ship-photo">
+        <Image src={disneyFantasy} alt="The Disney Fantasy at sea" />
+      </div>
+      <div class="ship-body">
+        <h2>The <em>Disney Fantasy</em></h2>
+        <div class="ship-stats">
+          <div class="stat"><b>14</b><span>Decks</span></div>
+          <div class="stat"><b>4,000</b><span>Guests</span></div>
+          <div class="stat"><b>3</b><span>Dining Rooms</span></div>
+          <div class="stat"><b>2</b><span>Adults-only Pools</span></div>
+          <div class="stat"><b>4</b><span>Kids Clubs & Nurseries</span></div>
+          <div class="stat"><b>2</b><span>Themed Nights</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="amenities">
+      {amenities.map(a => (
+        <div class="amenity">
+          <div class="amenity-photo">
+            <Image src={a.img} alt={a.alt} />
+          </div>
+          <div class="amenity-body">
+            <span class="tag">{a.tag}</span>
+            <h3>{a.title}</h3>
+            <p>{a.body}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <KeepExploring current="ship" />
+</DefaultLayout>
+
+<style lang="scss">
+  .ship-lede {
+    text-align: center;
+    padding: 0 0 40px !important;
+    max-width: 620px;
+    margin: 0 auto;
+
+    p {
+      color: var(--ink-soft);
+      font-size: 16px;
+      margin: 0;
+    }
+  }
+
+  .ship-wrap {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items: center;
+
+    @media (max-width: 900px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .ship-photo {
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid var(--line-strong);
+    aspect-ratio: 4 / 3;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  .ship-body h2 {
+    font-family: var(--font-family-display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 52px;
+    line-height: 1;
+    margin: 8px 0 16px;
+    letter-spacing: -0.5px;
+
+    :global(em) {
+      color: var(--gold);
+      font-weight: 600;
+    }
+  }
+
+  .ship-body p {
+    color: var(--ink-soft);
+    font-size: 16px;
+  }
+
+  .ship-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 28px 0;
+  }
+
+  .stat {
+    border-left: 1px solid var(--line-strong);
+    padding: 2px 0 2px 14px;
+  }
+
+  .stat b {
+    display: block;
+    font-family: var(--font-family-display);
+    font-weight: 600;
+    font-size: 28px;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat span {
+    font-family: var(--font-family-label);
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--ink-mute);
+    margin-top: 4px;
+    display: inline-block;
+  }
+
+  .amenities {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 56px;
+
+    @media (max-width: 900px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 560px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .amenity {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: all 0.25s;
+
+    &:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+    }
+  }
+
+  .amenity-photo {
+    aspect-ratio: 4 / 3;
+    background:
+      linear-gradient(135deg, rgba(234, 217, 160, 0.12), rgba(213, 152, 178, 0.08)),
+      repeating-linear-gradient(135deg, transparent 0 10px, rgba(234, 217, 160, 0.12) 10px 11px);
+    display: grid;
+    place-items: center;
+    color: var(--ink-mute);
+    font-family: var(--font-family-label);
+    font-size: 10px;
+    letter-spacing: 2px;
+
+    &.has-img {
+      background: none;
+      padding: 0;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (prefers-color-scheme: light) {
+      &:not(.has-img) {
+        background:
+          linear-gradient(135deg, rgba(168, 127, 42, 0.1), rgba(168, 70, 107, 0.08)),
+          repeating-linear-gradient(135deg, transparent 0 10px, rgba(26, 38, 64, 0.1) 10px 11px);
+      }
+    }
+  }
+
+  .amenity-body {
+    padding: 16px 18px 20px;
+  }
+
+  .amenity .tag {
+    font-family: var(--font-family-label);
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: var(--gold);
+  }
+
+  .amenity h3 {
+    font-family: var(--font-family-display);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 22px;
+    margin: 4px 0 6px;
+  }
+
+  .amenity p {
+    color: var(--ink-soft);
+    font-size: 13.5px;
+    line-height: 1.5;
+    margin: 0;
+  }
+</style>
