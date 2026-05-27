@@ -10,6 +10,7 @@ const navLinks = [
 
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/'
 const isActive = (href: string) => pathname === href || pathname.startsWith(href + '/')
+const bookingUrl = 'https://disneycruise.disney.go.com/'
 ---
 
 <SkipLink />
@@ -29,7 +30,7 @@ const isActive = (href: string) => pathname === href || pathname.startsWith(href
         {label}
       </a>
     ))}
-    <a class="cta" href="/booking">Reserve ✦</a>
+    <a class="cta" href={bookingUrl} target="_blank" rel="noopener">Reserve ✦</a>
   </div>
 
   <button
@@ -52,7 +53,7 @@ const isActive = (href: string) => pathname === href || pathname.startsWith(href
     {navLinks.map(({ href, label }) => (
       <li><a href={href} class={isActive(href) ? 'active' : ''}>{label}</a></li>
     ))}
-    <li><a href="/booking" class="cta">Reserve ✦</a></li>
+    <li><a href={bookingUrl} target="_blank" rel="noopener" class="cta">Reserve ✦</a></li>
   </ul>
 </nav>
 
@@ -224,7 +225,7 @@ const isActive = (href: string) => pathname === href || pathname.startsWith(href
     a {
       display: block;
       font-family: var(--font-family-display);
-      font-style: italic;
+      font-weight: 500;
       font-size: 18px;
       color: var(--ink);
       text-decoration: none;
@@ -232,20 +233,9 @@ const isActive = (href: string) => pathname === href || pathname.startsWith(href
       border-bottom: 1px solid var(--line);
     }
 
-    a.active {
-      color: var(--gold);
-    }
-
+    a.active,
     a.cta {
       color: var(--gold);
-      font-family: var(--font-family-body);
-      font-style: normal;
-      font-size: 13.5px;
-      letter-spacing: 0.3px;
-    }
-
-    li:last-child a {
-      border-bottom: none;
     }
   }
 </style>

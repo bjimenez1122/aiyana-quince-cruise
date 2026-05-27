@@ -68,7 +68,6 @@ const itinerary = [
           <span class="cd-label">sec</span>
         </span>
       </div>
-      <span class="cd-label cd-trail">until we set sail <span class="cd-cta-arrow" aria-hidden="true">→</span></span>
     </a>
   </section>
 
@@ -239,6 +238,16 @@ const itinerary = [
     color: var(--ink-mute);
   }
 
+  @media (max-width: 640px) {
+    .hero-eyebrow {
+      flex-direction: column;
+      align-items: center;
+    }
+    .hero-eyebrow .sep {
+      display: none;
+    }
+  }
+
   .hero h1 {
     font-family: var(--font-family-display);
     font-style: normal;
@@ -302,17 +311,6 @@ const itinerary = [
     margin-top: var(--space-md);
   }
 
-  .cd-hero .cd-trail {
-    display: block;
-    margin-top: var(--space-md);
-    font-family: var(--font-family-display);
-    font-weight: 400;
-    font-size: 22px;
-    letter-spacing: 0.2px;
-    color: var(--gold);
-    text-align: center;
-  }
-
   .cd-cta-arrow {
     display: inline-block;
     margin-left: 6px;
@@ -350,6 +348,7 @@ const itinerary = [
   .cd-row {
     margin-top: 18px;
     display: inline-flex;
+    flex-wrap: nowrap;
     align-items: center;
     gap: 14px;
     font-family: var(--font-family-body);
@@ -358,12 +357,26 @@ const itinerary = [
     letter-spacing: 2.4px;
     color: var(--ink-soft);
     text-transform: uppercase;
+    white-space: nowrap;
   }
 
   .cd-time {
     display: inline-flex;
+    flex-wrap: nowrap;
     align-items: center;
     gap: 9px;
+  }
+
+  @media (max-width: 480px) {
+    .cd-row {
+      font-size: 14px;
+      gap: 9px;
+      letter-spacing: 1.8px;
+    }
+    .cd-time { gap: 6px; }
+    .cd-row .cd-sep { font-size: 14px; }
+    .cd-pair { gap: 2px; }
+    .cd-cell { font-size: 22px; }
   }
 
   .cd-row .cd-sep {
