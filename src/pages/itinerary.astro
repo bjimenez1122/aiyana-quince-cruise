@@ -8,7 +8,6 @@ import castawayCay from '../assets/photos/castaway-cay.jpg'
 import cruiseTerminal from '../assets/photos/cruise-terminal.jpg'
 import lookoutCay from '../assets/photos/lookout-cay.png'
 import nassau from '../assets/photos/nassau-bahamas.jpg'
-import disneySprings from '../assets/photos/disney-springs.png'
 import fantasyAtrium from '../assets/photos/fantasyAtrium.jpg'
 
 type Day = {
@@ -18,57 +17,68 @@ type Day = {
   img?: ImageMetadata
   alt?: string
   placeholder?: string
+  arrive?: string
+  depart?: string
 }
 
 const days: Day[] = [
   {
     tag: 'DAY 1 · AUG 28',
     title: 'Port Canaveral, FL',
-    body: 'Embarkation — weigh anchor at noon, sail-away on the pool deck.',
+    body: 'Embarkation day, sail-away party on the pool deck.',
     img: cruiseTerminal,
     alt: 'Disney Cruise Line Terminal',
+    arrive: '11:30 AM',
+    depart: '4:00 PM',
   },
   {
     tag: 'DAY 2 · AUG 29',
     title: 'Disney Castaway Cay',
-    body: 'Private island — family beach, snorkeling lagoon, a bbq lunch ashore.',
+    body: 'Private island — family and adults-only beaches, kids play area, snorkeling lagoon, a BBQ lunch ashore. **Optional dress-up night**',
     img: castawayCay,
-    alt: 'Castaway Cay Beach'
+    alt: 'Castaway Cay Beach',
+    arrive: '9:30 AM',
+    depart: '5:00 PM',
   },
   {
     tag: 'DAY 3 · AUG 30',
-    title: 'Lookout Cay at Lighthouse Point',
-    body: "Disney's Bahamian destination on Eleuthera — Junkanoo rhythms, pink-sand beaches, island culture.",
+    title: 'Disney Lookout Cay',
+    body: "Private island — similar to Castaway Cay with a cultural center.",
     img: lookoutCay,
-    alt: 'Lookout Cay Beach'
+    alt: 'Lookout Cay Beach',
+    arrive: '9:30 AM',
+    depart: '5:00 PM',
   },
   {
     tag: 'DAY 4 · AUG 31',
     title: 'Nassau, Bahamas',
-    body: 'Explore the vibrant capital — straw market, Blue Lagoon, pink houses.',
+    body: 'Explore the vibrant capital — straw market, Blue Lagoon, pink houses. **Pirate Night**',
     img: nassau,
-    alt: 'Nassau Bahamas Atlantis Resort'
+    alt: 'Nassau Bahamas Atlantis Resort',
+    arrive: '10:00 AM',
+    depart: '6:00 PM',
   },
   {
     tag: 'DAY 5 · SEPTEMBER 1',
     title: "Aiyana's Birthday at Sea",
-    body: 'Celebrating her fifteenth — details coming soon.',
+    body: 'Celebrating her fifteenth birthday all together at dinner.',
     img: fantasyAtrium,
     alt: 'Disney Fantasy Atrium',
   },
   {
     tag: 'DAY 6 · SEP 2',
     title: 'Port Canaveral, FL',
-    body: 'Disembarkation begins around 7 AM — farewell brunch information coming soon.',
-    img: disneySprings,
-    alt: 'Disemarkation & Farewell Brunch'
+    body: 'Disembarkation begins around 7 AM.',
+    img: cruiseTerminal,
+    alt: 'Disemarkation & Farewell Brunch',
+    arrive: '7:00 AM',
   },
 ]
 ---
 
 <DefaultLayout title="Itinerary · Aiyana's Quinceañera at Sea">
-  <PageHero eyebrow="Six days · five nights" lede="A star-chart of our voyage — five ports, one birthday at sea.">
-    The <em>itinerary</em>
+  <PageHero eyebrow="Six days · five nights" lede="Three ports, including two private islands.">
+    The <em>Itinerary</em>
   </PageHero>
 
   <section>
@@ -86,6 +96,22 @@ const days: Day[] = [
             <span class="tag">{day.tag}</span>
             <h3>{day.title}</h3>
             <p>{day.body}</p>
+            {(day.arrive || day.depart) && (
+              <dl class="times" aria-label="Port times">
+                {day.arrive && (
+                  <div class="time">
+                    <dt>Arrive</dt>
+                    <dd>{day.arrive}</dd>
+                  </div>
+                )}
+                {day.depart && (
+                  <div class="time">
+                    <dt>Depart</dt>
+                    <dd>{day.depart}</dd>
+                  </div>
+                )}
+              </dl>
+            )}
           </div>
         </div>
       ))}
@@ -189,6 +215,37 @@ const days: Day[] = [
   .day p {
     color: var(--ink-soft);
     font-size: 13.5px;
+    margin: 0;
+  }
+
+  .day .times {
+    margin: 14px 0 0;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    gap: 24px;
+  }
+
+  .day .time {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .day .time dt {
+    font-family: var(--font-family-label);
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  .day .time dd {
+    font-family: var(--font-family-display);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1;
+    color: var(--ink);
     margin: 0;
   }
 </style>

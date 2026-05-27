@@ -1,6 +1,6 @@
 ---
 interface Props {
-  eyebrow: string
+  eyebrow?: string
   lede?: string
 }
 
@@ -8,7 +8,7 @@ const { eyebrow, lede } = Astro.props
 ---
 
 <section class="page-hero">
-  <span class="eyebrow">{eyebrow}</span>
+  {eyebrow ? <span class="eyebrow">{eyebrow}</span> : null }
   <h1><slot /></h1>
   {lede && <p>{lede}</p>}
 </section>

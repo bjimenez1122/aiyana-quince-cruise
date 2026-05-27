@@ -26,11 +26,11 @@ const amenities = [
 ---
 
 <DefaultLayout title="The Ship · Aiyana's Quinceañera at Sea">
-  <PageHero eyebrow="El barco">
-    A ship full<br /><em>of wonder</em>
+  <PageHero>
+    <em>Fantasy</em> Becomes Reality
   </PageHero>
   <section class="ship-lede">
-    <p>A water coaster that soars above the waves, Broadway-calibre shows, a quiet adults-only cove — and a private island waiting in the middle of it all.</p>
+    <p>A water coaster that soars above the waves, Broadway-calibre shows, a quiet adults-only cove — and private islands waiting in the middle of it all.</p>
   </section>
 
   <section>
@@ -39,19 +39,19 @@ const amenities = [
         <Image src={disneyFantasy} alt="The Disney Fantasy at sea" />
       </div>
       <div class="ship-body">
-        <span class="eyebrow">The vessel</span>
         <h2>The <em>Disney Fantasy</em></h2>
-        <p>Fourteen decks, four thousand guests, a single ocean. Our home for five nights — built for a voyage worth remembering.</p>
         <div class="ship-stats">
-          <div class="stat"><b>14</b><span>DECKS</span></div>
-          <div class="stat"><b>4,000</b><span>GUESTS</span></div>
-          <div class="stat"><b>1</b><span>OCEAN</span></div>
+          <div class="stat"><b>14</b><span>Decks</span></div>
+          <div class="stat"><b>4,000</b><span>Guests</span></div>
+          <div class="stat"><b>3</b><span>Dining Rooms</span></div>
+          <div class="stat"><b>2</b><span>Adults-only Pools</span></div>
+          <div class="stat"><b>4</b><span>Kids Clubs & Nurseries</span></div>
+          <div class="stat"><b>2</b><span>Themed Nights</span></div>
         </div>
-        <a class="btn" href="#amenities">Explore the amenities →</a>
       </div>
     </div>
 
-    <div class="amenities" id="amenities">
+    <div class="amenities">
       {amenities.map(a => (
         <div class="amenity">
           <div class="amenity-photo">
@@ -79,7 +79,7 @@ const amenities = [
 
     p {
       color: var(--ink-soft);
-      font-size: 16.5px;
+      font-size: 16px;
       margin: 0;
     }
   }
@@ -152,7 +152,7 @@ const amenities = [
 
   .stat span {
     font-family: var(--font-family-label);
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: 2px;
     color: var(--ink-mute);
     margin-top: 4px;
@@ -226,7 +226,7 @@ const amenities = [
 
   .amenity .tag {
     font-family: var(--font-family-label);
-    font-size: 9px;
+    font-size: 14px;
     letter-spacing: 2px;
     color: var(--gold);
   }
