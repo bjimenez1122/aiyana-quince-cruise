@@ -2,8 +2,12 @@
 import { Image } from 'astro:assets'
 import DefaultLayout from '../layouts/DefaultLayout.astro'
 import KeepExploring from '../components/KeepExploring.astro'
+import Section from '../components/Section.astro'
 import heroBg from '../assets/photos/disneyfantasycastaway.avif'
 import aiyanaPortrait from '../assets/photos/aiyana-daisy.jpg'
+
+const targetDate = new Date('2026-08-28T00:00:00').getTime()
+const daysUntilTarget = Math.max(0, Math.ceil((targetDate - Date.now()) / 86400000))
 
 const itinerary = [
   { day: 1, date: 'AUG 28', port: 'Port Canaveral' },
@@ -30,60 +34,79 @@ const itinerary = [
       <span>Port Canaveral → Bahamas</span>
     </div>
 
-    <div class="cd-hero">
-      <b id="cd-days" aria-live="polite">—</b>
-        <div class="cd-row" aria-hidden="true">
-          <span><b id="cd-hours">—</b> hrs</span>
-          <span class="cd-sep">·</span>
-          <span><b id="cd-minutes">—</b> min</span>
-          <span class="cd-sep">·</span>
-          <span><b id="cd-seconds">—</b> sec</span>
-        </div>
-      <span class="cd-label">until we set sail</span>
-    </div>
+    <h1>Aiyana's Quinceañera at Sea</h1>
 
     <div class="hero-rule" aria-hidden="true"></div>
 
-    <h1>Aiyana's Quinceañera <em>at Sea</em></h1>
-  </section>
-
-  <section class="route-section">
-    <div class="rs-spread">
-      <div class="rs-head">
-        <h2 class="rs-title">Five stars, <em>one gold line</em></h2>
-        <div class="rs-rule" aria-hidden="true"></div>
-        <p class="rs-lede">A five-night Bahamian voyage on the Disney Fantasy. Each day mapped, port by port.</p>
-        <a class="rs-cta" href="/itinerary">View full itinerary <span aria-hidden="true">→</span></a>
+    <a class="cd-hero" href="/booking" aria-label="Reserve your cabin">
+      <span class="cdh-line">
+        <b class="cdh-days" id="cd-days" aria-live="polite">{daysUntilTarget}</b>
+        <span class="cdh-days-mark">days</span>
+      </span>
+      <div class="cd-row" aria-hidden="true">
+        <span class="cd-time" id="cd-hours">
+          <span class="cd-pair">
+            <span class="cd-cell"><span class="cd-static-top">0</span><span class="cd-static-bot">0</span><span class="cd-overlay"><span class="cd-overlay-top">0</span><span class="cd-overlay-bot">0</span></span></span>
+            <span class="cd-cell"><span class="cd-static-top">0</span><span class="cd-static-bot">0</span><span class="cd-overlay"><span class="cd-overlay-top">0</span><span class="cd-overlay-bot">0</span></span></span>
+          </span>
+          <span class="cd-label">hrs</span>
+        </span>
+        <span class="cd-sep">·</span>
+        <span class="cd-time" id="cd-minutes">
+          <span class="cd-pair">
+            <span class="cd-cell"><span class="cd-static-top">0</span><span class="cd-static-bot">0</span><span class="cd-overlay"><span class="cd-overlay-top">0</span><span class="cd-overlay-bot">0</span></span></span>
+            <span class="cd-cell"><span class="cd-static-top">0</span><span class="cd-static-bot">0</span><span class="cd-overlay"><span class="cd-overlay-top">0</span><span class="cd-overlay-bot">0</span></span></span>
+          </span>
+          <span class="cd-label">min</span>
+        </span>
+        <span class="cd-sep">·</span>
+        <span class="cd-time" id="cd-seconds">
+          <span class="cd-pair">
+            <span class="cd-cell"><span class="cd-static-top">0</span><span class="cd-static-bot">0</span><span class="cd-overlay"><span class="cd-overlay-top">0</span><span class="cd-overlay-bot">0</span></span></span>
+            <span class="cd-cell"><span class="cd-static-top">0</span><span class="cd-static-bot">0</span><span class="cd-overlay"><span class="cd-overlay-top">0</span><span class="cd-overlay-bot">0</span></span></span>
+          </span>
+          <span class="cd-label">sec</span>
+        </span>
       </div>
-      <ol class="rs-grid" aria-label="Voyage timeline">
-        {itinerary.map(s => (
-          <li class={s.birthday ? 'rs-stop is-birthday' : 'rs-stop'}>
-            <a class="rs-link" href="/itinerary">
-              <span class="rs-day">Day {s.day}</span>
-              <span class="rs-date">{s.date}</span>
-              <span class="rs-port">{s.port}</span>
-              <span class="rs-arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
-        ))}
-      </ol>
-    </div>
+      <span class="cd-label cd-trail">until we set sail <span class="cd-cta-arrow" aria-hidden="true">→</span></span>
+    </a>
   </section>
 
-  <section class="note">
-    <div class="note-grid">
+  <Section class="route-section">
+    <header class="route-head">
+      <h2 class="route-title">Five stars, one gold line</h2>
+      <p class="route-lede">A five-night Bahamian voyage on the Disney Fantasy. Each day mapped, port by port.</p>
+    </header>
+    <ol class="route-list" aria-label="Voyage timeline">
+      {itinerary.map(s => (
+        <li class:list={['route-row', { 'is-birthday': s.birthday }]}>
+          <a class="route-link" href="/itinerary">
+            <span class="route-day">Day {s.day}</span>
+            <span class="route-date">{s.date}</span>
+            <span class="route-port">{s.port}</span>
+          </a>
+        </li>
+      ))}
+    </ol>
+    <p class="route-cta-row">
+      <a class="route-cta" href="/itinerary">View full itinerary</a>
+    </p>
+  </Section>
+
+  <Section class="note-section">
+    <header class="note-head">
+      <span class="eyebrow">A note from us</span>
+    </header>
+    <div class="note-pair">
       <figure class="note-photo">
         <Image src={aiyanaPortrait} alt="Aiyana" />
       </figure>
-      <div class="note-text">
-        <span class="eyebrow">A note from us</span>
-        <p>
-          Aiyana is looking forward to celebrating her birthday with her closest family and friends on her first
-          Disney cruise. We hope you can join us as we celebrate with her on private islands and a beautiful ship.
-        </p>
-      </div>
+      <p class="note-body">
+        Aiyana is looking forward to celebrating her birthday with her closest family and friends on her first
+        Disney cruise. We hope you can join us as we celebrate with her on private islands and a beautiful ship.
+      </p>
     </div>
-  </section>
+  </Section>
 
   <KeepExploring current="home" />
 </DefaultLayout>
@@ -91,20 +114,49 @@ const itinerary = [
 <script>
   const target = new Date('2026-08-28T00:00:00').getTime()
 
+  function setFlipDigit(cellEl: Element, newDigit: string) {
+    const top = cellEl.querySelector('.cd-static-top') as HTMLElement | null
+    if (!top || top.textContent === newDigit) return
+    const bot = cellEl.querySelector('.cd-static-bot') as HTMLElement
+    const overlay = cellEl.querySelector('.cd-overlay') as HTMLElement
+    const ovTop = cellEl.querySelector('.cd-overlay-top') as HTMLElement
+    const ovBot = cellEl.querySelector('.cd-overlay-bot') as HTMLElement
+
+    overlay.classList.add('flip')
+    top.textContent = newDigit
+    ovBot.textContent = newDigit
+
+    function finish() {
+      overlay.classList.remove('flip')
+      bot.textContent = newDigit
+      ovTop.textContent = newDigit
+      overlay.removeEventListener('animationend', finish)
+    }
+    overlay.addEventListener('animationend', finish)
+  }
+
+  function setFlipPair(containerEl: Element, value: number) {
+    const padded = String(value).padStart(2, '0')
+    const cells = containerEl.querySelectorAll('.cd-cell')
+    if (cells.length < 2) return
+    setFlipDigit(cells[0], padded[0])
+    setFlipDigit(cells[1], padded[1])
+  }
+
   function updateCountdown() {
     const now = Date.now()
     const diff = target - now
     const days = document.getElementById('cd-days')
-    const hours = document.getElementById('cd-hours')
-    const minutes = document.getElementById('cd-minutes')
-    const seconds = document.getElementById('cd-seconds')
-    if (!days || !hours || !minutes || !seconds) return
+    const hoursEl = document.getElementById('cd-hours')
+    const minutesEl = document.getElementById('cd-minutes')
+    const secondsEl = document.getElementById('cd-seconds')
+    if (!days || !hoursEl || !minutesEl || !secondsEl) return
 
     if (diff <= 0) {
       days.textContent = '0'
-      hours.textContent = '00'
-      minutes.textContent = '00'
-      seconds.textContent = '00'
+      setFlipPair(hoursEl, 0)
+      setFlipPair(minutesEl, 0)
+      setFlipPair(secondsEl, 0)
       return
     }
 
@@ -114,9 +166,9 @@ const itinerary = [
     const s = Math.floor((diff % (1000 * 60)) / 1000)
 
     days.textContent = String(d)
-    hours.textContent = String(h).padStart(2, '0')
-    minutes.textContent = String(m).padStart(2, '0')
-    seconds.textContent = String(s).padStart(2, '0')
+    setFlipPair(hoursEl, h)
+    setFlipPair(minutesEl, m)
+    setFlipPair(secondsEl, s)
   }
 
   updateCountdown()
@@ -153,22 +205,19 @@ const itinerary = [
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 38%;
     display: block;
   }
 
   .hero-overlay {
     position: absolute;
     inset: 0;
-    background:
-      radial-gradient(ellipse at center, rgba(11, 20, 34, 0.6) 0%, rgba(11, 20, 34, 0.9) 70%, var(--bg) 100%),
-      linear-gradient(180deg, rgba(11, 20, 34, 0.55) 0%, rgba(11, 20, 34, 0.8) 100%);
+    background: linear-gradient(180deg, rgba(250, 243, 226, 0.32) 0%, rgba(250, 243, 226, 0.72) 100%);
   }
 
-  @media (prefers-color-scheme: light) {
+  @media (prefers-color-scheme: dark) {
     .hero-overlay {
-      background:
-        radial-gradient(ellipse at center, rgba(250, 243, 226, 0.5) 0%, rgba(250, 243, 226, 0.85) 70%, var(--bg) 100%),
-        linear-gradient(180deg, rgba(250, 243, 226, 0.5) 0%, rgba(250, 243, 226, 0.75) 100%);
+      background: linear-gradient(180deg, rgba(11, 20, 34, 0.35) 0%, rgba(11, 20, 34, 0.78) 100%);
     }
   }
 
@@ -193,18 +242,12 @@ const itinerary = [
   .hero h1 {
     font-family: var(--font-family-display);
     font-style: normal;
-    font-weight: 400;
-    font-size: clamp(39px, 4.8vw, 62px);
+    font-weight: 500;
+    font-size: clamp(40px, 5vw, 64px);
     line-height: 1.15;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.012em;
     margin: 6px 0 0;
     color: var(--ink);
-
-    :global(em) {
-      font-style: italic;
-      font-weight: 400;
-      color: var(--gold);
-    }
   }
 
   .hero-rule {
@@ -216,37 +259,99 @@ const itinerary = [
   }
 
   .cd-hero {
-    padding: 8px 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 18px 20px 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.4s var(--animation-timing, cubic-bezier(0.165, 0.84, 0.44, 1));
   }
 
-  .cd-hero #cd-days {
-    display: block;
+  .cd-hero:focus-visible { outline: none; }
+
+  .cdh-line {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .cdh-days {
+    display: inline-block;
     font-family: var(--font-family-display);
     font-style: normal;
     font-weight: 500;
-    font-size: clamp(120px, 25vw, 180px);
+    font-size: clamp(102px, 18.7vw, 170px);
     line-height: 0.78;
     letter-spacing: -0.06em;
     color: var(--ink);
     font-feature-settings: 'tnum' 1, 'lnum' 1;
+    transition: color 0.25s var(--animation-timing, cubic-bezier(0.165, 0.84, 0.44, 1));
   }
 
-  .cd-hero .cd-label {
-    display: block;
+  .cdh-days-mark {
     font-family: var(--font-family-display);
-    font-style: italic;
     font-weight: 400;
-    font-size: clamp(28px, 3vw, 39px);
-    letter-spacing: 0.1px;
+    font-size: 40px;
+    letter-spacing: 0.3px;
+    line-height: 1;
     color: var(--gold);
-    margin-top: 6px;
+  }
+
+  .cd-hero .cd-row {
+    margin-top: var(--space-md);
+  }
+
+  .cd-hero .cd-trail {
+    display: block;
+    margin-top: var(--space-md);
+    font-family: var(--font-family-display);
+    font-weight: 400;
+    font-size: 18px;
+    letter-spacing: 0.2px;
+    color: var(--gold);
+    text-align: center;
+  }
+
+  .cd-cta-arrow {
+    display: inline-block;
+    margin-left: 6px;
+    transform: translateX(0);
+    transition: transform 0.3s var(--animation-timing, cubic-bezier(0.165, 0.84, 0.44, 1));
+  }
+
+  .cd-hero:hover .cd-cta-arrow,
+  .cd-hero:focus-visible .cd-cta-arrow {
+    transform: translateX(6px);
+  }
+
+  .cd-hero:hover .cdh-days,
+  .cd-hero:focus-visible .cdh-days {
+    color: var(--gold);
+  }
+
+  @media (max-width: 720px) {
+    .cdh-side {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      text-align: center;
+    }
+    .cdh-r { align-items: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cd-hero,
+    .cdh-days,
+    .cd-cta-arrow {
+      transition: none;
+    }
   }
 
   .cd-row {
     margin-top: 18px;
     display: inline-flex;
-    align-items: baseline;
-    gap: 12px;
+    align-items: center;
+    gap: 14px;
     font-family: var(--font-family-body);
     font-weight: 500;
     font-size: 13px;
@@ -255,282 +360,310 @@ const itinerary = [
     text-transform: uppercase;
   }
 
-  .cd-row b {
-    font-family: var(--font-family-display);
-    font-style: italic;
-    font-weight: 500;
-    font-size: 22px;
-    color: var(--ink);
-    margin-right: 5px;
-    letter-spacing: 0;
-    text-transform: none;
-    font-feature-settings: 'tnum' 1, 'lnum' 1;
+  .cd-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
   }
 
   .cd-row .cd-sep {
     color: var(--gold);
+    font-size: 18px;
   }
 
-  // ─── route ────────────────────────────────────────────────
-  .route-section {
-    padding: 88px 0;
+  .cd-pair {
+    display: inline-flex;
+    gap: 3px;
   }
 
-  .rs-spread {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 32px;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 56px;
-    align-items: start;
-  }
-
-  .rs-head {
-    position: sticky;
-    top: 96px;
-  }
-
-  .rs-title {
+  .cd-cell {
+    position: relative;
+    display: inline-block;
+    width: 0.66em;
+    height: 1.5em;
     font-family: var(--font-family-display);
     font-style: italic;
     font-weight: 500;
-    font-size: clamp(48px, 5.6vw, 84px);
+    font-size: 30px;
     line-height: 1;
-    letter-spacing: -0.015em;
+    color: var(--ink);
+    letter-spacing: 0;
+    text-transform: none;
+    font-feature-settings: 'tnum' 1, 'lnum' 1;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px var(--line);
+    perspective: 400px;
+  }
+
+  .cd-static-top,
+  .cd-static-bot,
+  .cd-overlay-top,
+  .cd-overlay-bot {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 50%;
+    overflow: hidden;
+    text-align: center;
+    background: var(--bg-2);
+  }
+
+  .cd-static-top,
+  .cd-overlay-top {
+    top: 0;
+    line-height: 1.5;
+    border-bottom: 1px solid rgba(234, 217, 160, 0.16);
+  }
+
+  .cd-static-bot,
+  .cd-overlay-bot {
+    bottom: 0;
+    line-height: 0;
+  }
+
+  .cd-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .cd-overlay-top { transform-origin: bottom; }
+  .cd-overlay-bot { transform-origin: top; }
+
+  .cd-overlay.flip .cd-overlay-top {
+    animation: cd-flip-top 0.6s linear;
+  }
+
+  .cd-overlay.flip .cd-overlay-bot {
+    animation: cd-flip-bot 0.6s linear;
+  }
+
+  @keyframes cd-flip-top {
+    0%        { transform: rotateX(0deg); }
+    50%, 100% { transform: rotateX(-90deg); }
+  }
+
+  @keyframes cd-flip-bot {
+    0%, 50% { transform: rotateX(-90deg); }
+    100%    { transform: rotateX(0deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cd-overlay.flip .cd-overlay-top,
+    .cd-overlay.flip .cd-overlay-bot {
+      animation-duration: 0.01s;
+    }
+  }
+
+  // ─── route ────────────────────────────────────────────────
+  .route-head {
+    margin-bottom: var(--space-lg);
+    text-align: left;
+  }
+
+  .route-title {
+    font-family: var(--font-family-display);
+    font-style: normal;
+    font-weight: 500;
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.1;
+    letter-spacing: -0.012em;
     color: var(--ink);
     margin: 0;
-
-    :global(em) {
-      color: var(--gold);
-      font-style: italic;
-    }
   }
 
-  .rs-rule {
-    width: 56px;
-    height: 1px;
-    background: var(--gold);
-    opacity: 0.7;
-    margin: 24px 0 0;
-  }
-
-  .rs-lede {
+  .route-lede {
     font-family: var(--font-family-body);
-    font-size: 16px;
-    line-height: 1.6;
+    font-size: 17px;
+    line-height: 1.55;
     color: var(--ink-soft);
-    margin: 22px 0 0;
-    max-width: 380px;
+    margin: var(--space-md) 0 0;
+    max-width: 56ch;
   }
 
-  .rs-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 24px;
-    font-family: var(--font-family-body);
-    font-weight: 600;
-    font-size: 13px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--gold);
-    text-decoration: none;
-    padding-bottom: 4px;
-    border-bottom: 1px solid var(--gold);
-    transition:
-      color 0.25s var(--animation-timing, cubic-bezier(0.165, 0.84, 0.44, 1)),
-      gap 0.25s var(--animation-timing, cubic-bezier(0.165, 0.84, 0.44, 1));
-
-    &:hover {
-      color: var(--gold-deep);
-      gap: 12px;
-    }
-  }
-
-  .rs-grid {
+  .route-list {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    border-top: 1px solid var(--line);
   }
 
-  .rs-link {
+  .route-row {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .route-link {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    align-items: baseline;
+    column-gap: var(--space-md);
+    padding: var(--space-md) 0;
     text-decoration: none;
     color: inherit;
-    padding: 18px 20px;
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    background: var(--panel);
-    display: grid;
-    grid-template-columns: auto auto 1fr auto;
-    align-items: baseline;
-    column-gap: 20px;
-    transition:
-      border-color 0.3s var(--animation-timing, cubic-bezier(0.165, 0.84, 0.44, 1)),
-      background 0.3s var(--animation-timing, cubic-bezier(0.165, 0.84, 0.44, 1));
+    transition: color 0.2s ease;
 
-    &:hover {
-      border-color: var(--gold);
-      background: linear-gradient(180deg, rgba(234, 217, 160, 0.10), rgba(234, 217, 160, 0.02));
+    &:hover .route-port,
+    &:focus-visible .route-port {
+      color: var(--gold);
     }
 
     &:focus-visible {
       outline: none;
-      border-color: var(--gold);
-      box-shadow: 0 0 0 2px var(--gold);
+
+      .route-day {
+        color: var(--gold-deep);
+      }
     }
   }
 
-  .rs-day {
+  .route-day {
     font-family: var(--font-family-body);
     font-weight: 700;
     font-size: 11px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--ink-soft);
+    color: var(--ink-mute);
+    min-width: 56px;
   }
 
-  .rs-date {
-    font-family: var(--font-family-display);
-    font-style: italic;
-    font-weight: 500;
-    font-size: 14px;
-    color: var(--gold);
+  .route-date {
+    font-family: var(--font-family-label);
+    font-size: 12px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    min-width: 64px;
   }
 
-  .rs-port {
+  .route-port {
     font-family: var(--font-family-display);
-    font-style: italic;
+    font-style: normal;
     font-weight: 500;
-    font-size: 19px;
-    line-height: 1.2;
+    font-size: clamp(19px, 1.8vw, 22px);
+    line-height: 1.25;
     color: var(--ink);
+    transition: color 0.2s ease;
   }
 
-  .rs-arrow {
-    font-family: var(--font-family-body);
-    font-size: 18px;
-    color: var(--gold);
-    opacity: 0.4;
-    transition:
-      opacity 0.25s,
-      transform 0.3s var(--animation-timing, cubic-bezier(0.165, 0.84, 0.44, 1));
-  }
-
-  .rs-link:hover .rs-arrow,
-  .rs-link:focus-visible .rs-arrow {
-    opacity: 1;
-    transform: translateX(4px);
-  }
-
-  .rs-stop.is-birthday .rs-link {
-    border-color: var(--gold);
-    background: linear-gradient(180deg, rgba(234, 217, 160, 0.16), rgba(234, 217, 160, 0.04));
-  }
-
-  .rs-stop.is-birthday .rs-day {
-    color: var(--gold-deep);
-  }
-
-  .rs-stop.is-birthday .rs-port {
-    color: var(--gold);
+  .route-row.is-birthday .route-port {
     font-weight: 600;
   }
 
-  .rs-stop.is-birthday .rs-arrow {
-    opacity: 0.8;
+  .route-cta-row {
+    margin: var(--space-lg) 0 0;
   }
 
-  @media (max-width: 880px) {
-    .rs-spread {
-      grid-template-columns: 1fr;
-      gap: 32px;
+  .route-cta {
+    font-family: var(--font-family-body);
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--gold);
+    transition: color 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--gold-deep);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .route-link {
+      grid-template-columns: auto 1fr;
+      column-gap: var(--space-sm);
+      row-gap: 2px;
+      padding: var(--space-md) 0;
     }
 
-    .rs-head {
-      position: static;
+    .route-date {
+      grid-column: 1;
+      min-width: 56px;
     }
 
-    .rs-link {
-      grid-template-columns: auto 1fr auto;
-      column-gap: 14px;
-    }
-
-    .rs-date {
-      display: none;
+    .route-port {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      align-self: center;
     }
   }
 
   // ─── personal note ────────────────────────────────────────
-  .note-grid {
-    display: grid;
-    grid-template-columns: minmax(240px, 320px) 1fr;
-    gap: 64px;
+  .note-head {
+    margin-bottom: var(--space-md);
+    text-align: center;
+  }
+
+  .note-head .eyebrow {
+    display: block;
+  }
+
+  .note-pair {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    max-width: 980px;
-    margin: 0 auto;
+    gap: var(--space-lg);
   }
 
   .note-photo {
     margin: 0;
-    position: relative;
-
-    img {
-      width: 100%;
-      height: auto;
-      display: block;
-      filter: saturate(0.92) contrast(1.02);
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      left: 14px;
-      right: 14px;
-      bottom: -10px;
-      height: 1px;
-      background: var(--gold);
-      opacity: 0.55;
-    }
+    max-width: 280px;
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--ink-mute);
   }
 
-  .note-text .eyebrow {
+  .note-photo img {
+    width: 100%;
+    height: auto;
     display: block;
-    margin-bottom: 24px;
   }
 
-  .note-text p {
+  .note-body {
     font-family: var(--font-family-display);
-    font-style: italic;
+    font-style: normal;
     font-weight: 400;
-    font-size: clamp(20px, 2.1vw, 28px);
+    font-size: clamp(20px, 2.1vw, 26px);
     line-height: 1.45;
     color: var(--ink);
-    max-width: 38ch;
+    max-width: 48ch;
     margin: 0;
+    text-align: center;
+  }
+
+  @media (min-width: 640px) {
+    .note-pair {
+      flex-direction: row;
+      align-items: center;
+      gap: var(--space-xl);
+    }
+
+    .note-photo {
+      flex: 0 0 auto;
+      max-width: 240px;
+    }
+
+    .note-body {
+      text-align: left;
+      flex: 1 1 auto;
+    }
   }
 
   // ─── responsive ───────────────────────────────────────────
   @media (max-width: 760px) {
     .hero {
-      padding: 28px 0 96px;
+      padding: 28px 0 80px;
     }
 
     .hero-rule {
-      margin: 36px auto;
+      margin: 32px auto;
     }
 
     .cd-hero #cd-days {
       letter-spacing: -0.03em;
-    }
-
-    .note-grid {
-      grid-template-columns: 1fr;
-      gap: 36px;
-      max-width: 520px;
     }
   }
 </style>

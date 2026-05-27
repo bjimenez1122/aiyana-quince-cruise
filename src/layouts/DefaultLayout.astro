@@ -4,7 +4,6 @@ import '../assets/scss/globals.scss'
 import SiteMeta from '../components/SiteMeta.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
-import Starfield from '../components/Starfield.astro'
 
 const {
   title = 'Astro',
@@ -37,7 +36,6 @@ const {
   </head>
   <body class="font-body">
     <div class="site">
-      <Starfield />
       <div class="wrap">
         <Header />
         <main id="main-content">
@@ -66,6 +64,14 @@ const {
         --line: rgba(234, 217, 160, 0.22);
         --line-strong: rgba(234, 217, 160, 0.5);
         --hover-shadow: rgba(0, 0, 0, 0.2);
+
+        // layout tokens (theme-agnostic)
+        --content-w: 720px;
+        --space-xs: 8px;
+        --space-sm: 14px;
+        --space-md: 24px;
+        --space-lg: 48px;
+        --space-xl: 96px;
       }
 
       @media (prefers-color-scheme: light) {
@@ -226,7 +232,7 @@ const {
       main > section {
         position: relative;
         z-index: 2;
-        padding: 100px 0;
+        padding: 50px 0;
 
         @media (max-width: 560px) {
           padding: 72px 0;
@@ -245,8 +251,5 @@ const {
         border-width: 0;
       }
     </style>
-  <!-- impeccable-live-start -->
-<script src="http://localhost:8400/live.js"></script>
-<!-- impeccable-live-end -->
-</body>
+  </body>
 </html>
