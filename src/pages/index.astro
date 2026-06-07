@@ -84,7 +84,7 @@ const itinerary = [
     </p>
   </Section>
 
-  <Section class="note-section">
+  <Section class="note-section" rule={false}>
     <header class="note-head">
       <span class="eyebrow">A note from us</span>
     </header>
@@ -568,12 +568,12 @@ const itinerary = [
     color: var(--ink);
     text-decoration: none;
     padding-bottom: 4px;
-    border-bottom: 1px solid var(--gold);
     transition: color 0.2s ease;
 
     &:hover,
     &:focus-visible {
       color: var(--gold-deep);
+      border-bottom: 1px solid var(--gold);
     }
   }
 
@@ -617,8 +617,6 @@ const itinerary = [
   .note-photo {
     margin: 0;
     max-width: 280px;
-    padding-bottom: var(--space-sm);
-    border-bottom: 1px solid var(--ink-mute);
   }
 
   .note-photo img {
