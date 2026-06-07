@@ -19,8 +19,9 @@ const itinerary = [
 ]
 ---
 
-<DefaultLayout title="Home · Aiyana's Quinceañera at Sea">
-  <section class="hero">
+<DefaultLayout title="Home">
+  <Section width="bleed" rule={false} tight>
+    <div class="hero">
     <div class="hero-bg" aria-hidden="true">
       <Image src={heroBg} alt="" class="hero-img" />
       <div class="hero-overlay"></div>
@@ -61,7 +62,8 @@ const itinerary = [
         </span>
       </div>
     </a>
-  </section>
+    </div>
+  </Section>
 
   <Section class="route-section">
     <header class="route-head">

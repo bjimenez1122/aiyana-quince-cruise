@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets'
 import DefaultLayout from '../layouts/DefaultLayout.astro'
 import PageHero from '../components/PageHero.astro'
+import Section from '../components/Section.astro'
 import KeepExploring from '../components/KeepExploring.astro'
 import disneyFantasy from '../assets/photos/disney-fantasy.jpg'
 import aquaduck from '../assets/photos/aquaduck.jpg'
@@ -25,15 +26,17 @@ const amenities = [
 ]
 ---
 
-<DefaultLayout title="The Ship · Aiyana's Quinceañera at Sea">
+<DefaultLayout title="The Ship">
   <PageHero>
-    Fantasy Becomes Reality
+    The Ship
   </PageHero>
-  <section class="ship-lede">
-    <p>A water coaster that soars above the waves, Broadway-calibre shows, a quiet adults-only cove — and private islands waiting in the middle of it all.</p>
-  </section>
+  <Section rule={false} tight>
+    <div class="ship-lede">
+      <p>A water coaster that soars above the waves, Broadway-calibre shows, a quiet adults-only cove — and private islands waiting in the middle of it all.</p>
+    </div>
+  </Section>
 
-  <section>
+  <Section width="wide" rule={false}>
     <div class="ship-wrap">
       <div class="ship-photo">
         <Image src={disneyFantasy} alt="The Disney Fantasy at sea" />
@@ -65,23 +68,18 @@ const amenities = [
         </div>
       ))}
     </div>
-  </section>
+  </Section>
 
   <KeepExploring current="ship" />
 </DefaultLayout>
 
 <style lang="scss">
-  .ship-lede {
+  .ship-lede p {
+    color: var(--ink-soft);
+    font-size: 16px;
     text-align: center;
-    padding: 0 0 40px !important;
     max-width: 620px;
     margin: 0 auto;
-
-    p {
-      color: var(--ink-soft);
-      font-size: 16px;
-      margin: 0;
-    }
   }
 
   .ship-wrap {

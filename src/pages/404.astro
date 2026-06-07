@@ -1,14 +1,17 @@
 ---
 import DefaultLayout from '../layouts/DefaultLayout.astro'
+import Section from '../components/Section.astro'
 ---
 
 <DefaultLayout title="404 · Lost at Sea">
-  <section class="notfound">
-    <span class="eyebrow">404</span>
-    <h1>Lost <em>at sea</em></h1>
-    <p>This page drifted off course. Let's get you back on board.</p>
-    <a class="btn primary" href="/">Return home →</a>
-  </section>
+  <Section rule={false}>
+    <div class="notfound">
+      <span class="eyebrow">404</span>
+      <h1>Lost <em>at sea</em></h1>
+      <p>This page drifted off course. Let's get you back on board.</p>
+      <a class="btn primary" href="/">Return home →</a>
+    </div>
+  </Section>
 </DefaultLayout>
 
 <style lang="scss">
@@ -19,7 +22,6 @@ import DefaultLayout from '../layouts/DefaultLayout.astro'
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 100px 0 !important;
     gap: 16px;
   }
 

@@ -1,14 +1,19 @@
 ---
+type Width = 'default' | 'wide' | 'bleed'
+
 interface Props {
   rule?: boolean
-  bleed?: boolean
+  width?: Width
+  tight?: boolean
   class?: string
 }
-const { rule = true, bleed = false, class: extraClass = '' } = Astro.props
+
+const { rule = true, width = 'default', tight = false, class: extraClass = '' } = Astro.props
+const isBleed = width === 'bleed'
 ---
 
-<section class:list={['section', extraClass, { bleed }]}>
-  {bleed ? <slot /> : <div class="section-inner"><slot /></div>}
+<section class:list={['section', extraClass, `width-${width}`, { tight }]}>
+  {isBleed ? <slot /> : <div class="section-inner"><slot /></div>}
   {rule && <hr class="section-rule" aria-hidden="true" />}
 </section>
 
@@ -17,10 +22,21 @@ const { rule = true, bleed = false, class: extraClass = '' } = Astro.props
     padding-bottom: 0;
   }
 
+  .section.tight {
+    padding-top: 0;
+  }
+
   .section-inner {
-    max-width: var(--content-w);
     margin: 0 auto;
-    padding-inline: var(--space-md);
+    padding-inline: var(--space-sm);
+  }
+
+  .width-default .section-inner {
+    max-width: var(--content-w);
+  }
+
+  .width-wide .section-inner {
+    max-width: var(--content-w-wide);
   }
 
   .section-rule {

@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from '../layouts/DefaultLayout.astro'
 import PageHero from '../components/PageHero.astro'
+import Section from '../components/Section.astro'
 import KeepExploring from '../components/KeepExploring.astro'
 
 const faqs = [
@@ -40,12 +41,12 @@ const faqs = [
 ]
 ---
 
-<DefaultLayout title="FAQ · Aiyana's Quinceañera at Sea">
+<DefaultLayout title="FAQ">
   <PageHero lede="The little details that make a smoother voyage. Still have questions? Reach out to Jackie, Abby, or Bryan anytime.">
     Frequently Asked Questions
   </PageHero>
 
-  <section class="faq-section">
+  <Section rule={false}>
     <div class="faq">
       {faqs.map(item => (
         <details open={item.open}>
@@ -54,18 +55,13 @@ const faqs = [
         </details>
       ))}
     </div>
-  </section>
+  </Section>
 
   <KeepExploring current="faq" />
 </DefaultLayout>
 
 <style lang="scss">
-  .faq-section {
-    padding-top: 40px !important;
-  }
-
   .faq {
-    max-width: 780px;
     margin: 0 auto;
   }
 

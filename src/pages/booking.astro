@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets'
 import DefaultLayout from '../layouts/DefaultLayout.astro'
 import PageHero from '../components/PageHero.astro'
+import Section from '../components/Section.astro'
 import KeepExploring from '../components/KeepExploring.astro'
 import insideStateroom from '../assets/photos/inside-stateroom.jpg'
 import oceanviewStateroom from '../assets/photos/oceanview-stateroom.jpg'
@@ -43,12 +44,12 @@ const rooms = [
 const bookingUrl = 'https://disneycruise.disney.go.com/'
 ---
 
-<DefaultLayout title="Booking · Aiyana's Quinceañera at Sea">
+<DefaultLayout title="Booking">
   <PageHero lede="Sample rates from May 2025 · Full payment due at booking.">
     Reserve Your Stateroom
   </PageHero>
 
-  <section class="rooms-section">
+  <Section width="wide" rule={false}>
     <div class="rooms">
       {rooms.map(r => (
         <div class={r.featured ? 'room featured' : 'room'}>
@@ -70,7 +71,9 @@ const bookingUrl = 'https://disneycruise.disney.go.com/'
         </div>
       ))}
     </div>
+  </Section>
 
+  <Section rule={false}>
     <div class="howto">
       <span class="eyebrow">How to book</span>
       <ol>
@@ -80,16 +83,12 @@ const bookingUrl = 'https://disneycruise.disney.go.com/'
         <li>Final payment is due at booking.</li>
       </ol>
     </div>
-  </section>
+  </Section>
 
   <KeepExploring current="booking" />
 </DefaultLayout>
 
 <style lang="scss">
-  .rooms-section {
-    padding-top: 40px !important;
-  }
-
   .rooms {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -201,8 +200,6 @@ const bookingUrl = 'https://disneycruise.disney.go.com/'
   }
 
   .howto {
-    max-width: 720px;
-    margin: 60px auto 0;
     border: 1px solid var(--line-strong);
     border-radius: 24px;
     padding: 32px 36px;

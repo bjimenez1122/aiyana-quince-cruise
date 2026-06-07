@@ -1,4 +1,6 @@
 ---
+import Section from './Section.astro'
+
 interface Props {
   current: 'home' | 'ship' | 'itinerary' | 'plan' | 'booking' | 'faq'
 }
@@ -7,7 +9,7 @@ const { current } = Astro.props
 
 const links = [
   { key: 'home', href: '/', label: 'Home', desc: 'The opening page' },
-  { key: 'ship', href: '/ship', label: 'The Ship', desc: 'About the Disney Fantasy' },
+  { key: 'ship', href: '/ship', label: 'Ship', desc: 'About the Disney Fantasy' },
   { key: 'itinerary', href: '/itinerary', label: 'Itinerary', desc: '5-Night Bahamian Cruise' },
   { key: 'plan', href: '/plan', label: 'Plan', desc: 'Travel, lodging, packing, kids clubs' },
   { key: 'booking', href: '/booking', label: 'Booking', desc: 'Cabins and how to reserve' },
@@ -15,34 +17,30 @@ const links = [
 ].filter(l => l.key !== current)
 ---
 
-<section class="keep-exploring">
-  <div class="ke-head">
-    <span class="eyebrow">Keep exploring</span>
-  </div>
+<Section rule={false}>
+  <div class="keep-exploring">
+    <div class="ke-head">
+      <span class="eyebrow">Keep exploring</span>
+    </div>
 
-  <ol class="toc" aria-label="Other pages">
-    {
-      links.map((link, i) => (
-        <li>
-          <a href={link.href}>
-            <span class="num">{String(i + 1).padStart(2, '0')}</span>
-            <span class="title">{link.label}</span>
-            <span class="desc">{link.desc}</span>
-            <span class="arr" aria-hidden="true">→</span>
-          </a>
-        </li>
-      ))
-    }
-  </ol>
-</section>
+    <ol class="toc" aria-label="Other pages">
+      {
+        links.map((link, i) => (
+          <li>
+            <a href={link.href}>
+              <span class="num">{String(i + 1).padStart(2, '0')}</span>
+              <span class="title">{link.label}</span>
+              <span class="desc">{link.desc}</span>
+              <span class="arr" aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</Section>
 
 <style lang="scss">
-  .keep-exploring {
-    max-width: var(--content-w);
-    margin: 0 auto;
-    padding-inline: var(--space-md);
-  }
-
   .ke-head {
     margin-bottom: var(--space-md);
   }
