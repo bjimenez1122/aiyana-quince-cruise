@@ -19,13 +19,14 @@ type Day = {
   placeholder?: string
   arrive?: string
   depart?: string
+  note?: string
 }
 
 const days: Day[] = [
   {
     tag: 'DAY 1 · AUG 28',
     title: 'Port Canaveral, FL',
-    body: 'Embarkation day, sail-away party on the pool deck.',
+    body: 'Embarkation begins late morning. Sail-away party on the pool deck once we cast off.',
     img: cruiseTerminal,
     alt: 'Disney Cruise Line Terminal',
     depart: '3:00 PM',
@@ -33,16 +34,17 @@ const days: Day[] = [
   {
     tag: 'DAY 2 · AUG 29',
     title: 'Disney Castaway Cay',
-    body: 'Private island — family and adults-only beaches, kids play area, snorkeling lagoon, a BBQ lunch ashore. **Optional dress-up night**',
+    body: "Disney's private island. Family beach, adults-only beach, kids play area, snorkeling lagoon, and an included BBQ lunch ashore. Snorkel gear, floats, and other rentals are available on-island — or bring your own. Water excursions sell out fast; book early through the Disney Cruise app.",
     img: castawayCay,
     alt: 'Castaway Cay Beach',
     arrive: '8:30 AM',
     depart: '4:45 PM',
+    note: 'Semi-formal night onboard (optional).',
   },
   {
     tag: 'DAY 3 · AUG 30',
     title: 'Disney Lookout Cay',
-    body: "Private island — similar to Castaway Cay with a cultural center.",
+    body: "Disney's second private island on the Bahamas. Pink-sand beaches and a Bahamian cultural center. Same rhythm as Castaway: family + adults-only beaches, included BBQ lunch, optional rentals and excursions.",
     img: lookoutCay,
     alt: 'Lookout Cay Beach',
     arrive: '8:30 AM',
@@ -51,18 +53,20 @@ const days: Day[] = [
   {
     tag: 'DAY 4 · AUG 31',
     title: 'Nassau, Bahamas',
-    body: 'Explore the vibrant capital — straw market, Blue Lagoon, pink houses. **Pirate Night**',
+    body: 'Explore the capital — straw market, Blue Lagoon, pink houses. Plenty of shore excursions through Disney or on your own.',
     img: nassau,
     alt: 'Nassau Bahamas Atlantis Resort',
     arrive: '8:00 AM',
     depart: '5:30 PM',
+    note: 'Pirate Night onboard — deck party and optional dress-up.',
   },
   {
     tag: 'DAY 5 · SEPTEMBER 1',
     title: "Aiyana's Birthday at Sea",
-    body: 'Celebrating her fifteenth birthday all together at dinner.',
+    body: "A full day at sea. We'll have group dinner that evening, and may meet up earlier for pictures. Otherwise, an open day to enjoy the ship.",
     img: fantasyAtrium,
     alt: 'Disney Fantasy Atrium',
+    note: "Aiyana's 15th — group dinner.",
   },
   {
     tag: 'DAY 6 · SEP 2',
@@ -76,9 +80,16 @@ const days: Day[] = [
 ---
 
 <DefaultLayout title="Itinerary · Aiyana's Quinceañera at Sea">
-  <PageHero eyebrow="Six days · five nights" lede="Three ports, including two private islands.">
-    The <em>Itinerary</em>
+  <PageHero lede="Three ports, including two private islands.">
+    The Itinerary
   </PageHero>
+
+  <section class="itin-prenote">
+    <p>
+      <strong>Dinner together every night.</strong>
+      Disney's rotational dining moves between three themed restaurants, and we have tables booked together for every dinner.
+    </p>
+  </section>
 
   <section>
     <div class="itin-grid">
@@ -95,6 +106,7 @@ const days: Day[] = [
             <span class="tag">{day.tag}</span>
             <h3>{day.title}</h3>
             <p>{day.body}</p>
+            {day.note && <span class="day-note">{day.note}</span>}
             {(day.arrive || day.depart) && (
               <dl class="times" aria-label="Port times">
                 {day.arrive && (
@@ -123,6 +135,26 @@ const days: Day[] = [
 <style lang="scss">
   .map-only {
     padding-top: 40px !important;
+  }
+
+  .itin-prenote {
+    max-width: var(--content-w);
+    margin: 0 auto var(--space-md);
+    padding: 0 var(--space-md);
+    text-align: center;
+  }
+
+  .itin-prenote p {
+    font-family: var(--font-family-body);
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .itin-prenote p strong {
+    color: var(--ink);
+    font-weight: 600;
   }
 
   .itin-grid {
@@ -215,6 +247,17 @@ const days: Day[] = [
     color: var(--ink-soft);
     font-size: 13.5px;
     margin: 0;
+  }
+
+  .day .day-note {
+    display: block;
+    margin-top: 10px;
+    font-family: var(--font-family-label);
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
   }
 
   .day .times {

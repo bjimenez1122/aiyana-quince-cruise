@@ -1,0 +1,291 @@
+---
+import { Image } from 'astro:assets'
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+import Section from '../components/Section.astro'
+import PageHero from '../components/PageHero.astro'
+import KeepExploring from '../components/KeepExploring.astro'
+import travelPhoto from '../assets/photos/cruise-terminal.jpg'
+import tippingPhoto from '../assets/photos/enchanted-garden.jpg'
+import kidsPhoto from '../assets/photos/oceaneer-club.jpg'
+import packingPhoto from '../assets/photos/castaway-cay.jpg'
+---
+
+<DefaultLayout title="Plan · Aiyana's Quinceañera at Sea">
+  <PageHero lede="Travel, lodging, packing, and what to expect onboard.">
+    Plan your trip
+  </PageHero>
+
+  <Section class="plan-block">
+    <div class="plan-aside">
+      <figure class="plan-photo">
+        <Image src={travelPhoto} alt="Disney Cruise Line Terminal at Port Canaveral" />
+      </figure>
+      <div class="plan-aside-body">
+        <header class="block-head">
+          <span class="block-num">01</span>
+          <h2 class="block-title">Travel & lodging</h2>
+        </header>
+        <h3 class="block-sub">Online check-in</h3>
+        <p class="block-body">
+          Online check-in opens 30 days before sailing through the Disney Cruise Line app. Complete it as early as possible to lock in an earlier port-arrival window. Register everyone in your party, including kids, so they're ready to join the kids' clubs the moment you're onboard. Waiting until the ship means standing in the in-person registration line on embarkation day.
+        </p>
+        <h3 class="block-sub">Getting there</h3>
+        <p class="block-body">
+          Fly in the night before. The drive from Orlando International (MCO) to Port Canaveral is about an hour, and same-day flights cut it close to the embarkation window.
+        </p>
+        <h3 class="block-sub">Where to stay</h3>
+        <ul class="block-list">
+          <li><strong>Hyatt Regency Orlando Airport (MCO).</strong> Inside the terminal — book the Disney Cruise transfer add-on (about $45 per person, one-way) for direct transport to the port plus the chance of an earlier boarding window.</li>
+          <li><strong>Disney resort area or Disney Springs.</strong> Best if you want to spend a day at Disney Springs or the parks before the cruise. Paid shuttles from Disney resorts to the port can also be arranged by calling the hotel ahead of time.</li>
+          <li><strong>Port Canaveral / Cocoa Beach.</strong> Closest to the ship — five to fifteen minutes by car. Best if you're arriving morning-of or just the night before with no Disney plans.</li>
+        </ul>
+        <h3 class="block-sub">Getting to the ship</h3>
+        <p class="block-body">Disney's Cruise transfer is the easiest path from MCO or a Disney hotel. Driving yourself is fine — Port Canaveral has paid parking on-site ($20 per day). Rideshare runs to the port too.</p>
+      </div>
+    </div>
+  </Section>
+
+  <Section class="plan-block">
+    <div class="plan-aside">
+      <figure class="plan-photo">
+        <Image src={tippingPhoto} alt="Enchanted Garden dining room aboard the Disney Fantasy" />
+      </figure>
+      <div class="plan-aside-body">
+        <header class="block-head">
+          <span class="block-num">02</span>
+          <h2 class="block-title">Tipping, cash & drinks</h2>
+        </header>
+        <h3 class="block-sub">Gratuities</h3>
+        <p class="block-body">
+          Disney auto-adds standard gratuities (server, assistant server, head server, stateroom host) to your onboard account at <strong>$16.00 per guest per night</strong>. You can adjust amounts at Guest Services.
+        </p>
+        <h3 class="block-sub">Cash</h3>
+        <p class="block-body">
+          Bring cash for port vendors, taxis ashore, optional gratuities (spa, kids' clubs, port-adventure guides), and incidentals. Onboard is otherwise cashless — your stateroom key is your charge card.
+        </p>
+        <h3 class="block-sub">Drinks onboard</h3>
+        <p class="block-body">
+          Disney doesn't sell an all-inclusive drinks package; you pay per drink. Soft drinks are complimentary at meals and at the 24-hour pool-deck beverage stations, as is standard drip coffee in the main dining rooms, buffet, quick-service spots, and room service. Sodas at the bars, bottled water, beer, wine, cocktails, smoothies, and specialty espresso (lattes, cold brew, iced coffee) all carry a charge.
+        </p>
+        <p class="block-body">
+          Each bar runs a cocktail and mocktail of the day at lower-than-menu prices. Vibe (the teen lounge) serves complimentary soft drinks, with a charge for smoothies.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <Section class="plan-block">
+    <div class="plan-aside">
+      <figure class="plan-photo">
+        <Image src={kidsPhoto} alt="Disney's Oceaneer Club kids space" />
+      </figure>
+      <div class="plan-aside-body">
+        <header class="block-head">
+          <span class="block-num">03</span>
+          <h2 class="block-title">Kids clubs</h2>
+        </header>
+        <p class="block-body">
+          Programs are split by age. The Nursery is the only space that takes (and requires) reservations; every other club is walk-in — no other reservations are accepted. Open houses run on embarkation day and throughout the cruise so parents can tour the spaces.
+        </p>
+
+        <h3 class="block-sub">The spaces</h3>
+        <ul class="block-list">
+          <li><strong>It's a Small World Nursery</strong> — 6 months to 3 years. Paid, hourly rate. Reserve in the app as soon as your booking window opens.</li>
+          <li><strong>Disney's Oceaneer Club & Lab</strong> — 3 to 10 years. Included. Themed play areas for Toy Story, Star Wars, Marvel, and Tinker Bell, plus Disney-led activities throughout the day.</li>
+          <li><strong>Edge</strong> — 11 to 14 years. Included. Tween-only hangout.</li>
+          <li><strong>Vibe</strong> — 14 to 17 years. Included. Teen-only space with its own pool deck, beverage bar, and loungers.</li>
+        </ul>
+        <p class="block-body">
+          For a walk-through of all four spaces on the Fantasy, see <a class="block-link" href="https://youtu.be/ha7miJb7GWQ?si=N6rNzlU_snokkuSP" target="_blank" rel="noopener">this overview video</a>.
+        </p>
+
+        <h3 class="block-sub">Drop-off & pickup</h3>
+        <p class="block-body">
+          Kids receive a Disney Oceaneer Band at boarding — staff use it to check them in and out. Return it before disembarkation or your account will be charged for it. An existing MagicBand+ or DisneyBand+ (or one you buy ahead of the cruise) works as a substitute.
+        </p>
+        <p class="block-body">
+          At check-in you'll choose a codeword used every time someone picks the kids up. Pick something the whole family will remember.
+        </p>
+
+        <h3 class="block-sub">Schedules, meals & ashore</h3>
+        <p class="block-body">
+          Hours shift day to day — check the Disney Cruise Line app for the live schedule. It also lists character meet-and-greets (Doctor Strange, etc.) and special club activities. Meals are not included in club hours; plan to pick kids up for dinner. Kids' programming also runs at the private islands.
+        </p>
+
+        <h3 class="block-sub">Beyond the clubs</h3>
+        <p class="block-body">
+          <strong>The Midship Detective Agency</strong> — an interactive whodunit that turns the ship into a board game. Pick up case files at the activity desk, then use the Enchanted Art panels scattered across the decks (the artwork comes to life when you scan your detective badge) to gather clues and solve the mystery.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <Section class="plan-block" rule={false}>
+    <div class="plan-aside">
+      <figure class="plan-photo">
+        <Image src={packingPhoto} alt="Castaway Cay beach" />
+      </figure>
+      <div class="plan-aside-body">
+        <header class="block-head">
+          <span class="block-num">04</span>
+          <h2 class="block-title">Packing</h2>
+        </header>
+
+        <h3 class="block-sub">Weather (late August Bahamas)</h3>
+        <p class="block-body">
+          Hot and humid. Daytime highs near 88°F, evenings around 75°F. Pack rain gear — afternoon thunderstorms are common. Strong sun: bring reef-safe sunscreen for the islands.
+        </p>
+
+        <h3 class="block-sub">Themed nights onboard</h3>
+        <p class="block-body">
+          <strong>Night 2 — Semi-formal (optional).</strong> Bring a dressy outfit if you'd like to participate.<br>
+          <strong>Night 4 — Pirate Night.</strong> A deck party with optional pirate dress-up. Disney sells gear onboard but it's pricey; packing a costume is easier.
+        </p>
+
+        <h3 class="block-sub">Alcohol policy</h3>
+        <ul class="block-list">
+          <li><strong>Carry-on only, 21+.</strong> One unopened 750ml bottle of wine or sparkling wine, or six 12oz beers per guest, packed in carry-on at initial embarkation. Alcohol in checked luggage is removed and not returned.</li>
+          <li><strong>Sealed bottles only.</strong> Broken seals or anything beyond the allowance is discarded at the gangway with no compensation.</li>
+          <li><strong>Where you can drink it.</strong> Carry-on bottles stay in the stateroom; lounges and public areas are off-limits for outside alcohol. A $20 per-bottle corkage fee applies if you bring wine to a dining room.</li>
+          <li><strong>Port purchases.</strong> Alcohol bought ashore is collected at the gangway and returned at the end of the cruise. Unclaimed bottles are discarded.</li>
+        </ul>
+
+        <h3 class="block-sub">Prohibited items</h3>
+        <p class="block-body">
+          No irons, candles, halogen lamps, hot plates, drones, illegal substances, or surge protectors with cords. Disney provides an iron at Guest Services if you need to press something.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <KeepExploring current="plan" />
+</DefaultLayout>
+
+<style lang="scss">
+  .plan-photo {
+    margin: 0 0 var(--space-lg);
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+
+  .plan-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .plan-aside {
+    display: grid;
+    grid-template-columns: minmax(220px, 1fr) 1.6fr;
+    gap: 29px;
+    align-items: start;
+  }
+
+  .plan-aside .plan-photo {
+    margin: 0;
+    aspect-ratio: 3 / 4;
+  }
+
+  .plan-aside-body {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .plan-aside-body .block-head {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 640px) {
+    .plan-aside {
+      grid-template-columns: 1fr;
+      gap: 19px;
+    }
+    .plan-aside .plan-photo {
+      aspect-ratio: 16 / 9;
+    }
+  }
+
+  .block-head {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+  }
+
+  .block-num {
+    font-family: var(--font-family-label);
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 2.5px;
+    color: var(--ink-mute);
+  }
+
+  .block-title {
+    font-family: var(--font-family-display);
+    font-style: normal;
+    font-weight: 500;
+    font-size: clamp(28px, 3vw, 40px);
+    line-height: 1.1;
+    letter-spacing: -0.012em;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .block-sub {
+    font-family: var(--font-family-display);
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 1.3;
+    color: var(--ink);
+    margin: var(--space-md) 0 var(--space-xs);
+  }
+
+  .block-body {
+    font-family: var(--font-family-body);
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink);
+    margin: 0 0 var(--space-md);
+  }
+
+  .block-body strong { font-weight: 600; }
+
+  .block-link {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--gold);
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: color 160ms ease;
+  }
+
+  .block-link:hover {
+    color: var(--gold);
+  }
+
+  .block-list {
+    list-style: none;
+    margin: 0 0 var(--space-md);
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .block-list li {
+    border-bottom: 1px solid var(--line);
+    padding: var(--space-md) 0;
+    font-family: var(--font-family-body);
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  .block-list li strong {
+    display: block;
+    color: var(--ink);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+</style>

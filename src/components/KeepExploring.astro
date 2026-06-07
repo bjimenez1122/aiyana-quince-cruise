@@ -1,6 +1,6 @@
 ---
 interface Props {
-  current: 'home' | 'ship' | 'itinerary' | 'booking' | 'faq'
+  current: 'home' | 'ship' | 'itinerary' | 'plan' | 'booking' | 'faq'
 }
 
 const { current } = Astro.props
@@ -9,6 +9,7 @@ const links = [
   { key: 'home', href: '/', label: 'Home', desc: 'The opening page' },
   { key: 'ship', href: '/ship', label: 'The Ship', desc: 'About the Disney Fantasy' },
   { key: 'itinerary', href: '/itinerary', label: 'Itinerary', desc: '5-Night Bahamian Cruise' },
+  { key: 'plan', href: '/plan', label: 'Plan', desc: 'Travel, lodging, packing, kids clubs' },
   { key: 'booking', href: '/booking', label: 'Booking', desc: 'Cabins and how to reserve' },
   { key: 'faq', href: '/faq', label: 'FAQ', desc: 'Passports, plans, packing' },
 ].filter(l => l.key !== current)
