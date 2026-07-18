@@ -5,14 +5,15 @@ interface Props {
   rule?: boolean
   width?: Width
   tight?: boolean
+  id?: string
   class?: string
 }
 
-const { rule = true, width = 'default', tight = false, class: extraClass = '' } = Astro.props
+const { rule = true, width = 'default', tight = false, id, class: extraClass = '' } = Astro.props
 const isBleed = width === 'bleed'
 ---
 
-<section class:list={['section', extraClass, `width-${width}`, { tight }]}>
+<section id={id} class:list={['section', extraClass, `width-${width}`, { tight }]}>
   {isBleed ? <slot /> : <div class="section-inner"><slot /></div>}
   {rule && <hr class="section-rule" aria-hidden="true" />}
 </section>
