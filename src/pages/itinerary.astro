@@ -54,7 +54,7 @@ const days: Day[] = [
   {
     tag: 'DAY 4 · AUG 31',
     title: 'Nassau, Bahamas',
-    body: 'Explore the capital — straw market, Blue Lagoon, pink houses. Plenty of shore excursions through Disney or on your own.',
+    body: "A group lunch together at noon (until 4 PM) anchors the day. We dock at 8 AM, so there's time first to explore the capital — straw market, Blue Lagoon, pink houses, or a shore excursion. Leave buffer to be back aboard well before the 5:30 PM all-aboard.",
     img: nassau,
     alt: 'Nassau Bahamas Atlantis Resort',
     arrive: '8:00 AM',
@@ -96,8 +96,8 @@ const days: Day[] = [
 
   <Section width="wide" rule={false}>
     <div class="itin-grid">
-      {days.map(day => (
-        <div class='day'>
+      {days.map((day, i) => (
+        <div class='day' id={`day-${i + 1}`}>
           {day.img ? (
             <div class="day-photo has-img">
               <Image src={day.img} alt={day.alt ?? ''} />
@@ -179,11 +179,35 @@ const days: Day[] = [
     display: flex;
     flex-direction: column;
     transition: all 0.25s;
+    scroll-margin-top: 24px;
   }
 
   .day:hover {
     border-color: var(--gold);
     transform: translateY(-3px);
+  }
+
+  .day:target {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 1px var(--gold);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .day:target {
+      animation: day-target-pulse 1.5s ease-out;
+    }
+  }
+
+  @keyframes day-target-pulse {
+    0% {
+      box-shadow: 0 0 0 0 var(--gold);
+    }
+    55% {
+      box-shadow: 0 0 0 6px transparent;
+    }
+    100% {
+      box-shadow: 0 0 0 1px var(--gold);
+    }
   }
 
   .day-photo {
