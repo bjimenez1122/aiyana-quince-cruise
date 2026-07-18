@@ -65,6 +65,48 @@ const itinerary = [
     </div>
   </Section>
 
+  <Section class="todo-section">
+    <header class="todo-head">
+      <span class="eyebrow"><span id="do-days">{daysUntilTarget}</span> days out</span>
+      <h2 class="todo-title">Here's what to do &amp; know</h2>
+    </header>
+    <ul class="todo-list">
+      <li>
+        <a href="/plan#getting-there">
+          <span class="todo-text">Book flights now — and fly in the night before</span>
+          <span class="todo-arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
+      <li>
+        <a href="/plan#book-ahead">
+          <span class="todo-text">Reserve excursions &amp; extras before they sell out</span>
+          <span class="todo-arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
+      <li>
+        <a href="/plan#group">
+          <span class="todo-text">Send Jackie your reservation number</span>
+          <span class="todo-arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
+      <li>
+        <a href="/plan#themed-nights">
+          <span class="todo-text">Pirate Night is Night 4 — pack a costume</span>
+          <span class="todo-arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
+      <li>
+        <a href="/plan#group">
+          <span class="todo-text">Every day: 5:45 PM show · 8:15 PM dinner</span>
+          <span class="todo-arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
+    </ul>
+    <p class="todo-cta-row">
+      <a class="todo-cta" href="/plan">See the full plan</a>
+    </p>
+  </Section>
+
   <Section class="route-section">
     <header class="route-head">
       <h2 class="route-title">Itinerary Overview</h2>
@@ -73,7 +115,7 @@ const itinerary = [
     <ol class="route-list" aria-label="Voyage timeline">
       {itinerary.map(s => (
         <li class:list={['route-row', { 'is-birthday': s.birthday }]}>
-          <a class="route-link" href="/itinerary">
+          <a class="route-link" href={`/itinerary#day-${s.day}`}>
             <span class="route-day">Day {s.day}</span>
             <span class="route-date">{s.date}</span>
             <span class="route-port">{s.port}</span>
@@ -140,6 +182,7 @@ const itinerary = [
     const now = Date.now()
     const diff = target - now
     const days = document.getElementById('cd-days')
+    const doDays = document.getElementById('do-days')
     const hoursEl = document.getElementById('cd-hours')
     const minutesEl = document.getElementById('cd-minutes')
     const secondsEl = document.getElementById('cd-seconds')
@@ -147,6 +190,7 @@ const itinerary = [
 
     if (diff <= 0) {
       days.textContent = '0'
+      if (doDays) doDays.textContent = '0'
       setFlipPair(hoursEl, 0)
       setFlipPair(minutesEl, 0)
       setFlipPair(secondsEl, 0)
@@ -159,6 +203,7 @@ const itinerary = [
     const s = Math.floor((diff % (1000 * 60)) / 1000)
 
     days.textContent = String(d)
+    if (doDays) doDays.textContent = String(d)
     setFlipPair(hoursEl, h)
     setFlipPair(minutesEl, m)
     setFlipPair(secondsEl, s)
@@ -597,6 +642,99 @@ const itinerary = [
       grid-row: 1 / span 2;
       align-self: center;
     }
+  }
+
+  // ─── to-do & know ─────────────────────────────────────────
+  .todo-head {
+    margin-bottom: var(--space-lg);
+    text-align: left;
+  }
+
+  .todo-head .eyebrow {
+    display: block;
+    margin-bottom: var(--space-sm);
+  }
+
+  .todo-title {
+    font-family: var(--font-family-display);
+    font-style: normal;
+    font-weight: 500;
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.1;
+    letter-spacing: -0.012em;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .todo-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .todo-list li {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .todo-list a {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-md);
+    padding: var(--space-md) 0;
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s ease;
+  }
+
+  .todo-text {
+    font-family: var(--font-family-display);
+    font-style: normal;
+    font-weight: 500;
+    font-size: clamp(19px, 1.8vw, 22px);
+    line-height: 1.3;
+    color: var(--ink);
+    transition: color 0.2s ease;
+  }
+
+  .todo-arrow {
+    flex: 0 0 auto;
+    color: var(--gold);
+    font-size: 18px;
+    transition: transform 0.2s ease;
+  }
+
+  .todo-list a:hover .todo-text,
+  .todo-list a:focus-visible .todo-text {
+    color: var(--gold);
+  }
+
+  .todo-list a:hover .todo-arrow,
+  .todo-list a:focus-visible .todo-arrow {
+    transform: translateX(4px);
+  }
+
+  .todo-cta-row {
+    margin: var(--space-lg) 0 0;
+  }
+
+  .todo-cta {
+    font-family: var(--font-family-body);
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    padding-bottom: 4px;
+    transition: color 0.2s ease;
+  }
+
+  .todo-cta:hover,
+  .todo-cta:focus-visible {
+    color: var(--gold-deep);
+    border-bottom: 1px solid var(--gold);
   }
 
   // ─── personal note ────────────────────────────────────────
