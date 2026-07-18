@@ -15,7 +15,108 @@ import packingPhoto from '../assets/photos/castaway-cay.jpg'
     Plan your trip
   </PageHero>
 
-  <Section class="plan-block">
+  <Section class="plan-highlights" rule={false}>
+    <header class="highlights-head">
+      <span class="eyebrow">Before you sail</span>
+      <p class="highlights-lede">The handful of things worth sorting out early. Jump to any point for the details.</p>
+    </header>
+    <ul class="highlights-list">
+      <li>
+        <a href="#getting-there">
+          <span class="hl-title">Book flights now — and fly in the night before</span>
+          <span class="hl-note">A delayed morning flight means a missed ship. It sails on schedule and will not wait.</span>
+          <span class="hl-jump">Travel &amp; lodging</span>
+        </a>
+      </li>
+      <li>
+        <a href="#book-ahead">
+          <span class="hl-title">Reserve paid extras now — some sell out</span>
+          <span class="hl-note">Shore excursions, tastings, spa, character teas, and adults-only dining book up in the app before you sail. Popular ones go fast.</span>
+          <span class="hl-jump">Onboard essentials</span>
+        </a>
+      </li>
+      <li>
+        <a href="#boarding-bag">
+          <span class="hl-title">Pack a boarding-day bag</span>
+          <span class="hl-note">Checked luggage reaches your stateroom hours after boarding — carry a swimsuit, medication, and wallet with you.</span>
+          <span class="hl-jump">Packing</span>
+        </a>
+      </li>
+      <li>
+        <a href="#themed-nights">
+          <span class="hl-title">Night 4 is Pirate Night</span>
+          <span class="hl-note">A pool-deck party with a stage show, characters, and fireworks. Pack a costume if you'd like to dress up.</span>
+          <span class="hl-jump">Packing</span>
+        </a>
+      </li>
+      <li>
+        <a href="#group">
+          <span class="hl-title">Every day: 5:45 PM show, 8:15 PM dinner</span>
+          <span class="hl-note">A nightly stage show at 5:45 and our group dinner at 8:15 anchor each evening — plan ports, pool, and clubs around them. Send Jackie your reservation number so we're seated together.</span>
+          <span class="hl-jump">Group plans</span>
+        </a>
+      </li>
+      <li>
+        <a href="/itinerary#day-4">
+          <span class="hl-title">Group lunch in Nassau, Day 4</span>
+          <span class="hl-note">Noon–4 PM ashore. The ship docks at 8 AM and all guests must be back aboard by 5:30 PM.</span>
+          <span class="hl-jump">Itinerary</span>
+        </a>
+      </li>
+      <li>
+        <a href="#staying-connected">
+          <span class="hl-title">Get the Disney Cruise Line app</span>
+          <span class="hl-note">Daily schedule, deck maps, and free onboard texting over WiFi. Leave the walkie-talkies at home.</span>
+          <span class="hl-jump">Onboard essentials</span>
+        </a>
+      </li>
+      <li>
+        <a href="#drinks-onboard">
+          <span class="hl-title">Know what's free to drink</span>
+          <span class="hl-note">Sodas and drip coffee are included; there's no drink package. Guests 21+ may bring a limited amount of wine or beer aboard.</span>
+          <span class="hl-jump">Onboard essentials</span>
+        </a>
+      </li>
+    </ul>
+  </Section>
+
+  <Section id="group" class="plan-group">
+    <header class="block-head group-head">
+      <h2 class="block-title">Group plans</h2>
+    </header>
+    <dl class="group-list">
+      <div class="group-row">
+        <dt>
+          <span class="group-what">Dinner</span>
+          <span class="group-when">8:15 PM · nightly</span>
+        </dt>
+        <dd>Late-seating tables booked together in the rotational dining rooms. Send Jackie your reservation number so we're all seated together.</dd>
+      </div>
+      <div class="group-row">
+        <dt>
+          <span class="group-what">Stage show</span>
+          <span class="group-when">5:45 PM · nightly</span>
+        </dt>
+        <dd>In the Walt Disney Theatre. With dinner, these two times anchor every day — plan ports, pool, and kids' clubs around them.</dd>
+      </div>
+      <div class="group-row">
+        <dt>
+          <span class="group-what">Group lunch</span>
+          <span class="group-when">Day 4 · 12–4 PM</span>
+        </dt>
+        <dd>Together in Nassau. We dock at 8 AM, so there's time to explore first — just leave buffer to be back aboard before the 5:30 PM all-aboard. Transport is still being sorted (likely individual taxis, possibly chartered).</dd>
+      </div>
+      <div class="group-row">
+        <dt>
+          <span class="group-what">Everything else</span>
+          <span class="group-when">Open</span>
+        </dt>
+        <dd>No planned events before or after the cruise — enjoy the ship and ports at your own pace.</dd>
+      </div>
+    </dl>
+  </Section>
+
+  <Section id="travel" class="plan-block">
     <div class="plan-aside">
       <figure class="plan-photo">
         <Image src={travelPhoto} alt="Disney Cruise Line Terminal at Port Canaveral" />
@@ -29,9 +130,9 @@ import packingPhoto from '../assets/photos/castaway-cay.jpg'
         <p class="block-body">
           Online check-in opens 30 days before sailing through the Disney Cruise Line app. Complete it as early as possible to lock in an earlier port-arrival window. Register everyone in your party, including kids, so they're ready to join the kids' clubs the moment you're onboard. Waiting until the ship means standing in the in-person registration line on embarkation day.
         </p>
-        <h3 class="block-sub">Getting there</h3>
+        <h3 id="getting-there" class="block-sub">Getting there</h3>
         <p class="block-body">
-          Fly in the night before. The drive from Orlando International (MCO) to Port Canaveral is about an hour, and same-day flights cut it close to the embarkation window.
+          Book flights as early as you can, and fly in the night before. The ship departs on schedule — if a same-day flight is delayed the morning of embarkation, it will not wait, and a missed departure is on you. The drive from Orlando International (MCO) to Port Canaveral is about an hour, so the night before leaves comfortable buffer.
         </p>
         <h3 class="block-sub">Where to stay</h3>
         <ul class="block-list">
@@ -45,7 +146,7 @@ import packingPhoto from '../assets/photos/castaway-cay.jpg'
     </div>
   </Section>
 
-  <Section class="plan-block">
+  <Section id="onboard" class="plan-block">
     <div class="plan-aside">
       <figure class="plan-photo">
         <Image src={tippingPhoto} alt="Enchanted Garden dining room aboard the Disney Fantasy" />
@@ -53,7 +154,7 @@ import packingPhoto from '../assets/photos/castaway-cay.jpg'
       <div class="plan-aside-body">
         <header class="block-head">
           <span class="block-num">02</span>
-          <h2 class="block-title">Tipping, cash & drinks</h2>
+          <h2 class="block-title">Onboard essentials</h2>
         </header>
         <h3 class="block-sub">Gratuities</h3>
         <p class="block-body">
@@ -63,12 +164,38 @@ import packingPhoto from '../assets/photos/castaway-cay.jpg'
         <p class="block-body">
           Bring cash for port vendors, taxis ashore, optional gratuities (spa, kids' clubs, port-adventure guides), and incidentals. Onboard is otherwise cashless — your stateroom key is your charge card.
         </p>
-        <h3 class="block-sub">Drinks onboard</h3>
+        <h3 id="book-ahead" class="block-sub">Book-ahead extras</h3>
+        <p class="block-body">
+          Some experiences cost extra and can be reserved now in the Disney Cruise Line app or website — both onboard and ashore — and the popular ones sell out early, sometimes for the whole sailing. If any appeal to you, book as soon as you can:
+        </p>
+        <ul class="block-list">
+          <li><strong>Port adventures.</strong> Shore excursions and rentals at the islands and Nassau — snorkeling, water toys, bike rentals, and more. These go fastest of all.</li>
+          <li><strong>Tastings & mixology.</strong> Guided wine, beer, rum, gin, whiskey, tequila, and margarita or martini tastings, plus a hands-on mixology class.</li>
+          <li><strong>Character experiences.</strong> Royal Court Tea with the princesses, the Bibbidi Bobbidi Boutique, and pirate-themed makeovers.</li>
+          <li><strong>Adults-only dining.</strong> Specialty restaurant reservations for a grown-ups' evening.</li>
+          <li><strong>Spa.</strong> Treatments, plus the Rainforest thermal-suite pass — best reserved online ahead of time.</li>
+          <li><strong>Photo sessions &amp; the sports simulator.</strong></li>
+        </ul>
+        <p class="block-body">
+          If something's already sold out, don't give up — book what you can now, then aim for the earliest boarding time by checking in the moment online check-in opens. Once aboard, head straight to the venue, or to Guest Services, to grab any remaining spots.
+        </p>
+        <h3 id="drinks-onboard" class="block-sub">Drinks onboard</h3>
         <p class="block-body">
           Disney doesn't sell an all-inclusive drinks package; you pay per drink. Soft drinks are complimentary at meals and at the 24-hour pool-deck beverage stations, as is standard drip coffee in the main dining rooms, buffet, quick-service spots, and room service. Sodas at the bars, bottled water, beer, wine, cocktails, smoothies, and specialty espresso (lattes, cold brew, iced coffee) all carry a charge.
         </p>
         <p class="block-body">
           Each bar runs a cocktail and mocktail of the day at lower-than-menu prices. Vibe (the teen lounge) serves complimentary soft drinks, with a charge for smoothies.
+        </p>
+        <h3 class="block-sub">Room service</h3>
+        <p class="block-body">
+          Available 24 hours and included — order to the stateroom anytime at no charge. A tip for the delivery crew member is expected, so keep small bills on hand.
+        </p>
+        <p class="block-body">
+          Beyond the printed card, room service will bring a few secret menu favorites on request: Mickey ice cream bars, warm cookies and milk, and Uncrustables. Just ask when you call.
+        </p>
+        <h3 id="staying-connected" class="block-sub">Staying connected</h3>
+        <p class="block-body">
+          Everyone should install the <a class="block-link" href="https://disneycruise.disney.go.com/featured/navigator-app/" target="_blank" rel="noopener"><strong>Disney Cruise Line app</strong></a> before sailing — it carries the daily schedule, ship maps, hours, and character times. WiFi isn't included in the fare, but once connected you can send texts, iMessages, and WhatsApp messages for free (no photos or video). The app also has a free onboard chat, though it can be unreliable. Leave walkie-talkies at home — they aren't permitted and don't work well through the ship's metal walls anyway.
         </p>
       </div>
     </div>
@@ -120,7 +247,7 @@ import packingPhoto from '../assets/photos/castaway-cay.jpg'
     </div>
   </Section>
 
-  <Section class="plan-block" rule={false}>
+  <Section id="packing" class="plan-block" rule={false}>
     <div class="plan-aside">
       <figure class="plan-photo">
         <Image src={packingPhoto} alt="Castaway Cay beach" />
@@ -131,15 +258,20 @@ import packingPhoto from '../assets/photos/castaway-cay.jpg'
           <h2 class="block-title">Packing</h2>
         </header>
 
+        <h3 id="boarding-bag" class="block-sub">Your boarding-day bag</h3>
+        <p class="block-body">
+          At the port, porters take your checked luggage and deliver it to your stateroom — but that can take a few hours. Pack a carry-on with anything you'll want right away: a swimsuit for the pool, medication, your wallet, phone chargers, and travel documents. That way you're set to enjoy the ship the moment you're aboard.
+        </p>
+
         <h3 class="block-sub">Weather (late August Bahamas)</h3>
         <p class="block-body">
           Hot and humid. Daytime highs near 88°F, evenings around 75°F. Pack rain gear — afternoon thunderstorms are common. Strong sun: bring reef-safe sunscreen for the islands.
         </p>
 
-        <h3 class="block-sub">Themed nights onboard</h3>
+        <h3 id="themed-nights" class="block-sub">Themed nights onboard</h3>
         <p class="block-body">
           <strong>Night 2 — Semi-formal (optional).</strong> Bring a dressy outfit if you'd like to participate.<br>
-          <strong>Night 4 — Pirate Night.</strong> A deck party with optional pirate dress-up. Disney sells gear onboard but it's pricey; packing a costume is easier.
+          <strong>Night 4 — Pirate Night.</strong> A big one on Disney cruises: a pool-deck party with a stage show, characters, and fireworks at sea. Dress-up is optional, but plenty of guests go for it. Disney sells gear onboard but it's pricey; packing a costume is easier.
         </p>
 
         <h3 class="block-sub">Alcohol policy</h3>
@@ -162,6 +294,168 @@ import packingPhoto from '../assets/photos/castaway-cay.jpg'
 </DefaultLayout>
 
 <style lang="scss">
+  // ── Before-you-sail highlights ──────────────────────────
+  .highlights-head {
+    margin-bottom: var(--space-md);
+  }
+
+  .highlights-head .eyebrow {
+    display: block;
+    margin-bottom: var(--space-xs);
+  }
+
+  .highlights-lede {
+    font-family: var(--font-family-body);
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+    max-width: 52ch;
+  }
+
+  .highlights-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .highlights-list li {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .highlights-list a {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      'title jump'
+      'note jump';
+    align-items: baseline;
+    column-gap: var(--space-md);
+    row-gap: 4px;
+    padding: var(--space-md) 4px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .hl-title {
+    grid-area: title;
+    font-family: var(--font-family-display);
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.25;
+    color: var(--ink);
+    transition: color 0.2s ease;
+  }
+
+  .hl-note {
+    grid-area: note;
+    font-family: var(--font-family-body);
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 60ch;
+  }
+
+  .hl-jump {
+    grid-area: jump;
+    align-self: center;
+    font-family: var(--font-family-label);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+
+  .hl-jump::after {
+    content: ' →';
+  }
+
+  .highlights-list a:hover .hl-title,
+  .highlights-list a:focus-visible .hl-title,
+  .highlights-list a:hover .hl-jump,
+  .highlights-list a:focus-visible .hl-jump {
+    color: var(--gold);
+  }
+
+  @media (max-width: 560px) {
+    .highlights-list a {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        'title'
+        'note'
+        'jump';
+      row-gap: 6px;
+    }
+    .hl-jump {
+      align-self: start;
+    }
+  }
+
+  // ── group plans schedule ────────────────────────────────
+  .group-list {
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .group-row {
+    display: grid;
+    grid-template-columns: minmax(140px, 200px) 1fr;
+    gap: var(--space-md);
+    align-items: baseline;
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .group-row dt {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .group-what {
+    font-family: var(--font-family-label);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .group-when {
+    font-family: var(--font-family-display);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.15;
+    color: var(--ink);
+  }
+
+  .group-row dd {
+    margin: 0;
+    font-family: var(--font-family-body);
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 560px) {
+    .group-row {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+  }
+
+  // anchored sections clear the top edge when jumped to
+  .plan-highlights,
+  .plan-group,
+  .plan-block,
+  .block-sub {
+    scroll-margin-top: 24px;
+  }
+
   .plan-photo {
     margin: 0 0 var(--space-lg);
     aspect-ratio: 16 / 9;
