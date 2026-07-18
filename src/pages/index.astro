@@ -115,7 +115,7 @@ const itinerary = [
     <ol class="route-list" aria-label="Voyage timeline">
       {itinerary.map(s => (
         <li class:list={['route-row', { 'is-birthday': s.birthday }]}>
-          <a class="route-link" href="/itinerary">
+          <a class="route-link" href={`/itinerary#day-${s.day}`}>
             <span class="route-day">Day {s.day}</span>
             <span class="route-date">{s.date}</span>
             <span class="route-port">{s.port}</span>
