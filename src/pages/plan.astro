@@ -44,8 +44,8 @@ import packingPhoto from '../assets/photos/castaway-cay.jpg'
       </li>
       <li>
         <a href="#group">
-          <span class="hl-title">We're together at dinner every night</span>
-          <span class="hl-note">If you haven't already, send Jackie your reservation number so the whole group is seated together.</span>
+          <span class="hl-title">Every day: 5:45 PM show, 8:15 PM dinner</span>
+          <span class="hl-note">A nightly stage show at 5:45 and our group dinner at 8:15 anchor each evening — plan ports, pool, and clubs around them. Send Jackie your reservation number so we're seated together.</span>
           <span class="hl-jump">Group plans</span>
         </a>
       </li>
@@ -77,11 +77,36 @@ import packingPhoto from '../assets/photos/castaway-cay.jpg'
     <header class="block-head group-head">
       <h2 class="block-title">Group plans</h2>
     </header>
-    <div class="plan-group-note">
-      <p>
-        Our whole group has tables booked together for dinner every night in the rotational dining rooms — if you haven't already, send Jackie your reservation number so we can seat everyone together. Beyond that there are no planned events before or after the cruise. The one daytime gathering is a <strong>group lunch in Nassau on Day 4, noon–4 PM</strong>. Transportation is still being sorted (the current plan is individual taxis, though we're looking into chartered transport). The ship docks at 8 AM, so there's time to explore Nassau or the ship beforehand — just leave yourself buffer to be back aboard well before the 5:30 PM all-aboard, especially if it's your first cruise.
-      </p>
-    </div>
+    <dl class="group-list">
+      <div class="group-row">
+        <dt>
+          <span class="group-what">Dinner</span>
+          <span class="group-when">8:15 PM · nightly</span>
+        </dt>
+        <dd>Late-seating tables booked together in the rotational dining rooms. Send Jackie your reservation number so we're all seated together.</dd>
+      </div>
+      <div class="group-row">
+        <dt>
+          <span class="group-what">Stage show</span>
+          <span class="group-when">5:45 PM · nightly</span>
+        </dt>
+        <dd>In the Walt Disney Theatre. With dinner, these two times anchor every day — plan ports, pool, and kids' clubs around them.</dd>
+      </div>
+      <div class="group-row">
+        <dt>
+          <span class="group-what">Group lunch</span>
+          <span class="group-when">Day 4 · 12–4 PM</span>
+        </dt>
+        <dd>Together in Nassau. We dock at 8 AM, so there's time to explore first — just leave buffer to be back aboard before the 5:30 PM all-aboard. Transport is still being sorted (likely individual taxis, possibly chartered).</dd>
+      </div>
+      <div class="group-row">
+        <dt>
+          <span class="group-what">Everything else</span>
+          <span class="group-when">Open</span>
+        </dt>
+        <dd>No planned events before or after the cruise — enjoy the ship and ports at your own pace.</dd>
+      </div>
+    </dl>
   </Section>
 
   <Section id="travel" class="plan-block">
@@ -348,18 +373,57 @@ import packingPhoto from '../assets/photos/castaway-cay.jpg'
     }
   }
 
-  // ── group note ──────────────────────────────────────────
-  .plan-group-note p {
-    font-family: var(--font-family-body);
-    font-size: 16px;
-    line-height: 1.6;
-    color: var(--ink-soft);
+  // ── group plans schedule ────────────────────────────────
+  .group-list {
     margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
   }
 
-  .plan-group-note p strong {
+  .group-row {
+    display: grid;
+    grid-template-columns: minmax(140px, 200px) 1fr;
+    gap: var(--space-md);
+    align-items: baseline;
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .group-row dt {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .group-what {
+    font-family: var(--font-family-label);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .group-when {
+    font-family: var(--font-family-display);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.15;
     color: var(--ink);
-    font-weight: 600;
+  }
+
+  .group-row dd {
+    margin: 0;
+    font-family: var(--font-family-body);
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 560px) {
+    .group-row {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
   }
 
   // anchored sections clear the top edge when jumped to
