@@ -1,0 +1,289 @@
+---
+interface Props {
+  targetDate: string
+  href?: string
+  label?: string
+}
+
+const { targetDate, href, label } = Astro.props
+const targetMs = new Date(targetDate + 'T00:00:00').getTime()
+const daysInitial = Math.max(0, Math.ceil((targetMs - Date.now()) / 86400000))
+
+const Tag = href ? 'a' : 'div'
+---
+
+<Tag
+  class:list={['flipboard', { 'flipboard--link': !!href }]}
+  href={href}
+  aria-label={label}
+  data-target={targetDate}
+>
+  <span class="fb-line">
+    <b class="fb-days" data-fb-days>{daysInitial}</b>
+    <span class="fb-days-mark">days</span>
+  </span>
+  <div class="fb-row" aria-hidden="true">
+    <span class="fb-time" data-fb-unit="hours">
+      <span class="fb-pair">
+        <span class="fb-cell"><span class="fb-static-top">0</span><span class="fb-static-bot">0</span><span class="fb-overlay"><span class="fb-overlay-top">0</span><span class="fb-overlay-bot">0</span></span></span>
+        <span class="fb-cell"><span class="fb-static-top">0</span><span class="fb-static-bot">0</span><span class="fb-overlay"><span class="fb-overlay-top">0</span><span class="fb-overlay-bot">0</span></span></span>
+      </span>
+      <span class="fb-label">hrs</span>
+    </span>
+    <span class="fb-sep">·</span>
+    <span class="fb-time" data-fb-unit="minutes">
+      <span class="fb-pair">
+        <span class="fb-cell"><span class="fb-static-top">0</span><span class="fb-static-bot">0</span><span class="fb-overlay"><span class="fb-overlay-top">0</span><span class="fb-overlay-bot">0</span></span></span>
+        <span class="fb-cell"><span class="fb-static-top">0</span><span class="fb-static-bot">0</span><span class="fb-overlay"><span class="fb-overlay-top">0</span><span class="fb-overlay-bot">0</span></span></span>
+      </span>
+      <span class="fb-label">min</span>
+    </span>
+    <span class="fb-sep">·</span>
+    <span class="fb-time" data-fb-unit="seconds">
+      <span class="fb-pair">
+        <span class="fb-cell"><span class="fb-static-top">0</span><span class="fb-static-bot">0</span><span class="fb-overlay"><span class="fb-overlay-top">0</span><span class="fb-overlay-bot">0</span></span></span>
+        <span class="fb-cell"><span class="fb-static-top">0</span><span class="fb-static-bot">0</span><span class="fb-overlay"><span class="fb-overlay-top">0</span><span class="fb-overlay-bot">0</span></span></span>
+      </span>
+      <span class="fb-label">sec</span>
+    </span>
+  </div>
+</Tag>
+
+<style lang="scss">
+  .flipboard {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+    cursor: default;
+  }
+
+  .flipboard--link {
+    cursor: pointer;
+  }
+
+  .fb-line {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .fb-days {
+    display: inline-block;
+    font-family: var(--font-family-display);
+    font-style: normal;
+    font-weight: 500;
+    font-size: clamp(102px, 18.7vw, 170px);
+    line-height: 0.78;
+    letter-spacing: -0.06em;
+    color: var(--ink);
+    font-feature-settings: 'tnum' 1, 'lnum' 1;
+    transition: color 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .fb-days-mark {
+    font-family: var(--font-family-display);
+    font-weight: 400;
+    font-size: 40px;
+    letter-spacing: 0.3px;
+    line-height: 1;
+    color: var(--gold);
+  }
+
+  /* Hover/focus gold-on-days effect intentionally omitted: Astro's CSS
+     scope injector mangles descendant selectors with :hover, applying the
+     rule unconditionally. */
+
+  .fb-row {
+    margin-top: var(--space-md);
+    display: inline-flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--font-family-body);
+    font-weight: 500;
+    font-size: 20px;
+    letter-spacing: 2.4px;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .fb-time {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 9px;
+  }
+
+  .fb-sep {
+    color: var(--gold);
+    font-size: 18px;
+  }
+
+  .fb-pair {
+    display: inline-flex;
+    gap: 3px;
+  }
+
+  .fb-cell {
+    position: relative;
+    display: inline-block;
+    width: 0.66em;
+    height: 1.5em;
+    font-family: var(--font-family-display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 1;
+    color: var(--ink);
+    letter-spacing: 0;
+    text-transform: none;
+    font-feature-settings: 'tnum' 1, 'lnum' 1;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px var(--line);
+    perspective: 400px;
+  }
+
+  .fb-static-top,
+  .fb-static-bot,
+  .fb-overlay-top,
+  .fb-overlay-bot {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 50%;
+    overflow: hidden;
+    text-align: center;
+    background: var(--bg-2);
+  }
+
+  .fb-static-top,
+  .fb-overlay-top {
+    top: 0;
+    line-height: 1.5;
+    border-bottom: 1px solid rgba(234, 217, 160, 0.16);
+  }
+
+  .fb-static-bot,
+  .fb-overlay-bot {
+    bottom: 0;
+    line-height: 0;
+  }
+
+  .fb-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .fb-overlay-top { transform-origin: bottom; }
+  .fb-overlay-bot { transform-origin: top; }
+
+  .fb-overlay.flip .fb-overlay-top {
+    animation: fb-flip-top 0.6s linear;
+  }
+
+  .fb-overlay.flip .fb-overlay-bot {
+    animation: fb-flip-bot 0.6s linear;
+  }
+
+  @keyframes fb-flip-top {
+    0%        { transform: rotateX(0deg); }
+    50%, 100% { transform: rotateX(-90deg); }
+  }
+
+  @keyframes fb-flip-bot {
+    0%, 50% { transform: rotateX(-90deg); }
+    100%    { transform: rotateX(0deg); }
+  }
+
+  @media (max-width: 480px) {
+    .fb-row {
+      font-size: 14px;
+      gap: 9px;
+      letter-spacing: 1.8px;
+    }
+    .fb-time { gap: 6px; }
+    .fb-sep { font-size: 14px; }
+    .fb-pair { gap: 2px; }
+    .fb-cell { font-size: 22px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .flipboard,
+    .fb-days {
+      transition: none;
+    }
+    .fb-overlay.flip .fb-overlay-top,
+    .fb-overlay.flip .fb-overlay-bot {
+      animation-duration: 0.01s;
+    }
+  }
+</style>
+
+<script>
+  function initFlipboard(root: HTMLElement) {
+    const targetIso = root.dataset.target!
+    const target = new Date(targetIso + 'T00:00:00').getTime()
+
+    const daysEl = root.querySelector<HTMLElement>('[data-fb-days]')
+    const hoursEl = root.querySelector<HTMLElement>('[data-fb-unit="hours"]')
+    const minutesEl = root.querySelector<HTMLElement>('[data-fb-unit="minutes"]')
+    const secondsEl = root.querySelector<HTMLElement>('[data-fb-unit="seconds"]')
+    if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return
+
+    function setFlipDigit(cellEl: Element, newDigit: string) {
+      const top = cellEl.querySelector('.fb-static-top') as HTMLElement | null
+      if (!top || top.textContent === newDigit) return
+      const bot = cellEl.querySelector('.fb-static-bot') as HTMLElement
+      const overlay = cellEl.querySelector('.fb-overlay') as HTMLElement
+      const ovTop = cellEl.querySelector('.fb-overlay-top') as HTMLElement
+      const ovBot = cellEl.querySelector('.fb-overlay-bot') as HTMLElement
+
+      overlay.classList.add('flip')
+      top.textContent = newDigit
+      ovBot.textContent = newDigit
+
+      function finish() {
+        overlay.classList.remove('flip')
+        bot.textContent = newDigit
+        ovTop.textContent = newDigit
+        overlay.removeEventListener('animationend', finish)
+      }
+      overlay.addEventListener('animationend', finish)
+    }
+
+    function setFlipPair(containerEl: Element, value: number) {
+      const padded = String(value).padStart(2, '0')
+      const cells = containerEl.querySelectorAll('.fb-cell')
+      if (cells.length < 2) return
+      setFlipDigit(cells[0], padded[0])
+      setFlipDigit(cells[1], padded[1])
+    }
+
+    function update() {
+      const diff = target - Date.now()
+      if (diff <= 0) {
+        daysEl!.textContent = '0'
+        setFlipPair(hoursEl!, 0)
+        setFlipPair(minutesEl!, 0)
+        setFlipPair(secondsEl!, 0)
+        return
+      }
+      const d = Math.floor(diff / 86400000)
+      const h = Math.floor((diff % 86400000) / 3600000)
+      const m = Math.floor((diff % 3600000) / 60000)
+      const s = Math.floor((diff % 60000) / 1000)
+      daysEl!.textContent = String(d)
+      setFlipPair(hoursEl!, h)
+      setFlipPair(minutesEl!, m)
+      setFlipPair(secondsEl!, s)
+    }
+
+    update()
+    setInterval(update, 1000)
+  }
+
+  document.querySelectorAll<HTMLElement>('.flipboard').forEach(initFlipboard)
+</script>

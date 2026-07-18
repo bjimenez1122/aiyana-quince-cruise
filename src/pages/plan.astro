@@ -3,6 +3,7 @@ import { Image } from 'astro:assets'
 import DefaultLayout from '../layouts/DefaultLayout.astro'
 import Section from '../components/Section.astro'
 import PageHero from '../components/PageHero.astro'
+import VoyageTimeline from '../components/VoyageTimeline.astro'
 import KeepExploring from '../components/KeepExploring.astro'
 import travelPhoto from '../assets/photos/cruise-terminal.jpg'
 import tippingPhoto from '../assets/photos/enchanted-garden.jpg'
@@ -14,6 +15,10 @@ import packingPhoto from '../assets/photos/castaway-cay.jpg'
   <PageHero lede="Travel, lodging, packing, and what to expect onboard.">
     Plan your trip
   </PageHero>
+
+  <Section>
+    <VoyageTimeline />
+  </Section>
 
   <Section class="plan-block">
     <div class="plan-aside">

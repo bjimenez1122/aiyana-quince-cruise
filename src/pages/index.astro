@@ -3,11 +3,9 @@ import { Image } from 'astro:assets'
 import DefaultLayout from '../layouts/DefaultLayout.astro'
 import KeepExploring from '../components/KeepExploring.astro'
 import Section from '../components/Section.astro'
+import VoyageTimeline from '../components/VoyageTimeline.astro'
 import heroBg from '../assets/photos/disneyfantasycastaway.avif'
 import aiyanaPortrait from '../assets/photos/aiyana-daisy.jpg'
-
-const targetDate = new Date('2026-08-28T00:00:00').getTime()
-const daysUntilTarget = Math.max(0, Math.ceil((targetDate - Date.now()) / 86400000))
 
 const itinerary = [
   { day: 1, date: 'AUG 28', port: 'Port Canaveral' },
@@ -22,46 +20,13 @@ const itinerary = [
 <DefaultLayout title="Home">
   <Section width="bleed" rule={false} tight>
     <div class="hero">
-    <div class="hero-bg" aria-hidden="true">
-      <Image src={heroBg} alt="" class="hero-img" />
-      <div class="hero-overlay"></div>
-    </div>
-
-    <h1>Aiyana's Quinceañera at Sea</h1>
-
-    <div class="hero-rule" aria-hidden="true"></div>
-
-    <a class="cd-hero" href="/booking" aria-label="Reserve your cabin">
-      <span class="cdh-line">
-        <b class="cdh-days" id="cd-days" aria-live="polite">{daysUntilTarget}</b>
-        <span class="cdh-days-mark">days</span>
-      </span>
-      <div class="cd-row" aria-hidden="true">
-        <span class="cd-time" id="cd-hours">
-          <span class="cd-pair">
-            <span class="cd-cell"><span class="cd-static-top">0</span><span class="cd-static-bot">0</span><span class="cd-overlay"><span class="cd-overlay-top">0</span><span class="cd-overlay-bot">0</span></span></span>
-            <span class="cd-cell"><span class="cd-static-top">0</span><span class="cd-static-bot">0</span><span class="cd-overlay"><span class="cd-overlay-top">0</span><span class="cd-overlay-bot">0</span></span></span>
-          </span>
-          <span class="cd-label">hrs</span>
-        </span>
-        <span class="cd-sep">·</span>
-        <span class="cd-time" id="cd-minutes">
-          <span class="cd-pair">
-            <span class="cd-cell"><span class="cd-static-top">0</span><span class="cd-static-bot">0</span><span class="cd-overlay"><span class="cd-overlay-top">0</span><span class="cd-overlay-bot">0</span></span></span>
-            <span class="cd-cell"><span class="cd-static-top">0</span><span class="cd-static-bot">0</span><span class="cd-overlay"><span class="cd-overlay-top">0</span><span class="cd-overlay-bot">0</span></span></span>
-          </span>
-          <span class="cd-label">min</span>
-        </span>
-        <span class="cd-sep">·</span>
-        <span class="cd-time" id="cd-seconds">
-          <span class="cd-pair">
-            <span class="cd-cell"><span class="cd-static-top">0</span><span class="cd-static-bot">0</span><span class="cd-overlay"><span class="cd-overlay-top">0</span><span class="cd-overlay-bot">0</span></span></span>
-            <span class="cd-cell"><span class="cd-static-top">0</span><span class="cd-static-bot">0</span><span class="cd-overlay"><span class="cd-overlay-top">0</span><span class="cd-overlay-bot">0</span></span></span>
-          </span>
-          <span class="cd-label">sec</span>
-        </span>
+      <div class="hero-bg" aria-hidden="true">
+        <Image src={heroBg} alt="" class="hero-img" />
+        <div class="hero-overlay"></div>
       </div>
-    </a>
+      <h1>Aiyana's Quinceañera at Sea</h1>
+      <div class="hero-rule" aria-hidden="true"></div>
+      <VoyageTimeline variant="hero" ctaHref="/booking" />
     </div>
   </Section>
 
@@ -104,76 +69,12 @@ const itinerary = [
   <KeepExploring current="home" />
 </DefaultLayout>
 
-<script>
-  const target = new Date('2026-08-28T00:00:00').getTime()
-
-  function setFlipDigit(cellEl: Element, newDigit: string) {
-    const top = cellEl.querySelector('.cd-static-top') as HTMLElement | null
-    if (!top || top.textContent === newDigit) return
-    const bot = cellEl.querySelector('.cd-static-bot') as HTMLElement
-    const overlay = cellEl.querySelector('.cd-overlay') as HTMLElement
-    const ovTop = cellEl.querySelector('.cd-overlay-top') as HTMLElement
-    const ovBot = cellEl.querySelector('.cd-overlay-bot') as HTMLElement
-
-    overlay.classList.add('flip')
-    top.textContent = newDigit
-    ovBot.textContent = newDigit
-
-    function finish() {
-      overlay.classList.remove('flip')
-      bot.textContent = newDigit
-      ovTop.textContent = newDigit
-      overlay.removeEventListener('animationend', finish)
-    }
-    overlay.addEventListener('animationend', finish)
-  }
-
-  function setFlipPair(containerEl: Element, value: number) {
-    const padded = String(value).padStart(2, '0')
-    const cells = containerEl.querySelectorAll('.cd-cell')
-    if (cells.length < 2) return
-    setFlipDigit(cells[0], padded[0])
-    setFlipDigit(cells[1], padded[1])
-  }
-
-  function updateCountdown() {
-    const now = Date.now()
-    const diff = target - now
-    const days = document.getElementById('cd-days')
-    const hoursEl = document.getElementById('cd-hours')
-    const minutesEl = document.getElementById('cd-minutes')
-    const secondsEl = document.getElementById('cd-seconds')
-    if (!days || !hoursEl || !minutesEl || !secondsEl) return
-
-    if (diff <= 0) {
-      days.textContent = '0'
-      setFlipPair(hoursEl, 0)
-      setFlipPair(minutesEl, 0)
-      setFlipPair(secondsEl, 0)
-      return
-    }
-
-    const d = Math.floor(diff / (1000 * 60 * 60 * 24))
-    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
-    const s = Math.floor((diff % (1000 * 60)) / 1000)
-
-    days.textContent = String(d)
-    setFlipPair(hoursEl, h)
-    setFlipPair(minutesEl, m)
-    setFlipPair(secondsEl, s)
-  }
-
-  updateCountdown()
-  setInterval(updateCountdown, 1000)
-</script>
-
 <style lang="scss">
   // ─── hero ─────────────────────────────────────────────────
   .hero {
     position: relative;
     z-index: 2;
-    padding: 32px 0 48px;
+    padding: clamp(40px, 6vw, 80px) 0 clamp(56px, 7vw, 96px);
     text-align: center;
 
     > *:not(.hero-bg) {
@@ -205,13 +106,59 @@ const itinerary = [
   .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(250, 243, 226, 0.32) 0%, rgba(250, 243, 226, 0.72) 100%);
+    background: linear-gradient(
+      180deg,
+      rgba(250, 243, 226, 0.47) 0%,
+      rgba(250, 243, 226, 0.85) 70%
+    );
   }
 
   @media (prefers-color-scheme: dark) {
     .hero-overlay {
-      background: linear-gradient(180deg, rgba(11, 20, 34, 0.35) 0%, rgba(11, 20, 34, 0.78) 100%);
+      background: linear-gradient(
+        180deg,
+        rgba(11, 20, 34, 0.47) 0%,
+        rgba(11, 20, 34, 0.85) 70%
+      );
     }
+  }
+
+  // Counter scaled to 80% of base for breathing room above the timeline rail
+  :global(.hero .fb-days) {
+    font-size: calc(clamp(102px, 18.7vw, 170px) * 0.8);
+    color: var(--ink);
+    text-shadow: 0 2px 24px rgba(11, 20, 34, 0.5);
+    position: relative;
+    z-index: 1;
+  }
+  :global(.hero .fb-days-mark) { font-size: 32px; }
+  :global(.hero .fb-cell) {
+    background: rgba(11, 20, 34, 0.55);
+    box-shadow: inset 0 0 0 1px rgba(234, 217, 160, 0.4);
+  }
+
+  // Timeline rail: flex-distributed nodes, track aligned with first/last dot centers
+  :global(.hero .vt-nodes) {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 0;
+  }
+  :global(.hero .vt-node) {
+    flex: 0 0 22%;
+    max-width: 22%;
+  }
+  // Push badge + days-before-sailing line to the bottom so badges align across all nodes
+  :global(.hero .vt-badge) { margin-top: auto; }
+  :global(.hero .vt-track) {
+    left: 11%;
+    right: 11%;
+    background: rgba(234, 217, 160, 0.32);
+  }
+  :global(.hero .vt-date) { text-shadow: 0 1px 12px rgba(11, 20, 34, 0.4); }
+  :global(.hero .vt-here-label) {
+    background: rgba(11, 20, 34, 0.85);
+    color: var(--ink);
   }
 
   .hero-eyebrow {
@@ -259,208 +206,6 @@ const itinerary = [
     background: var(--gold);
     opacity: 0.65;
     margin: 24px auto;
-  }
-
-  .cd-hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 18px 20px 8px;
-    text-decoration: none;
-    color: inherit;
-    transition: transform 0.4s var(--animation-timing, cubic-bezier(0.165, 0.84, 0.44, 1));
-  }
-
-  .cd-hero:focus-visible { outline: none; }
-
-  .cdh-line {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-  }
-
-  .cdh-days {
-    display: inline-block;
-    font-family: var(--font-family-display);
-    font-style: normal;
-    font-weight: 500;
-    font-size: clamp(102px, 18.7vw, 170px);
-    line-height: 0.78;
-    letter-spacing: -0.06em;
-    color: var(--ink);
-    font-feature-settings: 'tnum' 1, 'lnum' 1;
-    transition: color 0.25s var(--animation-timing, cubic-bezier(0.165, 0.84, 0.44, 1));
-  }
-
-  .cdh-days-mark {
-    font-family: var(--font-family-display);
-    font-weight: 400;
-    font-size: 40px;
-    letter-spacing: 0.3px;
-    line-height: 1;
-    color: var(--gold);
-  }
-
-  .cd-hero .cd-row {
-    margin-top: var(--space-md);
-  }
-
-  .cd-cta-arrow {
-    display: inline-block;
-    margin-left: 6px;
-    transform: translateX(0);
-    transition: transform 0.3s var(--animation-timing, cubic-bezier(0.165, 0.84, 0.44, 1));
-  }
-
-  .cd-hero:hover .cd-cta-arrow,
-  .cd-hero:focus-visible .cd-cta-arrow {
-    transform: translateX(6px);
-  }
-
-  .cd-hero:hover .cdh-days,
-  .cd-hero:focus-visible .cdh-days {
-    color: var(--gold);
-  }
-
-  @media (max-width: 720px) {
-    .cdh-side {
-      grid-template-columns: 1fr;
-      gap: 20px;
-      text-align: center;
-    }
-    .cdh-r { align-items: center; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .cd-hero,
-    .cdh-days,
-    .cd-cta-arrow {
-      transition: none;
-    }
-  }
-
-  .cd-row {
-    margin-top: 18px;
-    display: inline-flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    gap: 14px;
-    font-family: var(--font-family-body);
-    font-weight: 500;
-    font-size: 20px;
-    letter-spacing: 2.4px;
-    color: var(--ink-soft);
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
-
-  .cd-time {
-    display: inline-flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    gap: 9px;
-  }
-
-  @media (max-width: 480px) {
-    .cd-row {
-      font-size: 14px;
-      gap: 9px;
-      letter-spacing: 1.8px;
-    }
-    .cd-time { gap: 6px; }
-    .cd-row .cd-sep { font-size: 14px; }
-    .cd-pair { gap: 2px; }
-    .cd-cell { font-size: 22px; }
-  }
-
-  .cd-row .cd-sep {
-    color: var(--gold);
-    font-size: 18px;
-  }
-
-  .cd-pair {
-    display: inline-flex;
-    gap: 3px;
-  }
-
-  .cd-cell {
-    position: relative;
-    display: inline-block;
-    width: 0.66em;
-    height: 1.5em;
-    font-family: var(--font-family-display);
-    font-style: italic;
-    font-weight: 500;
-    font-size: 30px;
-    line-height: 1;
-    color: var(--ink);
-    letter-spacing: 0;
-    text-transform: none;
-    font-feature-settings: 'tnum' 1, 'lnum' 1;
-    border-radius: 5px;
-    overflow: hidden;
-    box-shadow: inset 0 0 0 1px var(--line);
-    perspective: 400px;
-  }
-
-  .cd-static-top,
-  .cd-static-bot,
-  .cd-overlay-top,
-  .cd-overlay-bot {
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 50%;
-    overflow: hidden;
-    text-align: center;
-    background: var(--bg-2);
-  }
-
-  .cd-static-top,
-  .cd-overlay-top {
-    top: 0;
-    line-height: 1.5;
-    border-bottom: 1px solid rgba(234, 217, 160, 0.16);
-  }
-
-  .cd-static-bot,
-  .cd-overlay-bot {
-    bottom: 0;
-    line-height: 0;
-  }
-
-  .cd-overlay {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-
-  .cd-overlay-top { transform-origin: bottom; }
-  .cd-overlay-bot { transform-origin: top; }
-
-  .cd-overlay.flip .cd-overlay-top {
-    animation: cd-flip-top 0.6s linear;
-  }
-
-  .cd-overlay.flip .cd-overlay-bot {
-    animation: cd-flip-bot 0.6s linear;
-  }
-
-  @keyframes cd-flip-top {
-    0%        { transform: rotateX(0deg); }
-    50%, 100% { transform: rotateX(-90deg); }
-  }
-
-  @keyframes cd-flip-bot {
-    0%, 50% { transform: rotateX(-90deg); }
-    100%    { transform: rotateX(0deg); }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .cd-overlay.flip .cd-overlay-top,
-    .cd-overlay.flip .cd-overlay-bot {
-      animation-duration: 0.01s;
-    }
   }
 
   // ─── route ────────────────────────────────────────────────

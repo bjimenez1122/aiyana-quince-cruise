@@ -1,0 +1,601 @@
+---
+import Flipboard from './Flipboard.astro'
+
+type Milestone = {
+  date: string
+  daysOut?: number
+  title: string
+  desc: string
+  destination?: boolean
+}
+
+interface Props {
+  variant?: 'hero' | 'compact'
+  ctaHref?: string
+}
+
+const { variant = 'compact', ctaHref } = Astro.props
+
+const SAIL_ISO = '2026-08-28'
+
+const milestones: Milestone[] = [
+  {
+    date: '2026-05-30',
+    daysOut: 90,
+    title: 'Final payment due',
+    desc: 'Stateroom balance is due to Disney Cruise Line.',
+  },
+  {
+    date: '2026-06-14',
+    daysOut: 75,
+    title: 'Activities & excursions open',
+    desc: 'Book Port Adventures, onboard activities, dining, and spa.',
+  },
+  {
+    date: '2026-07-29',
+    daysOut: 30,
+    title: 'Check-in opens',
+    desc: 'Online check-in, choose your boarding time.',
+  },
+  {
+    date: '2026-08-28',
+    title: 'Set sail',
+    desc: 'Embarkation day at Port Canaveral.',
+    destination: true,
+  },
+]
+
+const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+---
+
+<section
+  class:list={['voyage-timeline', `vt-${variant}`]}
+  aria-label="Pre-cruise planning timeline"
+  data-sail={SAIL_ISO}
+>
+  {variant === 'hero' ? (
+    <div class="vt-hero-counter">
+      <Flipboard targetDate={SAIL_ISO} href={ctaHref} label="Days until set sail" />
+    </div>
+  ) : (
+    <header class="vt-head">
+      <div class="vt-heading">
+        <h2 class="vt-title">Before we set sail</h2>
+        <p class="vt-sub">Key dates between now and embarkation, at a glance.</p>
+      </div>
+      <div class="vt-togo" aria-label="Days until sail">
+        <b id="vt-togo-num" aria-live="polite">—</b>
+        <span>days to go</span>
+      </div>
+    </header>
+  )}
+
+  <!-- Desktop horizontal rail -->
+  <div class="vt-rail" aria-hidden="true">
+    <div class="vt-track">
+      <div class="vt-fill" data-vt-fill style="width:0"></div>
+    </div>
+    <div class="vt-here" data-vt-here style="left:0">
+      <span class="vt-here-mark">✦</span>
+      <span class="vt-here-label" data-vt-here-date>Today</span>
+    </div>
+    <ol class="vt-nodes">
+      {milestones.map((m) => {
+        const dt = new Date(m.date + 'T00:00:00')
+        const dateLabel = `${MONTHS[dt.getMonth()]} ${dt.getDate()}`
+        return (
+          <li class:list={['vt-node', { 'is-dest': m.destination }]} data-date={m.date}>
+            <span class="vt-pin" aria-hidden="true">{m.destination ? '✦' : ''}</span>
+            <span class="vt-date">{dateLabel}</span>
+            <span class="vt-ttl">{m.title}</span>
+            <span class="vt-desc">{m.desc}</span>
+            <span class="vt-badge">{m.destination ? 'Set sail' : 'Upcoming'}</span>
+            <span class="vt-out">
+              {m.destination ? '' : `${m.daysOut} days before sailing`}
+            </span>
+          </li>
+        )
+      })}
+    </ol>
+  </div>
+
+  <!-- Mobile vertical list -->
+  <ol class="vt-list" aria-label="Key dates">
+    {milestones.map((m) => {
+      const dt = new Date(m.date + 'T00:00:00')
+      const dateLabel = `${MONTHS[dt.getMonth()]} ${dt.getDate()}`
+      return (
+        <li class:list={['vt-item', { 'is-dest': m.destination }]} data-date={m.date}>
+          <span class="vt-vpin" aria-hidden="true">{m.destination ? '✦' : ''}</span>
+          <div class="vt-vbody">
+            <span class="vt-vdate">
+              {dateLabel}
+              <span class="vt-vrel"></span>
+            </span>
+            <span class="vt-vttl">{m.title}</span>
+            <span class="vt-vdesc">{m.desc}</span>
+            <span class="vt-badge">{m.destination ? 'Set sail' : 'Upcoming'}</span>
+          </div>
+        </li>
+      )
+    })}
+  </ol>
+</section>
+
+<style lang="scss">
+  .voyage-timeline {
+    color: var(--ink);
+  }
+
+  // ─── compact header ───────────────────────────────────────
+  .vt-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-lg);
+  }
+
+  .vt-heading {
+    flex: 1 1 18ch;
+  }
+
+  .vt-title {
+    font-family: var(--font-family-display);
+    font-style: normal;
+    font-weight: 500;
+    font-size: clamp(28px, 3vw, 40px);
+    line-height: 1.1;
+    letter-spacing: -0.012em;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .vt-sub {
+    font-family: var(--font-family-body);
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.55;
+    margin: var(--space-xs) 0 0;
+    max-width: 46ch;
+  }
+
+  .vt-togo {
+    text-align: right;
+    flex: 0 0 auto;
+  }
+
+  .vt-togo b {
+    display: block;
+    font-family: var(--font-family-display);
+    font-weight: 500;
+    font-size: clamp(36px, 4vw, 48px);
+    line-height: 1;
+    color: var(--gold);
+    letter-spacing: -0.01em;
+  }
+
+  .vt-togo span {
+    display: inline-block;
+    margin-top: 4px;
+    font-family: var(--font-family-label);
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  // ─── hero counter ─────────────────────────────────────────
+  .vt-hero-counter {
+    margin-bottom: var(--space-lg);
+    text-align: center;
+  }
+
+  .vt-hero .vt-rail {
+    margin-top: var(--space-lg);
+  }
+
+  // ─── shared badge / status ────────────────────────────────
+  .vt-badge {
+    align-self: flex-start;
+    display: inline-block;
+    font-family: var(--font-family-label);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    border-top: 1px solid var(--line);
+    padding-top: 6px;
+    margin-top: 4px;
+  }
+
+  .vt-node.is-done .vt-badge,
+  .vt-item.is-done .vt-badge {
+    color: var(--ink-soft);
+  }
+
+  .vt-node.is-next .vt-badge,
+  .vt-item.is-next .vt-badge {
+    color: var(--gold);
+    border-top-color: var(--gold);
+  }
+
+  .vt-node.is-dest .vt-badge,
+  .vt-item.is-dest .vt-badge {
+    color: var(--gold);
+    border-top-color: var(--gold);
+  }
+
+  // ─── DESKTOP horizontal rail ──────────────────────────────
+  .vt-rail {
+    display: none;
+    position: relative;
+    padding: 56px 0 8px;
+  }
+
+  @media (min-width: 720px) {
+    .vt-rail { display: block; }
+    .vt-list { display: none; }
+  }
+
+  .vt-track {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 56px;
+    height: 1px;
+    background: var(--line);
+  }
+
+  .vt-fill {
+    position: absolute;
+    inset: 0 auto 0 0;
+    height: 100%;
+    background: var(--gold);
+    opacity: 0.85;
+    transition: width 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .vt-here {
+    position: absolute;
+    top: 56px;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+    text-align: center;
+    pointer-events: none;
+    transition: left 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .vt-here-mark {
+    display: inline-block;
+    font-size: 14px;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .vt-here-label {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-family-label);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ink);
+    white-space: nowrap;
+    background: var(--bg);
+    padding: 2px 8px;
+    border: 1px solid var(--gold);
+    border-radius: 999px;
+  }
+
+  .vt-nodes {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+  }
+
+  .vt-node {
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 8px;
+  }
+
+  .vt-pin {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 1.5px solid var(--ink-mute);
+    margin: 0 auto var(--space-md);
+    display: grid;
+    place-items: center;
+    font-size: 10px;
+    color: var(--gold);
+    z-index: 2;
+  }
+
+  .vt-node.is-done .vt-pin {
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+
+  .vt-node.is-next .vt-pin {
+    border-color: var(--gold);
+    background: var(--bg);
+  }
+
+  .vt-node.is-next .vt-pin::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    opacity: 0;
+    animation: vt-pulse 2s ease-out infinite;
+  }
+
+  .vt-node.is-dest .vt-pin {
+    background: var(--bg);
+    border-color: var(--gold);
+  }
+
+  @keyframes vt-pulse {
+    0%   { transform: scale(1);   opacity: 0.7; }
+    100% { transform: scale(2.2); opacity: 0; }
+  }
+
+  .vt-date {
+    font-family: var(--font-family-display);
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  .vt-ttl {
+    font-family: var(--font-family-label);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    margin: 6px 0 4px;
+    line-height: 1.3;
+  }
+
+  .vt-desc {
+    font-family: var(--font-family-body);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin: 0 0 var(--space-xs);
+    max-width: 22ch;
+  }
+
+  .vt-out {
+    font-family: var(--font-family-label);
+    font-size: 10px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-top: 4px;
+  }
+
+  .vt-node.is-upcoming .vt-date,
+  .vt-node.is-upcoming .vt-ttl,
+  .vt-node.is-upcoming .vt-desc {
+    opacity: 0.78;
+  }
+
+  // ─── MOBILE vertical list ─────────────────────────────────
+  .vt-list {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 28px;
+    border-left: 1px solid var(--line);
+  }
+
+  .vt-item {
+    position: relative;
+    padding: 0 0 var(--space-md);
+  }
+
+  .vt-vpin {
+    position: absolute;
+    left: -34px;
+    top: 4px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 1.5px solid var(--ink-mute);
+    display: grid;
+    place-items: center;
+    font-size: 10px;
+    color: var(--gold);
+    z-index: 2;
+  }
+
+  .vt-item.is-done .vt-vpin {
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+
+  .vt-item.is-next .vt-vpin {
+    border-color: var(--gold);
+    background: var(--bg);
+  }
+
+  .vt-item.is-next .vt-vpin::after {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    opacity: 0;
+    animation: vt-pulse 2s ease-out infinite;
+  }
+
+  .vt-item.is-dest .vt-vpin {
+    background: var(--bg);
+    border-color: var(--gold);
+  }
+
+  .vt-vbody {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .vt-vdate {
+    font-family: var(--font-family-display);
+    font-weight: 500;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  .vt-vrel {
+    margin-left: 8px;
+    font-family: var(--font-family-label);
+    font-size: 10px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  .vt-vttl {
+    font-family: var(--font-family-label);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+  }
+
+  .vt-vdesc {
+    font-family: var(--font-family-body);
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  .vt-item.is-upcoming .vt-vdate,
+  .vt-item.is-upcoming .vt-vttl,
+  .vt-item.is-upcoming .vt-vdesc {
+    opacity: 0.82;
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.voyage-timeline').forEach((section) => {
+    const sailIso = section.dataset.sail!
+    const sail = new Date(sailIso + 'T00:00:00')
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+    const DAY = 86400000
+
+    const MONTHS = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC']
+    const fmt = (d: Date) => `${MONTHS[d.getMonth()]} ${d.getDate()}`
+    const rel = (diff: number) => {
+      if (diff < 0) return 'Completed'
+      if (diff === 0) return 'Today'
+      if (diff === 1) return 'Tomorrow'
+      return `In ${diff} days`
+    }
+
+    // Compact-variant days-to-go counter (only exists on compact)
+    const togoEl = section.querySelector('#vt-togo-num')
+    if (togoEl) {
+      const togo = Math.max(0, Math.round((sail.getTime() - today.getTime()) / DAY))
+      togoEl.textContent = String(togo)
+    }
+
+    // Per-node status
+    const nodes = Array.from(section.querySelectorAll<HTMLElement>('.vt-node'))
+    const items = Array.from(section.querySelectorAll<HTMLElement>('.vt-item'))
+
+    type Enriched = { el: HTMLElement; vel: HTMLElement | null; dt: Date; diff: number; isDest: boolean }
+    const enriched: Enriched[] = nodes.map((el, i) => {
+      const iso = el.dataset.date!
+      const dt = new Date(iso + 'T00:00:00')
+      const diff = Math.round((dt.getTime() - today.getTime()) / DAY)
+      const isDest = el.classList.contains('is-dest')
+      return { el, vel: items[i] ?? null, dt, diff, isDest }
+    })
+
+    const nextIdx = enriched.findIndex((m) => !m.isDest && m.diff >= 0)
+
+    enriched.forEach((m, i) => {
+      let status: 'done' | 'next' | 'upcoming' | 'dest'
+      if (m.isDest) status = 'dest'
+      else if (m.diff < 0) status = 'done'
+      else if (i === nextIdx) status = 'next'
+      else status = 'upcoming'
+
+      m.el.classList.add(`is-${status}`)
+      m.vel?.classList.add(`is-${status}`)
+
+      const badgeText =
+        status === 'done' ? 'Done' :
+        status === 'next' ? 'Up next' :
+        status === 'dest' ? 'Set sail' :
+        'Upcoming'
+
+      m.el.querySelectorAll('.vt-badge').forEach((b) => (b.textContent = badgeText))
+      m.vel?.querySelectorAll('.vt-badge').forEach((b) => (b.textContent = badgeText))
+
+      const vrel = m.vel?.querySelector('.vt-vrel') as HTMLElement | null
+      if (vrel) vrel.textContent = `· ${rel(m.diff)}`
+
+      if (m.isDest) {
+        const out = m.el.querySelector('.vt-out')
+        if (out) out.textContent = rel(m.diff)
+      }
+    })
+
+    // Today position on the rail
+    if (enriched.length > 1) {
+      const first = enriched[0].dt.getTime()
+      const last = enriched[enriched.length - 1].dt.getTime()
+      let posPct = 0
+      if (today.getTime() <= first) {
+        posPct = 0
+      } else if (today.getTime() >= last) {
+        posPct = 100
+      } else {
+        const n = enriched.length
+        let k = 0
+        for (let i = 0; i < n - 1; i++) {
+          if (today.getTime() >= enriched[i].dt.getTime() && today.getTime() < enriched[i + 1].dt.getTime()) {
+            k = i
+            break
+          }
+        }
+        const seg = 1 / (n - 1)
+        const frac = (today.getTime() - enriched[k].dt.getTime()) / (enriched[k + 1].dt.getTime() - enriched[k].dt.getTime())
+        posPct = (k * seg + frac * seg) * 100
+      }
+
+      requestAnimationFrame(() => {
+        const fill = section.querySelector<HTMLElement>('[data-vt-fill]')
+        const here = section.querySelector<HTMLElement>('[data-vt-here]')
+        const hereDate = section.querySelector('[data-vt-here-date]')
+        if (fill) fill.style.width = posPct + '%'
+        if (here) here.style.left = posPct + '%'
+        if (hereDate) hereDate.textContent = `Today · ${fmt(today)}`
+      })
+    }
+  })
+</script>
