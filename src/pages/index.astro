@@ -6,7 +6,7 @@ import Section from '../components/Section.astro'
 import heroBg from '../assets/photos/disneyfantasycastaway.avif'
 import aiyanaPortrait from '../assets/photos/aiyana-daisy.jpg'
 
-const targetDate = new Date('2026-08-28T00:00:00').getTime()
+const targetDate = new Date('2026-08-28T13:00:00').getTime()
 const daysUntilTarget = Math.max(0, Math.ceil((targetDate - Date.now()) / 86400000))
 
 const itinerary = [
@@ -147,7 +147,7 @@ const itinerary = [
 </DefaultLayout>
 
 <script>
-  const target = new Date('2026-08-28T00:00:00').getTime()
+  const target = new Date('2026-08-28T13:00:00').getTime()
 
   function setFlipDigit(cellEl: Element, newDigit: string) {
     const top = cellEl.querySelector('.cd-static-top') as HTMLElement | null
